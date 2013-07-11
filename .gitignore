@@ -1,0 +1,5 @@
+public/dist/
+public/compiled-js/
+*.swp
+*.swo
+node_modules/
