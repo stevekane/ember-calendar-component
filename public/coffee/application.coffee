@@ -1,3 +1,9 @@
 window.AR = Ember.Application.create()
 
-console.log AR
+require "router/router.js"
+
+require "models/Client.js"
+
+require "controllers/ClientsController.js"
+require "controllers/IndexController.js"
+require "controllers/HomeController.js"

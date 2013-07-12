@@ -1,0 +1,60 @@
+@import colors
+@import buttons 
+
+//calculate size of homeheader bounding boxes
+$homeheader-height: 60px
+$homeheader-content-height: $homeheader-height * .75
+$homeheader-content-padding: ($homeheader-height - $homeheader-content-height) / 2
+
+$leftpane: 60%
+$rightpane: 100% - $leftpane - 1%
+
+#recentactivity
+  position: absolute
+  left: 0px
+  width: $leftpane
+  min-height: 600px
+  background-color: $white
+
+  #homeheader
+    display: block
+    width: 100%
+    height: $homeheader-height
+    padding-left: 10%
+    #title
+      display: inline-block
+      vertical-align: middle
+      height: $homeheader-content-height
+      color: $darkgrey
+    #addperson
+      @include bluebutton
+      display: inline-block
+      vertical-align: middle
+      width: 130px
+      margin-left: 5%
+      height: $homeheader-content-height
+    #addquote
+      @include bluebutton
+      display: inline-block
+      vertical-align: middle
+      width: 130px
+      height: $homeheader-content-height
+
+  #clientlist
+    margin-top: 20px
+    margin-left: 10% 
+    tr
+      height: 50px
+      th
+        text-align: left
+        width: 20%
+      td 
+        text-align: left
+        width: 20%
+
+#reminders
+  position: absolute
+  right: 0px
+  width: $rightpane
+  min-height: 600px
+  background-color: $white

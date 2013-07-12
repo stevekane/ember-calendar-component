@@ -67,7 +67,7 @@ module.exports = (grunt) ->
           livereload: true
 
       coffee:
-        files: ['<%= coffeeDir %>/**/*.js']
+        files: ['<%= coffeeDir %>/**/*.coffee']
         tasks: ['clean', 'coffee', 'minispade']
         options:
           livereload: true

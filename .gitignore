@@ -1,5 +1,6 @@
 public/dist/
 public/compiled-js/
+.sass-cache/
 *.swp
 *.swo
 node_modules/

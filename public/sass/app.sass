@@ -1,2 +1,84 @@
-body
-  background-color: blue
+@import colors
+@import buttons
+@import forms
+@import fonts
+
+@import home/home
+
+//set the active font for all elements
+*
+  font-family: $activeFont
+  box-sizing: border-box
+
+//calculate size of header and subheader bounding boxes
+$header-height: 90px
+$header-content-height: $header-height * .55
+$header-content-padding: ($header-height - $header-content-height) / 2
+
+$subheader-height: 60px
+$subheader-content-height: $subheader-height * .55
+$subheader-content-padding: ($subheader-height - $subheader-content-height) / 2
+
+//header stuff
+#pageheader
+  display: block
+  height: $header-height
+  width: 100%
+  background-color: $darkblue
+
+  h1#title
+    display: inline-block
+    margin: 0px 0px 0px 10%
+    padding-top: 25px
+    font-family: $activeFont
+    font-size: 1.6em
+    font-style: italic
+    color: $white
+
+  #homenav
+    @include headerbutton
+    margin-left: 4% 
+    top: 0px
+    height: $header-content-height
+    border-radius: 10px 0px 0px 10px
+
+  #clientsnav
+    @include headerbutton
+    height: $header-content-height
+    margin-right: 15%
+    border-radius: 0px 10px 10px 0px 
+  
+  #search 
+    @include search
+    vertical-align: middle
+    width: 15%
+    height: $header-content-height
+
+  #logout
+    @include button 
+    vertical-align: middle
+    margin: 0px 2% 
+    height: $header-content-height
+    width: 140px
+
+//subheader stuff
+#subheader
+  display: block
+  height: $subheader-height
+  width: 100%
+  background-color: $lightblue
+  
+  #back
+    @include button
+    margin-top: $subheader-content-padding
+    vertical-align: middle
+    margin-left: 7%
+    height: $subheader-content-height
+    width: 100px
+
+#main
+  display: block
+  position: relative
+  min-height: 600px
+  width: 100%
+  background-color: $lightgrey

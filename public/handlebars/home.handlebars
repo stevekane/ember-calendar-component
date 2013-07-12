@@ -1,0 +1,36 @@
+<div id="recentactivity">
+
+  <header id="homeheader">
+    <h2 id="title">RECENT ACTIVITY</h2>
+    <div id="addperson" {{action "addPerson"}} >+ New Person</div>
+    <div id="addquote" {{action "addQuote"}} >+ New Quote</div>
+  </header>
+
+  <table id="clientlist">
+
+    <tr>
+      <th>View All People</th>
+      <th>View All Types</th>
+      <th>
+        {{view Ember.Select
+          contentBinding="controller._statuses"
+          valueBinding="controller._statusFilter"
+        }}
+      </th>
+    </tr>
+
+    {{#each client in controller.filteredClients}}
+      <tr class="client">
+        <td>{{client.name}}</td>
+        <td class="insurancetype"></td>
+        <td {{bindAttr class=client.tagClass}}>{{client.state}}</td>
+      </tr>
+    {{/each}}
+
+  </table>
+
+</div>
+
+<div id="reminders">
+
+</div>

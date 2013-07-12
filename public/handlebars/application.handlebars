@@ -1,0 +1,33 @@
+<header id="pageheader">
+
+  <h1 id="title">Agent Run</h1> 
+
+  {{! goHome and goClients are found on ApplicationRoute}}
+  <div id="homenav" {{action "goHome"}} >Home</div>
+  <div id="clientsnav" {{action "goClients"}} >Clients</div>
+
+  {{input 
+    id="search"
+    value=name 
+    placeholder="search..."
+  }}
+  
+  <div id="logout" {{action "logout"}} >Log Out</div>
+
+</header>
+
+<div id="subheader">
+
+  {{! goBack handled on ApplicationRoute}}
+  <div id="back" {{action "goBack"}}>Back</div>
+
+  {{outlet subheader}}
+
+</div>
+
+<section id="main">
+  {{outlet main}}
+</section>
+
+<footer>
+</footer>
