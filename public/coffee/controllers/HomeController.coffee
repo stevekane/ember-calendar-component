@@ -12,11 +12,3 @@ AR.HomeController = Ember.Controller.extend
 
     clients.filterProperty "state", status
   ).property('controllers.clients.content.@each', '_statusFilter')
-
-  #response to user click on add new person button
-  addPerson: () ->
-    alert "you attempted to add a person"
-
-  #response to user click on add new quote button
-  addQuote: () ->
-    alert "you attempted to add a quote"
