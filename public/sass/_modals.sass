@@ -1,6 +1,9 @@
 @import colors
 
-#modalbackground
+$modalheight: 500px
+$modalwidth: 500px
+
+.modalbackground
   z-index: 10
   background-color: $darkgrey
   opacity: .5
@@ -11,3 +14,19 @@
 .modal
   position: absolute
   background-color: $white
+  opacity: 1.0
+  top: 50%
+  left: 50%
+  margin-top: -$modalheight / 2
+  margin-left: -$modalwidth / 2
+  height: $modalheight
+  width: $modalwidth
+  .close
+    position: absolute
+    top: 5%
+    right: 5%
+    height: 20px
+    width: 20px
+    text-align: center
+    font-weight: bolder
+    

@@ -23,33 +23,10 @@ AR.ModalView = Ember.View.extend
     $(window).off "resize", @boundSetSizes
 
   setSizes: ->
-    $body = $('body')
+    $body = $ 'body'
     @set "windowHeight", $body.height()
     @set "windowWidth", $body.width()
 
   windowSize: (->
     "height: #{@get 'windowHeight'}px; width: #{@get 'windowWidth'}px"
   ).property('windowHeight', 'windowWidth').cacheable()
-
-  #we parse our clicks to determine how to handle each event
-  returnTargetAction: (targ) ->
-    bg = @$('#modalbackground')
-    close = @$('#close')
-    
-    console.log bg.is targ
-    console.log close.is targ
-    switch targ
-      when bg then return @close
-      when close then return @close
-      else return @noAction
-
-  click: (e) ->
-    @returnTargetAction(e.target)()
-
-  close: ->
-    console.log "close fired"
-    window.history.back()
-
-  noAction: ->
-    console.log "no action"
-    return

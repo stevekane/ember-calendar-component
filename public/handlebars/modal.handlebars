@@ -1,4 +1,7 @@
-<div id="modalbackground" {{bindAttr style=view.windowSize}}>
-  <div id="close">X</div>
-  {{yield}}
+<div class="modalbackground" {{bindAttr style="view.windowSize"}}>
+
+  <div class="modal">
+    <div class="close" {{action "close"}}>X</div>
+    {{yield}}
+  </div>
 </div>
