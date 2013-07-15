@@ -10,5 +10,5 @@ AR.HomeController = Ember.Controller.extend
     clients = @get 'controllers.clients.content'
     status = @get '_statusFilter'
 
-    clients.filterProperty "state", status
+    clients.filterProperty "status", status
   ).property('controllers.clients.content.@each', '_statusFilter')

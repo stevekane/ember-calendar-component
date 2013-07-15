@@ -19,13 +19,7 @@
       </th>
     </tr>
 
-    {{#each client in controller.filteredClients}}
-      <tr class="client">
-        <td>{{client.name}}</td>
-        <td class="insurancetype"></td>
-        <td {{bindAttr class=client.tagClass}}>{{client.state}}</td>
-      </tr>
-    {{/each}}
+    {{each controller.filteredClients itemViewClass="AR.ActivityItemView"}}
 
   </table>
 

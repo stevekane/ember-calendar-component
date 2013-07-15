@@ -1,3 +1,5 @@
+require "views/home/ActivityItemView.js"
+
 AR.HomeRoute = Ember.Route.extend
 
   #these events will trigger transitions to modal form routes

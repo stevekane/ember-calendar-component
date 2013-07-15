@@ -1,13 +1,13 @@
-require "views/home/AddpersonmodalView.js"
+require "views/home/AddquotemodalView.js"
 
-AR.HomeAddpersonRoute = Ember.Route.extend
+AR.HomeAddquoteRoute = Ember.Route.extend
   events:
     close: ->
       @transitionTo "home"
 
   renderTemplate: () ->
     @render(
-      "addpersonmodal",
+      "addquotemodal",
       into: "home",
       outlet: "modal",
     )

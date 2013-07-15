@@ -1,5 +1,6 @@
 @import colors
 @import buttons 
+@import tags
 
 //calculate size of homeheader bounding boxes
 $homeheader-height: 60px
@@ -51,6 +52,13 @@ $rightpane: 100% - $leftpane - 1%
       td 
         text-align: left
         width: 20%
+
+.leadtag
+  @include tag(orange)
+.activetag
+  @include tag(green)
+.inactivetag
+  @include tag(red)
 
 #reminders
   position: absolute
