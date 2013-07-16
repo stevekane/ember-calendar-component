@@ -1,3 +1,36 @@
-<section>
-  
+<section class="modalcontent">
+  <header class="modalheader">
+    Add New Person
+  </header> 
+
+  <table class="modalform">
+
+    <tr class="formrow">
+      <td class="description">First Name</td>
+      <td class="input">{{input}}</td>
+    </tr>
+    <tr class="formrow">
+      <td class="description">Last Name</td>
+      <td class="input">{{input}}</td>
+    </tr>
+    <tr class="formrow">
+      <td class="description">Email</td>
+      <td class="input">{{input}}</td>
+    </tr>
+    <tr class="formrow">
+      <td class="description">Phone #</td>
+      <td class="input">{{input}}</td>
+    </tr>
+    <tr class="formrow">
+      <td class="description">Referral</td>
+      <td class="input">{{input}}</td>
+    </tr>
+
+  </table>
+
+  <footer class="modalfooter">
+    <div class="save" {{action "save"}}>
+      Add Person
+    </div>
+  </footer>
 </section>

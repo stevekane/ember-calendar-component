@@ -1,5 +1,8 @@
 @import colors
 
+$form-description-width: 20%
+$form-input-width: 100% - $form-description-width
+
 @mixin search
   border-radius: 5px
   border: 1px solid $searchfont
@@ -7,3 +10,27 @@
   color: $searchfont
   padding-left: 5px
   text-align: left
+
+@mixin formrow 
+  width: 100%
+  height: 40px
+
+  .description
+    display: inline-block
+    color: $darkgrey
+    font-size: .8em
+    font-weight: 400 
+    height: inherit
+    width: $form-description-width
+
+  .input
+    display: inline-block
+    height: inherit
+    width: $form-input-width
+
+    input
+      color: $darkgrey
+      background-color: $lightgrey
+      border-radius: 5px
+      height: inherit
+      width: 100%
