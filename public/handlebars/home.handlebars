@@ -17,6 +17,9 @@
           valueBinding="controller._statusFilter"
         }}
       </th>
+      <th class-"clientlistheader">
+        {{view "AR.DropdownView"}}
+      </th>
     </tr>
 
     {{each controller.filteredClients itemViewClass="AR.ActivityItemView"}}

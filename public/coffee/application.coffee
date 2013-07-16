@@ -9,6 +9,8 @@ require "views/search/SearchItemView.js"
 
 require "views/modal/ModalView.js"
 
+require "views/dropdown/DropdownView.js"
+
 require "controllers/ClientsController.js"
 require "controllers/HomeController.js"
 
