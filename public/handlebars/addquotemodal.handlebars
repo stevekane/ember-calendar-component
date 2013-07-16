@@ -1,1 +1,27 @@
-<h1>Add a quote</h1>
+<section class="modalcontent">
+  <header class="modalheader">
+    Add New Quote 
+  </header> 
+
+  <table class="modalform">
+
+    <tr class="formrow">
+      <td class="description">Quote for</td>
+      <td class="input">{{input}}</td>
+    </tr>
+
+    <tr class="formrow">
+      <td class="description">Insurance Type</td>
+      <td class="input">{{view Ember.Select}}</td>
+    </tr>
+
+  </table>
+
+  <footer class="modalfooter">
+    <div class="save" {{action "save"}}>
+      Add Person
+    </div>
+  </footer>
+</section>
+
+
