@@ -11,4 +11,3 @@ AR.SearchItemView = Ember.View.extend
   classTag: (->
     "#{@get('type')}tag"
   ).property('content.status', 'type')
-

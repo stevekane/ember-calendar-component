@@ -14,8 +14,6 @@ AR.SearchView = Ember.View.extend
     hasMatchingName = (candidate) ->
       candidate.get('name').indexOf(currentSearch) > -1
 
-    console.log 'fired'
-
     candidates = @get('candidates')
       .filter(hasMatchingName)
       .uniq()
