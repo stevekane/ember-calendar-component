@@ -10,4 +10,5 @@ AR.HomeAddquoteRoute = Ember.Route.extend
       "addquotemodal",
       into: "home",
       outlet: "modal",
+      controller: "home"
     )

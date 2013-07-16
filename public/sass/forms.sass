@@ -1,7 +1,10 @@
 @import colors
+@import tags
 
 $form-description-width: 20%
 $form-input-width: 100% - $form-description-width
+
+$searchheight: 50px
 
 @mixin search
   border-radius: 5px
@@ -28,17 +31,57 @@ $form-input-width: 100% - $form-description-width
     height: inherit
     width: $form-input-width
 
-    input
+    .textfield 
       color: $darkgrey
       background-color: $lightgrey
       border-radius: 5px
       height: inherit
       width: 100%
 
-    select
+    .select 
       color: $darkgrey
       background: $white
       border-radius: 5px
       height: inherit
       width: 100%
       border: 1px solid $darkgrey
+
+.searchbox
+  width: 100%
+  position: relative
+
+  .searchfield
+    display: block
+    background-color: $white
+    height: $searchheight
+    width: 100%
+    padding-left: 5%
+    border: 1px solid $darkgrey
+    border-radius: 5px
+    
+  .searchlist
+    list-style-type: none
+    position: absolute
+    margin: 0px
+    padding: 0px
+    top: $searchheight 
+    width: 100%
+    border: 1px solid $darkgrey
+    border-radius: 0px 0px 5px 5px
+    overflow-x: hidden
+    overflow-y: auto
+
+    .searchmatch
+      padding: $searchheight*.2 0px 0px 0px
+      margin: none
+      height: $searchheight * .8
+      width: 100%
+      background-color: $white
+      padding-left: 5%
+
+      .clienttag
+        @include tag(green)
+        margin-right: 2%
+      .leadtag
+        @include tag(orange)
+        margin-right: 2%  

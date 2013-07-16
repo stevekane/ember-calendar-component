@@ -1,0 +1,7 @@
+{{input value=view.currentSearch classNames="searchfield"}}
+{{#if view.possibleMatches}}
+<ul class="searchlist">
+  {{each view.possibleMatches itemViewClass="AR.SearchItemView"}}
+</ul>
+{{else}}
+{{/if}}

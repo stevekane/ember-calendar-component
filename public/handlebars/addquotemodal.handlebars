@@ -7,12 +7,14 @@
 
     <tr class="formrow">
       <td class="description">Quote for</td>
-      <td class="input">{{input}}</td>
+      <td class="input">
+        {{view "AR.SearchView" candidatesBinding="controller.controllers.clients.content"}}
+      </td>
     </tr>
 
     <tr class="formrow">
       <td class="description">Insurance Type</td>
-      <td class="input">{{view Ember.Select}}</td>
+      <td class="input">{{view Ember.Select classNames="select"}}</td>
     </tr>
 
   </table>
@@ -23,5 +25,3 @@
     </div>
   </footer>
 </section>
-
-
