@@ -8,10 +8,10 @@
 
   <table id="clientlist">
 
-    <tr>
-      <th>View All People</th>
-      <th>View All Types</th>
-      <th>
+    <tr id="clientlistheaders">
+      <th class="clientlistheader">View All People</th>
+      <th class="clientlistheader">View All Types</th>
+      <th class="clientlistheader">
         {{view Ember.Select
           contentBinding="controller._statuses"
           valueBinding="controller._statusFilter"

@@ -44,22 +44,20 @@ $rightpane: 100% - $leftpane - 1%
   #clientlist
     margin-top: 20px
     margin-left: 10% 
-    tr
+
+    #clientlistheaders
+      .clientlistheader
+        text-align: left
+        width: 20%
+        
+    .client
       &:hover
         background-color: blue
         color: $white
       height: 50px
-      th
-        text-align: left
-        width: 20%
       td 
         text-align: left
         width: 20%
-
-.clienttag
-  @include tag(green)
-.leadtag
-  @include tag(orange)
 
 #reminders
   position: absolute
