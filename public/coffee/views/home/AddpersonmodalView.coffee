@@ -1,3 +1,4 @@
-require "views/ModalView.js"
+require "views/modal/ModalView.js"
 
-AR.AddpersonmodalView = AR.ModalView.extend()
+AR.HomeAddpersonmodalView = AR.ModalView.extend
+  templateName: "home/addpersonmodal"

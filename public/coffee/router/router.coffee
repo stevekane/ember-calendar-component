@@ -3,6 +3,8 @@ require "router/HomeRoute.js"
 require "router/home/AddpersonRoute.js"
 require "router/home/AddquoteRoute.js"
 
+require "router/ClientsRoute.js"
+
 AR.Router.map ->
   @resource "home", path: "/home", ->
     @route "addperson", path: "/addperson"

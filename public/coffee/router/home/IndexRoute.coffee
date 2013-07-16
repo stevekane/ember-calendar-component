@@ -1,6 +1,6 @@
 require "views/home/ActivityItemView.js"
 
-AR.HomeIndexRoute = Ember.Route.extend
+AR.HomeRoute = Ember.Route.extend
 
   #these events will trigger transitions to modal form routes
   events:
@@ -14,7 +14,7 @@ AR.HomeIndexRoute = Ember.Route.extend
     clientsCon.set "content", AR.Client.find()
 
   renderTemplate: ->
-    @render "home/index", {
+    @render "home", {
       into: "application"
       outlet: "main"
       controller: "home"

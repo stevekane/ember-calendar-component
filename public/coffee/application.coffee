@@ -4,8 +4,10 @@ require "router/router.js"
 
 require "models/Client.js"
 
-require "views/SearchView.js"
-require "views/SearchItemView.js"
+require "views/search/SearchView.js"
+require "views/search/SearchItemView.js"
+
+require "views/modal/ModalView.js"
 
 require "controllers/ClientsController.js"
 require "controllers/HomeController.js"

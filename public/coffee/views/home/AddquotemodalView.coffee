@@ -1,3 +1,4 @@
-require "views/ModalView.js"
+require "views/modal/ModalView.js"
 
-AR.AddquotemodalView = AR.ModalView.extend()
+AR.HomeAddquotemodalView = AR.ModalView.extend
+  templateName: "home/addquotemodal"

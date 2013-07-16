@@ -1,6 +1,6 @@
 AR.ActivityItemView = Ember.View.extend
   
-  templateName: "activityitem"
+  templateName: "home/activityitem"
 
   type: (->
     switch @get('content.status')

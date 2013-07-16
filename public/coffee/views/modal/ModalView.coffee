@@ -1,7 +1,7 @@
 #parent class for Modal Views
 
 AR.ModalView = Ember.View.extend
-  layoutName: "modal"
+  layoutName: "modal/modal"
   
   #Modals should always resize with the window
   #the willInsert and willRemove hooks are used to setup

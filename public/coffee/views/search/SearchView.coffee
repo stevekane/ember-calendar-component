@@ -1,6 +1,6 @@
 AR.SearchView = Ember.View.extend
 
-  templateName: 'search'
+  templateName: 'search/search'
   classNames: ['searchbox']
 
   currentSearch: ""

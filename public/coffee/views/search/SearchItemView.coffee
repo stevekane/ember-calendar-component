@@ -1,5 +1,5 @@
 AR.SearchItemView = Ember.View.extend
-  templateName: 'searchitem'
+  templateName: 'search/searchitem'
 
   type: (->
     switch @get('content.status')
