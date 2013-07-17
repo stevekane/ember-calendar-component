@@ -3,6 +3,11 @@ window.AR = Ember.Application.create()
 require "router/router.js"
 
 require "models/Client.js"
+require "models/Policy.js"
+require "models/Quote.js"
+require "models/Insurancetype.js"
+
+require "models/FIXTURES.js"
 
 require "views/search/SearchView.js"
 require "views/search/SearchItemView.js"

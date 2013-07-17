@@ -28,16 +28,13 @@ AR.HomeController = Ember.Controller.extend
 
   filterManager: AR.FilterManager.create()
   
-  #filterproperties
-  _statuses: ['lead', 'active', 'inactive']
-  _statusFilter: 'lead'
-
   #return a list of filtered clients for display
   filteredClients: (->
     clients = @get 'controllers.clients.content'
     clients
   ).property('controllers.clients.content.@each')
 
+  #observer fired whenever checked status changes
   filterObserva: (->
     filters = @get("filterManager.statusFilters").getEach "checked"
     console.log filters
