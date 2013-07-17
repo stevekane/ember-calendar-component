@@ -1,6 +1,30 @@
-.main
-  background-color: blue
+$dropdownheight: 30px
+
+.dropdowncontainer
   display: inline-block
-  height: 100% 
-  width: 100px
-  
+  position: relative
+  height: 100%
+  width: 200px
+
+  .dropdownsummary
+    font-weight: normal
+    height: $dropdownheight
+    width: 100%
+
+  .dropdowncontents
+    position: absolute
+    margin: 0px
+    padding: 5%
+    top: $dropdownheight
+    width: 100%
+    border: 1px solid black
+    background-color: white
+    z-index: 5
+    list-style-type: none
+    text-align: left
+
+    .dropdownoption
+      font-weight: normal
+      &:hover
+        background-color: blue  
+        color: white

@@ -18,7 +18,11 @@
         }}
       </th>
       <th class-"clientlistheader">
-        {{view "AR.DropdownView"}}
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.statusFilters"
+          summary=Status
+        }}
       </th>
     </tr>
 
