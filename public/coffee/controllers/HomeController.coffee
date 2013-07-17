@@ -24,7 +24,7 @@ AR.FilterManager = Ember.Object.extend
   ]
 
 AR.HomeController = Ember.Controller.extend
-  needs: ['clients']
+  needs: ['clients', 'quotes', 'policys']
 
   filterManager: AR.FilterManager.create()
   

@@ -11,7 +11,11 @@ AR.HomeIndexRoute = Ember.Route.extend
 
   setupController: ->
     clientsCon = @controllerFor('home').get 'controllers.clients'
+    quotesCon = @controllerFor('home').get 'controllers.quotes'
+    policysCon = @controllerFor('home').get 'controllers.policys'
     clientsCon.set "content", AR.Client.find()
+    quotesCon.set "content", AR.Quote.find()
+    policysCon.set "content", AR.Policy.find()
 
   renderTemplate: ->
     @render "home/index", {

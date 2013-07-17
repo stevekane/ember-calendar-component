@@ -17,6 +17,8 @@ require "views/modal/ModalView.js"
 require "views/dropdown/DropdownView.js"
 
 require "controllers/ClientsController.js"
+require "controllers/QuotesController.js"
+require "controllers/PolicysController.js"
 require "controllers/HomeController.js"
 
 Ember.Handlebars.registerBoundHelper('highlightMatching', (name, search) ->
