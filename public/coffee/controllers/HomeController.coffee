@@ -1,5 +1,9 @@
 #this is a suppport class to keep this mess out of the controller
 AR.FilterManager = Ember.Object.extend
+  clientFilterSummary: "View All People"
+  typeFilterSummary: "View All Types"
+  statusFilterSummary: "Status"
+
   clientFilters: [
     Ember.Object.create(filter: "client", checked: true),
     Ember.Object.create(filter: "lead", checked: true),
@@ -31,10 +35,8 @@ AR.HomeController = Ember.Controller.extend
   #return a list of filtered clients for display
   filteredClients: (->
     clients = @get 'controllers.clients.content'
-    status = @get '_statusFilter'
-
-    clients.filterProperty "status", status
-  ).property('controllers.clients.content.@each', '_statusFilter')
+    clients
+  ).property('controllers.clients.content.@each')
 
   filterObserva: (->
     filters = @get("filterManager.statusFilters").getEach "checked"

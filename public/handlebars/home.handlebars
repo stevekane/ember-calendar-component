@@ -9,19 +9,28 @@
   <table id="clientlist">
 
     <tr id="clientlistheaders">
-      <th class="clientlistheader">View All People</th>
-      <th class="clientlistheader">View All Types</th>
-      <th class="clientlistheader">
-        {{view Ember.Select
-          contentBinding="controller._statuses"
-          valueBinding="controller._statusFilter"
+
+      <th class-"clientlistheader">
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.clientFilters"
+          summaryBinding="controller.filterManager.clientFilterSummary"
         }}
       </th>
+
+      <th class-"clientlistheader">
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.typeFilters"
+          summaryBinding="controller.filterManager.typeFilterSummary"
+        }}
+      </th>
+
       <th class-"clientlistheader">
         {{view "AR.DropdownView" 
           templateName="home/statusdropdown"
           optionsBinding="controller.filterManager.statusFilters"
-          summary=Status
+          summaryBinding="controller.filterManager.statusFilterSummary"
         }}
       </th>
     </tr>
