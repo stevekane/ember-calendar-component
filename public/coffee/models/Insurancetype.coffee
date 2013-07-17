@@ -6,10 +6,3 @@ AR.Insurancetype = Ember.Model.extend
   name: attr()
 
 AR.Insurancetype.adapter = Ember.FixtureAdapter.create()
-
-AR.Quote.FIXTURES = [
-  {id: 1, name: "RENTERS"},
-  {id: 2, name: "PERSONAL AUTO"},
-  {id: 3, name: "TERM LIFE"},
-  {id: 4, name: "RABBIT INVASION"},
-]

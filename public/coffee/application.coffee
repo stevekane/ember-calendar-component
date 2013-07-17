@@ -5,6 +5,7 @@ require "router/router.js"
 require "models/Client.js"
 require "models/Policy.js"
 require "models/Quote.js"
+require "models/Flow.js"
 require "models/Insurancetype.js"
 
 require "models/FIXTURES.js"

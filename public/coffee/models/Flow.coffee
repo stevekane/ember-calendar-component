@@ -12,3 +12,5 @@ AR.Flow = Ember.Model.extend
   quotes: hasMany "AR.Quote", {key: "quote_ids"}
   policys: hasMany "AR.Policy", {key: "policy_ids"}
   status: attr()
+
+AR.Flow.adapter = Ember.FixtureAdapter.create()
