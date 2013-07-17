@@ -41,23 +41,27 @@ $rightpane: 100% - $leftpane - 1%
       width: 130px
       height: $homeheader-content-height
 
-  #clientlist
+  #activitylist
     margin-top: 20px
     margin-left: 10% 
 
-    #clientlistheaders
-      .clientlistheader
+    #activitylistheaders
+      .activitylistheader
         text-align: left
         width: 20%
         
-    .client
+    .activity
       &:hover
         background-color: blue
         color: $white
       height: 50px
-      td 
+      .activityclient 
+        position: relative
         text-align: left
         width: 20%
+        .activityclientname
+          position: absolute
+          left: 30%
 
 #reminders
   position: absolute

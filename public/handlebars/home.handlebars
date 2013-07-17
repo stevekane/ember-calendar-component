@@ -6,11 +6,11 @@
     <div id="addquote" {{action "addQuote"}} >+ New Quote</div>
   </header>
 
-  <table id="clientlist">
+  <table id="activitylist">
 
-    <tr id="clientlistheaders">
+    <tr id="activitylistheaders">
 
-      <th class-"clientlistheader">
+      <th class="activitylistheader">
         {{view "AR.DropdownView" 
           templateName="home/statusdropdown"
           optionsBinding="controller.filterManager.clientFilters"
@@ -18,7 +18,7 @@
         }}
       </th>
 
-      <th class-"clientlistheader">
+      <th class="activitylistheader">
         {{view "AR.DropdownView" 
           templateName="home/statusdropdown"
           optionsBinding="controller.filterManager.typeFilters"
@@ -26,7 +26,7 @@
         }}
       </th>
 
-      <th class-"clientlistheader">
+      <th class="activitylistheader">
         {{view "AR.DropdownView" 
           templateName="home/statusdropdown"
           optionsBinding="controller.filterManager.statusFilters"
