@@ -1,14 +1,14 @@
 <tr class="activity">
   <td class="activityclient">
-    <span {{bindAttr class="view.classTag"}}>{{view.type}}</span>
-    <span class="activityclientname">{{client.name}}</span>
+    <span {{bindAttr class="view.classTag"}}>{{view.personType}}</span>
+    <span class="activityclientname">{{client.name}}{{view.something}}</span>
   </td>
 
   <td class="activityinsurancetype">
-
+    <span>{{insuranceType.name}}</span>
   </td>
 
   <td class="activitystatus">
-
+    <span>{{status}}</span>
   </td>
 </tr>

@@ -24,31 +24,14 @@ AR.FilterManager = Ember.Object.extend
   ]
 
 AR.HomeController = Ember.Controller.extend
-  needs: ['clients', 'quotes', 'policys']
+  needs: ['flows']
 
   filterManager: AR.FilterManager.create()
   
   #return a list of filtered clients for display
-  filteredPolicys: (->
-    policys = @get 'controllers.policys.content'
-    policys
+  filteredFlows: (->
+    flows = @get 'controllers.flows.content'
+    flows
   ).property(
-    'controllers.policys.content.@each'
-  )
-
-  filteredQuotes: (->
-    quotes = @get 'controllers.quotes.content'
-    quotes
-  ).property(
-    'controllers.quotes.content.@each'
-  )
-
-  #observer fired whenever checked status changes
-  filterObserva: (->
-    filters = @get("filterManager.statusFilters").getEach "checked"
-    console.log filters
-  ).observes(
-    'filterManager.clientFilters.@each.checked',
-    'filterManager.typeFilters.@each.checked',
-    'filterManager.statusFilters.@each.checked'
+    'controllers.flows.content.@each'
   )

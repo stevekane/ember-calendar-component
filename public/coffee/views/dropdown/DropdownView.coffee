@@ -4,7 +4,7 @@ AR.DropdownView = Ember.View.extend
   
   classNames: ["dropdowncontainer"]
 
-  isActive: true
+  isActive: false
 
   toggleActive: ->
     @toggleProperty 'isActive'
