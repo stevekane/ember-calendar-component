@@ -2,6 +2,8 @@ require "models/Client.js"
 require "models/Quote.js"
 require "models/Policy.js"
 require "models/Flow.js"
+require "models/Reminder.js"
+
 require "models/Insurancetype.js"
 
 require "models/FACTORIES.js"
@@ -15,10 +17,13 @@ AR.Client.FIXTURES = [
 clientIds = AR.Client.FIXTURES.mapProperty "id"
 quoteCount = 10
 policyCount = 2
+reminderCount = 20
 
 AR.Quote.FIXTURES = AR.QuoteFactory.spawn quoteCount, clientIds
 
 AR.Policy.FIXTURES = AR.PolicyFactory.spawn policyCount, clientIds
+
+AR.Reminder.FIXTURES = AR.ReminderFactory.spawn reminderCount, clientIds
 
 AR.Insurancetype.FIXTURES = [
   {id: 1, name: "RENTERS"},

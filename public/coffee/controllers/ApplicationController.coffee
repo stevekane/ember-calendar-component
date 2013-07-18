@@ -1,3 +1,3 @@
 AR.ApplicationController = Ember.Controller.extend
 
-  needs: ['clients', 'quotes', 'policys', 'insurancetypes']
+  needs: ['clients', 'quotes', 'policys', 'insurancetypes', 'flows', 'reminders']

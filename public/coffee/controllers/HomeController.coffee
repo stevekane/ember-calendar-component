@@ -37,7 +37,7 @@ AR.FilterManager = Ember.Object.extend
   ).property('statusFilters.@each.checked')
 
 AR.HomeController = Ember.Controller.extend
-  needs: ['flows', 'clients']
+  needs: ['flows', 'clients', 'reminders']
 
   filterManager: AR.FilterManager.create()
   

@@ -10,23 +10,27 @@ $homeheader-content-padding: ($homeheader-height - $homeheader-content-height) /
 $leftpane: 60%
 $rightpane: 100% - $leftpane - 1%
 
+.homeheader
+  display: block
+  width: 100%
+  height: $homeheader-height
+
+.paneltitle
+  display: inline-block
+  vertical-align: middle
+  height: $homeheader-content-height
+  color: $darkgrey
+
 #recentactivity
   position: absolute
   left: 0px
   width: $leftpane
   min-height: 600px
   background-color: $white
+  padding-right: 2%
 
-  #homeheader
-    display: block
-    width: 100%
-    height: $homeheader-height
+  #activityheader
     padding-left: 10%
-    #title
-      display: inline-block
-      vertical-align: middle
-      height: $homeheader-content-height
-      color: $darkgrey
     #addperson
       @include bluebutton
       display: inline-block
@@ -54,7 +58,7 @@ $rightpane: 100% - $leftpane - 1%
       &:hover
         background-color: blue
         color: $white
-      height: 50px
+      height: 60px
       .activityclient 
         position: relative
         text-align: left
@@ -69,3 +73,52 @@ $rightpane: 100% - $leftpane - 1%
   width: $rightpane
   min-height: 600px
   background-color: $white
+  padding-left: 2%
+
+  #reminderheader
+    padding-right: 10%
+    #addreminder
+      @include bluebutton
+      display: inline-block
+      vertical-align: middle
+      width: 130px
+      margin-left: 5%
+      height: $homeheader-content-height
+
+  #reminderlist
+    list-style-type: none
+    width: 100%
+    padding-left: 5% 
+ 
+    .reminder
+      position: relative
+      height: 60px
+      .reminderdetails
+        position: absolute
+        left: 0px
+        top: 0px
+        height: 100%
+        width: 40%
+        .remindercheck
+          position: absolute
+          top: 5px
+          left: 5px 
+          height: 25px
+          width: 25px
+        .remindertime
+          position: absolute
+          top: 5px
+          left: 45px
+          color: red 
+          font-weight: bolder
+          font-size: large
+        .remindernamebox
+          position: absolute
+          top: 35px
+          left: 5px
+
+      .remindernote
+        position: absolute
+        right: 0px
+        top: 0px                   
+        width: 60%

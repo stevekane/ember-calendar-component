@@ -21,5 +21,7 @@ AR.ApplicationRoute = Ember.Route.extend
     policysCon.set "content", AR.Policy.find()
     insurancetypesCon = controller.get "controllers.insurancetypes"
     insurancetypesCon.set "content", AR.Insurancetype.find()
-    flowsCon = @controllerFor("home").get 'controllers.flows'
+    flowsCon = controller.get 'controllers.flows'
     flowsCon.set "content", AR.Flow.find()
+    remindersCon = controller.get 'controllers.reminders'
+    remindersCon.set "content", AR.Reminder.find()

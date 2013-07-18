@@ -22,6 +22,9 @@ require "controllers/QuotesController.js"
 require "controllers/PolicysController.js"
 require "controllers/FlowsController.js"
 require "controllers/InsurancetypesController.js"
+require "controllers/InsurancetypesController.js"
+require "controllers/RemindersController.js"
+
 require "controllers/HomeController.js"
 
 require "utils/HandlebarsHelpers.js"
