@@ -11,3 +11,7 @@ AR.ApplicationRoute = Ember.Route.extend
       window.history.back()
     logout: () ->
       alert "you have attempted to log out!"
+
+  setupController: (controller) ->
+    clientsCon = controller.get "controllers.clients"
+    clientsCon.set "content", AR.Client.find()

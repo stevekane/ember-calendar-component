@@ -10,11 +10,13 @@ AR.SearchView = Ember.View.extend
     #if input is empty, no candidate searches should exist
     if not currentSearch then return []
 
+    candidates = @get "candidates"
+
     #local filter function
     hasMatchingName = (candidate) ->
       candidate.get('name').indexOf(currentSearch) > -1
 
-    candidates = @get('candidates')
+    candidates
       .filter(hasMatchingName)
       .uniq()
   ).property('currentSearch')
