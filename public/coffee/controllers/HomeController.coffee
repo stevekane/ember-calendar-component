@@ -5,7 +5,8 @@ AR.FilterManager = Ember.Object.extend
   statusFilterSummary: "Status"
 
   clientFilters: [
-    Ember.Object.create(filter: "client", checked: true),
+    Ember.Object.create(filter: "active", checked: true),
+    Ember.Object.create(filter: "inactive", checked: true),
     Ember.Object.create(filter: "lead", checked: true),
   ]
   typeFilters: [
@@ -24,15 +25,15 @@ AR.FilterManager = Ember.Object.extend
   ]
 
   activeClientFilters: (->
-    return @get('clientFilters').filterProperty 'checked'
+    @get('clientFilters').filterProperty('checked').getEach "filter"
   ).property('clientFilters.@each.checked')
 
   activeTypeFilters: (->
-    return @get('clientFilters').filterProperty 'checked'
+    @get('typeFilters').filterProperty('checked').getEach "filter"
   ).property('typeFilters.@each.checked')
 
   activeStatusFilters: (->
-    return @get('clientFilters').filterProperty 'checked'
+    @get('statusFilters').filterProperty('checked').getEach "filter"
   ).property('statusFilters.@each.checked')
 
 AR.HomeController = Ember.Controller.extend
@@ -52,17 +53,15 @@ AR.HomeController = Ember.Controller.extend
     inArray = (list, property) ->
       (element) ->
         prop = element.get(property)
-        list.indexOf(prop) > -1
+        position = list.indexOf(prop)
+        position > -1
 
     #filter by each filtertype to obtain reduced set of active flows
     filtered = flows.filter(inArray(clientFilters, "client.status"))
       .filter(inArray(typeFilters, "insuranceType.name"))
       .filter(inArray(statusFilters, "status"))
-    
-    #TODO: we actually want to return filtered but EM bug prevents the bindings
-    #from updating atm which causes our filter methods to return nothin
-    #filtered
-    flows
+
+    filtered
   ).property(
     'controllers.flows.content.@each',
     'controllers.flows.content.@each.client',

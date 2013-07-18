@@ -27,7 +27,7 @@ AR.Insurancetype.FIXTURES = [
 ]
 
 AR.Flow.FIXTURES = [
-  {id: 0, client_id: 1, insurancetype_id: 1, status: "Quote Started", quote_ids: [0,1,2,3,4], policy_ids: [0]},
-  {id: 1, client_id: 2, insurancetype_id: 2, status: "Policy Approved", quote_ids: [0,1,2,3,4], policy_ids: [0]},
-  {id: 2, client_id: 3, insurancetype_id: 3, status: "Quote Approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
+  {id: 0, client_id: 1, insurancetype_id: 1, status: "Quote started", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 1, client_id: 2, insurancetype_id: 2, status: "Policy approved", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 2, client_id: 3, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
 ]
