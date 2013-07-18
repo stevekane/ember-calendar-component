@@ -9,10 +9,6 @@ AR.HomeRoute = Ember.Route.extend
     addQuote: () ->
       @transitionTo "home.addquote"
 
-  setupController: ->
-    flowsCon = @controllerFor("home").get 'controllers.flows'
-    flowsCon.set "content", AR.Flow.find()
-
   renderTemplate: ->
     @render "home", {
       into: "application"
