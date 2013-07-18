@@ -7,9 +7,9 @@ require "models/Insurancetype.js"
 require "models/FACTORIES.js"
 
 AR.Client.FIXTURES = [
-  {id: 1, name: 'Sally',  status: 'lead'},
-  {id: 2, name: 'Jesse',  status: 'active'},
-  {id: 3, name: 'Don Juan',  status: 'active'}
+  {id: 1, firstName: 'Sally', lastName: "Johnson",  status: 'lead'},
+  {id: 2, firstName: 'Jesse', lastName: "Ventura",  status: 'active'},
+  {id: 3, firstName: 'Don Juan', lastName: "DeMarco",  status: 'active'}
 ]
 
 clientIds = AR.Client.FIXTURES.mapProperty "id"
