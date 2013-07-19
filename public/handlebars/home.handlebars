@@ -49,7 +49,7 @@
   </header>
 
   <div class="daywidget">
-    <div class="daywidgetcomponent previousday" {{action "previousDay"}}>
+    <div class="daywidgetcomponent previousday daywidgetbutton" {{action "previousDay"}}>
       <
     </div>
     <div class="daywidgetcomponent currentday">
@@ -57,7 +57,7 @@
       <br>
       {{monthDayYear activeDay}}
     </div>
-    <div class="daywidgetcomponent nextday" {{action "nextDay"}}>
+    <div class="daywidgetcomponent nextday daywidgetbutton" {{action "nextDay"}}>
       >
     </div>
   </div>
@@ -68,7 +68,7 @@
       <div class="reminderdetails">
         <div class="remindernamebox">
           <span class="remindertag">TAG</span>
-          <span class="reminderclientname">{{reminder.client.name}}</span>
+          <span class="reminderclientname">{{reminder.client.firstName}}</span>
         </div>
         {{input type="checkbox" classNames="remindercheck"}}
         <div class="remindertime">{{timeToday reminder.targetDateTime}}</div>

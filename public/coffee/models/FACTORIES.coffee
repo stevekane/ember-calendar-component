@@ -71,16 +71,10 @@ AR.ReminderFactory = Ember.Object.create
 
       reminders.push {
         id: num
-        targetDateTime:
-          date
+        targetDateTime: date
           .randMethod(add, sub, 'days', targetDayOffset)
           .randMethod(add, sub, 'hours', targetHourOffset)
           .toDate()
-        #targetDateTime:
-        #  date
-        #  .add('days', targetDayOffset)
-        #  .add('hours', targetHourOffset)
-        #  .toDate()
         notes: randFromList @notes
         checked: false
         client_id: randFromList clientIds
