@@ -1,3 +1,7 @@
+require "utils/Enumerables.js"
+
+inArray = AR.EnumberableUtils.inArray
+
 #this is a suppport class to keep this mess out of the controller
 AR.FilterManager = Ember.Object.extend
   clientFilterSummary: "View All People"
@@ -48,14 +52,6 @@ AR.HomeController = Ember.Controller.extend
     typeFilters = @get "filterManager.activeTypeFilters"
     statusFilters = @get "filterManager.activeStatusFilters"
 
-    #this is a closure that returns a function for use in filter
-    #this is "schmancy"
-    inArray = (list, property) ->
-      (element) ->
-        prop = element.get(property)
-        position = list.indexOf(prop)
-        position > -1
-
     #filter by each filtertype to obtain reduced set of active flows
     filtered = flows.filter(inArray(clientFilters, "client.status"))
       .filter(inArray(typeFilters, "insuranceType.name"))
@@ -67,5 +63,24 @@ AR.HomeController = Ember.Controller.extend
     'controllers.flows.content.@each.client',
     'filterManager.activeClientFilters.@each',
     'filterManager.activeTypeFilters.@each',
-    'filterManager.activeStatusFilters.@each',
+    'filterManager.activeStatusFilters.@each'
+  )
+
+  activeDay: moment()
+
+  previousDay: ->
+    activeDay = @get("activeDay").clone()
+    previousDay = activeDay.subtract('days', 1)
+    @set "activeDay", previousDay
+
+  nextDay: ->
+    activeDay = @get("activeDay").clone()
+    nextDay = activeDay.add('days', 1)
+    @set "activeDay", nextDay
+
+  filteredReminders: (->
+    reminders = @get "controllers.reminders"
+    filteredRems = reminders
+  ).property(
+    'controllers.reminders.content.@each',
   )

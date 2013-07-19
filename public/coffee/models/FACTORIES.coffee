@@ -1,5 +1,7 @@
-chooseRand = (list) ->
-  list[Math.round((Math.random() * (list.length-1)))]
+require "utils/FactoryHelpers.js"
+
+randFromList = AR.FactoryHelpers.selectRandomFromList
+randMethod = AR.FactoryHelpers.randomMethod
 
 AR.QuoteFactory = Ember.Object.create
   states: ['illinois', 'california', 'new york']
@@ -13,15 +15,15 @@ AR.QuoteFactory = Ember.Object.create
       updateDay = Math.floor(Math.random() * 5)
       quotes.push {
         id: num
-        state: chooseRand @states
-        client_id: chooseRand clientIds
-        insurancetype_id: chooseRand @types
+        state: randFromList @states
+        client_id: randFromList clientIds
+        insurancetype_id: randFromList @types
         notes: "best insurance ever"
         premium: "$100,000 / s"
-        effectiveDate: moment().add('days', effectiveDay)
-        expirationDate: moment().add('days', expirationDay)
-        createdAt: moment()
-        updatedAt: moment().subtract('days', updateDay)
+        effectiveDate: moment().add('days', effectiveDay).toDate()
+        expirationDate: moment().add('days', expirationDay).toDate()
+        createdAt: moment().toDate()
+        updatedAt: moment().subtract('days', updateDay).toDate()
       }
     quotes
 
@@ -37,13 +39,13 @@ AR.PolicyFactory = Ember.Object.create
       updateDay = Math.floor(Math.random() * 5)
       policies.push {
         id: num
-        state: chooseRand @states
-        client_id: chooseRand clientIds
-        insurancetype_id: chooseRand @types
-        effectiveDate: moment().add('days', effectiveDay)
-        expirationDate: moment().add('days', expirationDay)
-        createdAt: moment()
-        updatedAt: moment().subtract('days', updateDay)
+        state: randFromList @states
+        client_id: randFromList clientIds
+        insurancetype_id: randFromList @types
+        effectiveDate: moment().add('days', effectiveDay).toDate()
+        expirationDate: moment().add('days', expirationDay).toDate()
+        createdAt: moment().toDate()
+        updatedAt: moment().subtract('days', updateDay).toDate()
       }
     policies
 
@@ -60,11 +62,27 @@ AR.ReminderFactory = Ember.Object.create
     reminders = []
     for num in [0..quantity-1]
       targetDayOffset = Math.floor(Math.random() * 2)
+      targetHourOffset = Math.floor(Math.random() * 7)
+      date = moment()
+      #inject randomMethod onto date object
+      date.randMethod = randMethod
+      add = date.add
+      sub = date.subtract
+
       reminders.push {
         id: num
-        targetDateTime: moment().add('days', targetDayOffset)
-        notes: chooseRand @notes
+        targetDateTime:
+          date
+          .randMethod(add, sub, 'days', targetDayOffset)
+          .randMethod(add, sub, 'hours', targetHourOffset)
+          .toDate()
+        #targetDateTime:
+        #  date
+        #  .add('days', targetDayOffset)
+        #  .add('hours', targetHourOffset)
+        #  .toDate()
+        notes: randFromList @notes
         checked: false
-        client_id: chooseRand clientIds
+        client_id: randFromList clientIds
       }
     reminders

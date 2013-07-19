@@ -28,3 +28,5 @@ require "controllers/RemindersController.js"
 require "controllers/HomeController.js"
 
 require "utils/HandlebarsHelpers.js"
+require "utils/Enumerables.js"
+require "utils/FactoryHelpers.js"
