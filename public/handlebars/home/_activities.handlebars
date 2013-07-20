@@ -1,0 +1,42 @@
+<div id="recentactivity">
+
+  <header id="activityheader" class="homeheader">
+    <h2 class="paneltitle">RECENT ACTIVITY</h2>
+    <div id="addperson" {{action "addPerson"}} >+ New Person</div>
+    <div id="addquote" {{action "addQuote"}} >+ New Quote</div>
+  </header>
+
+  <table id="activitylist">
+
+    <tr id="activitylistheaders">
+
+      <th class="activitylistheader">
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.clientFilters"
+          summaryBinding="controller.filterManager.clientFilterSummary"
+        }}
+      </th>
+
+      <th class="activitylistheader">
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.typeFilters"
+          summaryBinding="controller.filterManager.typeFilterSummary"
+        }}
+      </th>
+
+      <th class="activitylistheader">
+        {{view "AR.DropdownView" 
+          templateName="home/statusdropdown"
+          optionsBinding="controller.filterManager.statusFilters"
+          summaryBinding="controller.filterManager.statusFilterSummary"
+        }}
+      </th>
+    </tr>
+
+    {{each controller.filteredFlows itemViewClass="AR.ActivityItemView"}}
+
+  </table>
+
+</div>

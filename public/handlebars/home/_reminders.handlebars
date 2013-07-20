@@ -1,0 +1,42 @@
+<div id="reminders">
+
+  <header id="reminderheader" class="homeheader">
+    <h2 class="paneltitle">TODAY'S REMINDERS</h2>
+    <div id="addreminder" {{action "addReminder"}} >+ New Reminder</div>
+  </header>
+
+  <div class="daywidget">
+    <div class="daywidgetcomponent previousday daywidgetbutton" {{action "previousDay"}}>
+      <
+    </div>
+    <div class="daywidgetcomponent currentday">
+      {{dayName activeDay}}
+      <br>
+      {{monthDayYear activeDay}}
+    </div>
+    <div class="daywidgetcomponent nextday daywidgetbutton" {{action "nextDay"}}>
+      >
+    </div>
+  </div>
+
+  <ul id="reminderlist">
+  {{#each reminder in controller.filteredReminders}}
+    <li class="reminder">
+      <div class="reminderdetails">
+        <div class="remindernamebox">
+          <span class="remindertag">TAG</span>
+          <span class="reminderclientname">{{reminder.client.firstName}}</span>
+        </div>
+        {{input type="checkbox" classNames="remindercheck"}}
+        <div class="remindertime">{{timeToday reminder.targetDateTime}}</div>
+      </div>
+
+      <div class="remindernote">
+        {{reminder.notes}}
+      </div>
+
+    </li>
+  {{/each}}
+  </ul>
+
+</div>
