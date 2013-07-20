@@ -80,9 +80,20 @@ AR.HomeController = Ember.Controller.extend
     nextDay = activeDay.add('days', 1)
     @set "activeDay", nextDay
 
-  filteredReminders: (->
+  sortedFilteredReminders: (->
     reminders = @get "controllers.reminders"
-    filteredRems = reminders
+    activeDay = @get "activeDay"
+    filteredRems = reminders.filter((rem) ->
+      targetDateTime = moment(rem.get 'targetDateTime')
+      targetDateTime.isSame activeDay, 'day'
+    )
+    sortedRems = Ember.ArrayProxy.createWithMixins Ember.SortableMixin,
+      content: filteredRems
+      sortProperties: ['targetDateTime']
+      sortAscending: true
+
+    sortedRems
   ).property(
     'controllers.reminders.content.@each',
+    'activeDay'
   )
