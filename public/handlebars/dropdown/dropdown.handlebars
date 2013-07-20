@@ -1,4 +1,4 @@
-<div class="dropdownsummary" {{action "toggleActive" target="view"}}>
+<div class="dropdownsummary" {{bindAttr class="view.isActive"}}{{action "toggleActive" target="view"}}>
   {{view.summary}}
 </div>
 
