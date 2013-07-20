@@ -1,0 +1,52 @@
+$bgcolor: $lightgrey
+$bghovercolor: $darkgrey
+$hovercolor: $white
+$bordercolor: $darkgrey
+$borderrad: 10px
+
+$width: 100px
+$height: 50px
+$paddingtop: $height * .25
+
+$centerwidth: 60%
+$buttonwidth: (100% - $centerwidth) / 2
+
+@mixin plusMinusComponent
+  border: 1px solid $bordercolor
+  text-align: center
+  font-size: 1.2em
+  position: absolute
+  height: 100%
+  background-color: $bgcolor
+  
+@mixin plusMinusButton
+  &:hover
+    background-color: $bghovercolor
+    color: $hovercolor
+  padding-top: $paddingtop
+
+.plusminuswidget
+  position: relative
+  width: $width
+  height: $height
+
+  .plusminusprev
+    @include plusMinusComponent
+    @include plusMinusButton
+    border-right: none
+    border-radius: $borderrad 0px 0px $borderrad 
+    left: 0%
+    width: $buttonwidth
+
+  .plusminuscur
+    @include plusMinusComponent
+    left: $buttonwidth
+    right: $buttonwidth
+
+  .plusminusnext
+    @include plusMinusComponent
+    @include plusMinusButton
+    border-left: none
+    border-radius: 0px $borderrad $borderrad 0px
+    right: 0%
+    width: $buttonwidth
