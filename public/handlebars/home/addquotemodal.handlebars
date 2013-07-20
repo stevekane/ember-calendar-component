@@ -8,13 +8,13 @@
     <tr class="formrow">
       <td class="description">Quote for</td>
       <td class="input">
-        {{view "AR.SearchView" candidatesBinding="controller.controllers.clients.content"}}
+        {{view "AR.SearchView" candidatesBinding="controllers.clients.content"}}
       </td>
     </tr>
 
     <tr class="formrow">
       <td class="description">Insurance Type</td>
-      <td class="input">{{view Ember.Select classNames="select"}}</td>
+      <td class="input">{{view Ember.Select classNames="select" contentBinding="insuranceTypes"}}</td>
     </tr>
 
   </table>

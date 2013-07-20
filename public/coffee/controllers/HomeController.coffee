@@ -41,10 +41,12 @@ AR.FilterManager = Ember.Object.extend
   ).property('statusFilters.@each.checked')
 
 AR.HomeController = Ember.Controller.extend
-  needs: ['flows', 'clients', 'reminders']
+  needs: ['flows', 'clients', 'reminders', 'insurancetypes']
 
   filterManager: AR.FilterManager.create()
-  
+
+  insuranceTypes: Ember.computed.alias "controllers.insurancetypes.content.@each.name"
+
   #return a list of filtered clients for display
   filteredFlows: (->
     flows = @get 'controllers.flows.content'
