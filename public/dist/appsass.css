@@ -1,0 +1,523 @@
+.clienttag {
+  display: inline;
+  background-color: green;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+}
+
+.leadtag {
+  display: inline;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+}
+
+.clienttag {
+  display: inline;
+  background-color: green;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+}
+
+.leadtag {
+  display: inline;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+}
+
+.modalbackground {
+  z-index: 10;
+  background-color: rgba(54, 54, 54, 0.6);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+.modal {
+  position: absolute;
+  background-color: #efefef;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -250px;
+  height: 500px;
+  width: 500px;
+}
+.modal .modalcontent {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  height: 90%;
+  width: 90%;
+}
+.modal .modalcontent .modalheader {
+  display: block;
+  height: 40px;
+  color: #0000bb;
+  font-weight: bold;
+}
+.modal .modalcontent .modalform {
+  width: 100%;
+}
+.modal .modalcontent .modalform .formrow {
+  width: 100%;
+  height: 40px;
+}
+.modal .modalcontent .modalform .formrow .description {
+  display: inline-block;
+  color: #363636;
+  font-size: 0.8em;
+  font-weight: 400;
+  height: inherit;
+  width: 20%;
+}
+.modal .modalcontent .modalform .formrow .input {
+  display: inline-block;
+  height: inherit;
+  width: 80%;
+}
+.modal .modalcontent .modalform .formrow .input .textfield {
+  color: #363636;
+  background-color: #d9d9d9;
+  border-radius: 5px;
+  height: inherit;
+  width: 100%;
+}
+.modal .modalcontent .modalform .formrow .input .select {
+  color: #363636;
+  background: #efefef;
+  border-radius: 5px;
+  height: inherit;
+  width: 100%;
+  border: 1px solid #363636;
+}
+.modal .modalcontent .modalfooter {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  height: 10%;
+  width: 100%;
+}
+.modal .modalcontent .modalfooter .save {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #0078bd;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  height: 100%;
+  width: 120px;
+  position: absolute;
+  right: 0px;
+}
+.modal .close {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+.modal .close:hover {
+  font-weight: 900;
+  color: red;
+}
+
+.searchbox {
+  width: 100%;
+  position: relative;
+}
+.searchbox .searchfield {
+  display: block;
+  background-color: #efefef;
+  height: 50px;
+  width: 100%;
+  padding-left: 5%;
+  border: 1px solid #363636;
+  border-radius: 5px;
+}
+.searchbox .searchlist {
+  list-style-type: none;
+  position: absolute;
+  z-index: 5;
+  margin: 0px;
+  padding: 0px;
+  top: 50px;
+  width: 100%;
+  border: 1px solid #363636;
+  border-radius: 0px 0px 5px 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.searchbox .searchlist .searchmatch {
+  padding: 10px 0px 0px 0px;
+  margin: none;
+  height: 40px;
+  width: 100%;
+  background-color: #efefef;
+  padding-left: 5%;
+}
+.searchbox .searchlist .searchmatch .clienttag {
+  display: inline;
+  background-color: green;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+  margin-right: 2%;
+}
+.searchbox .searchlist .searchmatch .leadtag {
+  display: inline;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+  margin-right: 2%;
+}
+
+.dropdowncontainer {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  width: 200px;
+}
+.dropdowncontainer .dropdownsummary {
+  font-weight: normal;
+  height: 30px;
+  width: 100%;
+}
+.dropdowncontainer .dropdownsummary:after {
+  content: "\25B6";
+}
+.dropdowncontainer .is-active:after {
+  content: "\25BC";
+}
+.dropdowncontainer .dropdowncontents {
+  position: absolute;
+  margin: 0px;
+  padding: 5%;
+  top: 30px;
+  width: 100%;
+  border: 1px solid #363636;
+  color: #363636;
+  background-color: white;
+  list-style-type: none;
+  text-align: left;
+  z-index: 5;
+}
+.dropdowncontainer .dropdowncontents .dropdownoption {
+  font-weight: normal;
+}
+.dropdowncontainer .dropdowncontents .dropdownoption:hover {
+  background-color: #0078bd;
+  color: white;
+}
+
+.plusminuswidget {
+  position: relative;
+  width: 100px;
+  height: 50px;
+}
+.plusminuswidget .plusminusprev {
+  border: 1px solid #363636;
+  text-align: center;
+  font-size: 1.2em;
+  position: absolute;
+  height: 100%;
+  background-color: #d9d9d9;
+  padding-top: 12.5px;
+  border-right: none;
+  border-radius: 10px 0px 0px 10px;
+  left: 0%;
+  width: 20%;
+}
+.plusminuswidget .plusminusprev:hover {
+  background-color: #363636;
+  color: #efefef;
+}
+.plusminuswidget .plusminuscur {
+  border: 1px solid #363636;
+  text-align: center;
+  font-size: 1.2em;
+  position: absolute;
+  height: 100%;
+  background-color: #d9d9d9;
+  left: 20%;
+  right: 20%;
+}
+.plusminuswidget .plusminusnext {
+  border: 1px solid #363636;
+  text-align: center;
+  font-size: 1.2em;
+  position: absolute;
+  height: 100%;
+  background-color: #d9d9d9;
+  padding-top: 12.5px;
+  border-left: none;
+  border-radius: 0px 10px 10px 0px;
+  right: 0%;
+  width: 20%;
+}
+.plusminuswidget .plusminusnext:hover {
+  background-color: #363636;
+  color: #efefef;
+}
+
+.homeheader {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.paneltitle {
+  display: inline-block;
+  vertical-align: middle;
+  height: 45px;
+  color: #363636;
+}
+
+#recentactivity {
+  position: absolute;
+  left: 0px;
+  width: 60%;
+  min-height: 600px;
+  background-color: #efefef;
+  padding-right: 2%;
+}
+#recentactivity #activityheader {
+  padding-left: 10%;
+}
+#recentactivity #activityheader #addperson {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #0078bd;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  width: 130px;
+  margin-left: 5%;
+  height: 45px;
+}
+#recentactivity #activityheader #addquote {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #0078bd;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  width: 130px;
+  height: 45px;
+}
+#recentactivity #activitylist {
+  margin-top: 20px;
+  margin-left: 10%;
+}
+#recentactivity #activitylist #activitylistheaders .activitylistheader {
+  text-align: left;
+  height: 100%;
+  width: 20%;
+}
+#recentactivity #activitylist .activity {
+  height: 60px;
+}
+#recentactivity #activitylist .activity:hover {
+  background-color: #0078bd;
+  color: #efefef;
+}
+#recentactivity #activitylist .activity .activityclient {
+  position: relative;
+  text-align: left;
+  width: 20%;
+}
+#recentactivity #activitylist .activity .activityclient .activityclientname {
+  position: absolute;
+  left: 30%;
+}
+
+#reminders {
+  position: absolute;
+  right: 0px;
+  width: 39%;
+  min-height: 600px;
+  background-color: #efefef;
+  padding-left: 2%;
+}
+#reminders #reminderheader {
+  padding-right: 10%;
+}
+#reminders #reminderheader #addreminder {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #0078bd;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  width: 130px;
+  margin-left: 5%;
+  height: 45px;
+}
+#reminders .daywidget {
+  padding-right: 15%;
+  margin-left: 5%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 60%;
+  height: 50px;
+}
+#reminders #reminderlist {
+  list-style-type: none;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 10%;
+}
+#reminders #reminderlist .reminder {
+  position: relative;
+  height: 60px;
+}
+#reminders #reminderlist .reminder .reminderdetails {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 40%;
+}
+#reminders #reminderlist .reminder .reminderdetails .remindercheck {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  height: 25px;
+  width: 25px;
+}
+#reminders #reminderlist .reminder .reminderdetails .remindertime {
+  position: absolute;
+  top: 5px;
+  left: 45px;
+  color: red;
+  font-weight: bolder;
+  font-size: large;
+}
+#reminders #reminderlist .reminder .reminderdetails .remindernamebox {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  left: 5px;
+  float: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+#reminders #reminderlist .reminder .remindernote {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 60%;
+}
+
+* {
+  font-family: "Lato", Sans-Serif;
+  box-sizing: border-box;
+}
+
+#pageheader {
+  display: block;
+  height: 90px;
+  width: 100%;
+  background-color: #0000bb;
+}
+#pageheader #title {
+  display: inline-block;
+  margin: 0px 0px 0px 10%;
+  padding-top: 25px;
+  font-family: "Lato", Sans-Serif;
+  font-size: 1.6em;
+  font-style: italic;
+  color: #efefef;
+}
+#pageheader #homenav {
+  display: inline-block;
+  width: 140px;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid #0078bd;
+  vertical-align: middle;
+  margin-left: 4%;
+  top: 0px;
+  height: 49.5px;
+  border-radius: 10px 0px 0px 10px;
+}
+#pageheader #clientsnav {
+  display: inline-block;
+  width: 140px;
+  color: #efefef;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid #0078bd;
+  vertical-align: middle;
+  height: 49.5px;
+  margin-right: 15%;
+  border-radius: 0px 10px 10px 0px;
+}
+#pageheader .searchbox {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15%;
+  height: 49.5px;
+}
+#pageheader #logout {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #d9d9d9;
+  color: #363636;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0px 2%;
+  height: 49.5px;
+  width: 140px;
+}
+
+#subheader {
+  display: block;
+  height: 60px;
+  width: 100%;
+  background-color: #0078bd;
+}
+#subheader #back {
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid #363636;
+  background-color: #d9d9d9;
+  color: #363636;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 13.5px;
+  vertical-align: middle;
+  margin-left: 7%;
+  height: 33px;
+  width: 100px;
+}
+
+#main {
+  display: block;
+  position: relative;
+  min-height: 600px;
+  width: 100%;
+  background-color: #d9d9d9;
+}
