@@ -88,6 +88,7 @@ AR.HomeController = Ember.Controller.extend
       content: filteredRems
       sortProperties: ['targetDateTime']
       sortAscending: true
+
     sortedRems
   ).property(
     'reminders',

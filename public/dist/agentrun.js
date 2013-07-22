@@ -20,6 +20,8 @@ minispade.require("controllers/InsurancetypesController.js");
 minispade.require("controllers/RemindersController.js");
 minispade.require("controllers/HomeController.js");
 minispade.require("controllers/HomeAddpersonController.js");
+minispade.require("controllers/HomeAddquoteController.js");
+minispade.require("controllers/HomeAddreminderController.js");
 minispade.require("utils/HandlebarsHelpers.js");
 minispade.require("utils/Enumerables.js");
 minispade.require("utils/FactoryHelpers.js");
@@ -46,6 +48,32 @@ AR.FlowsController = Ember.ArrayController.extend();
 minispade.register('controllers/HomeAddpersonController.js', function() {
 AR.HomeAddpersonController = Ember.Controller.extend({
   phoneNumberTypes: ['Cell', 'Home', 'Office']
+});
+
+});
+
+minispade.register('controllers/HomeAddquoteController.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.HomeAddquoteController = Ember.Controller.extend({
+  needs: ['insurancetypes'],
+  insuranceTypes: alias("controllers.insurancetypes.content.@each.name")
+});
+
+});
+
+minispade.register('controllers/HomeAddreminderController.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.HomeAddreminderController = Ember.Controller.extend({
+  needs: ['reminders', 'insurancetypes', 'clients'],
+  reminders: alias("controllers.reminders.content"),
+  insuranceTypes: alias("controllers.insurancetypes.content"),
+  clients: alias("controllers.clients.content")
 });
 
 });
@@ -655,9 +683,7 @@ AR.HomeAddquoteRoute = Ember.Route.extend({
   },
   renderTemplate: function() {
     return this.render("home/addquotemodal", {
-      into: "home",
-      outlet: "modal",
-      controller: "home"
+      outlet: "modal"
     });
   }
 });

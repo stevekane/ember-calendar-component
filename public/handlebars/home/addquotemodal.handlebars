@@ -3,25 +3,31 @@
     Add New Quote 
   </header> 
 
-  <table class="modalform">
+  <form class="form">
+    <section class="formcolumn">
 
-    <tr class="formrow">
-      <td class="description">Quote for</td>
-      <td class="input">
-        {{view "AR.SearchView" candidatesBinding="controllers.clients.content"}}
-      </td>
-    </tr>
+      <div class="formrow">
+        <label class="formlabel">Quote for</label>
+        {{view "AR.SearchView" 
+          classNames="forminputblock"
+          candidatesBinding="controllers.clients.content"  
+        }}
+      </div>
 
-    <tr class="formrow">
-      <td class="description">Insurance Type</td>
-      <td class="input">{{view Ember.Select classNames="select" contentBinding="insuranceTypes"}}</td>
-    </tr>
+      <div class="formrow">
+        <label class="formlabel">Insurance Type</label>
+        {{view "Ember.Select" 
+          classNames="formselect forminput"
+          contentBinding="insuranceTypes"
+        }}
+      </div>
 
-  </table>
+    </section>
+  </form>
 
   <footer class="modalfooter">
     <div class="save" {{action "save"}}>
-      Add Person
+      Add Quote 
     </div>
   </footer>
 </section>

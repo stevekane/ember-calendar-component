@@ -5,6 +5,15 @@ $form-row-height: 50px
 $form-text-color: $darkgrey
 $form-input-bgcolor: $lightgrey
 
+@mixin forminputblock
+  position: absolute
+  display: block
+  height: inherit
+  left: $form-label-width
+  width: $form-input-width
+  height: inherit
+  padding-left: 10px
+
 .form
   display: block
   width: 100%
@@ -34,15 +43,15 @@ $form-input-bgcolor: $lightgrey
   padding-right: 10px
 
 .forminput
-  position: absolute
-  display: block
-  height: inherit
-  left: $form-label-width
-  width: $form-input-width
+  @include forminputblock
   background-color: $form-input-bgcolor
-  border-radius: 5px
-  height: inherit
-  padding-left: 10px
   color: $form-text-color
+  border-radius: 5px
 
+.forminputblock
+  @include forminputblock
+  background-color: none
+  
 .formtextfield
+
+.formselect

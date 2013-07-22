@@ -8,15 +8,15 @@
 
       <div class="formrow">
         <label class="formlabel">First Name</label>
-        {{input classNames="formtextfield, forminput"}}
+        {{input classNames="formtextfield forminput"}}
       </div>
       <div class="formrow">
         <label class="formlabel">Last Name</label>
-        {{input classNames="formtextfield, forminput"}}
+        {{input classNames="formtextfield forminput"}}
       </div>
       <div class="formrow">
         <label class="formlabel">Email</label>
-        {{input classNames="formtextfield, forminput"}}
+        {{input classNames="formtextfield forminput"}}
       </div>
 
       <div class="formrow">
@@ -27,13 +27,13 @@
         }}
         {{view Ember.Select 
           contentBinding="controller.phoneNumberTypes" 
-          classNames="addpersonphonenumbertype forminput"
+          classNames="addpersonphonenumbertype forminput formselect"
         }}
       </div>
 
       <div class="formrow">
         <label class="formlabel">Referral</label>
-        {{input classNames="formtextfield, forminput"}}
+        {{input classNames="formtextfield forminput"}}
       </div>
 
     </section>

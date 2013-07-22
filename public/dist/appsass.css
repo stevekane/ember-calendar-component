@@ -52,11 +52,22 @@
   height: inherit;
   left: 20%;
   width: 80%;
-  background-color: #d9d9d9;
-  border-radius: 5px;
   height: inherit;
   padding-left: 10px;
+  background-color: #d9d9d9;
   color: #363636;
+  border-radius: 5px;
+}
+
+.forminputblock {
+  position: absolute;
+  display: block;
+  height: inherit;
+  left: 20%;
+  width: 80%;
+  height: inherit;
+  padding-left: 10px;
+  background-color: none;
 }
 
 .modalbackground {
@@ -77,30 +88,31 @@
   height: 500px;
   width: 500px;
 }
-.modal .modalcontent {
+
+.modalcontent {
   position: absolute;
   top: 5%;
   left: 5%;
   height: 90%;
   width: 90%;
 }
-.modal .modalcontent .modalheader {
+
+.modalheader {
   display: block;
   height: 40px;
   color: #0000bb;
   font-weight: bold;
 }
-.modal .modalcontent .modalform {
-  width: 100%;
-}
-.modal .modalcontent .modalfooter {
+
+.modalfooter {
   position: absolute;
   display: block;
   bottom: 0;
   height: 10%;
   width: 100%;
 }
-.modal .modalcontent .modalfooter .save {
+
+.save {
   display: inline-block;
   border-radius: 5px;
   border: 1px solid #363636;
@@ -113,7 +125,8 @@
   position: absolute;
   right: 0px;
 }
-.modal .close {
+
+.close {
   position: absolute;
   top: 2%;
   right: 2%;
@@ -122,25 +135,26 @@
   text-align: center;
   font-weight: 700;
 }
-.modal .close:hover {
+.close:hover {
   font-weight: 900;
   color: red;
 }
 
 .searchbox {
-  width: 100%;
   position: relative;
+  padding: 0px;
 }
-.searchbox .searchfield {
+
+.searchfield {
   display: block;
   background-color: #efefef;
   height: 50px;
-  width: 100%;
   padding-left: 5%;
   border: 1px solid #363636;
   border-radius: 5px;
 }
-.searchbox .searchlist {
+
+.searchlist {
   list-style-type: none;
   position: absolute;
   z-index: 5;
@@ -153,29 +167,14 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-.searchbox .searchlist .searchmatch {
+
+.searchmatch {
   padding: 10px 0px 0px 0px;
   margin: none;
   height: 40px;
   width: 100%;
   background-color: #efefef;
   padding-left: 5%;
-}
-.searchbox .searchlist .searchmatch .clienttag {
-  display: inline;
-  background-color: green;
-  border-radius: 5px;
-  padding: 1px 5px;
-  color: #efefef;
-  margin-right: 2%;
-}
-.searchbox .searchlist .searchmatch .leadtag {
-  display: inline;
-  background-color: orange;
-  border-radius: 5px;
-  padding: 1px 5px;
-  color: #efefef;
-  margin-right: 2%;
 }
 
 .dropdowncontainer {
@@ -432,6 +431,33 @@
 .addpersonphonenumbertype {
   left: 75%;
   width: 25%;
+}
+
+.searchbox {
+  height: 100%;
+}
+.searchbox .searchfield {
+  height: 100%;
+  width: 100%;
+  margin-left: 0;
+}
+
+.clienttag {
+  display: inline;
+  background-color: green;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+  margin-right: 2%;
+}
+
+.leadtag {
+  display: inline;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+  margin-right: 2%;
 }
 
 * {
