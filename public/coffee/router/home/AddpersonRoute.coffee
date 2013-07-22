@@ -7,7 +7,5 @@ AR.HomeAddpersonRoute = Ember.Route.extend
 
   renderTemplate: () ->
     @render("home/addpersonmodal", {
-      into: "home"
       outlet: "modal"
-      controller: "home"
     })

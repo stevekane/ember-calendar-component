@@ -1,6 +1,7 @@
 @import base/colors
 @import base/fonts
 
+@import components/tags
 @import components/buttons
 @import components/forms
 @import components/modals
@@ -10,6 +11,7 @@
 @import widgets/plusminus
 
 @import home/home
+@import home/addpersonmodal
 
 //set the active font for all elements
 *
@@ -79,8 +81,16 @@ $subheader-content-padding: ($subheader-height - $subheader-content-height) / 2
     margin-top: $subheader-content-padding
     vertical-align: middle
     margin-left: 7%
+    padding-top: $subheader-content-height * .05
     height: $subheader-content-height
-    width: 100px
+    width: $subheader-content-height
+    border-radius: $subheader-content-height / 2
+    border: none
+    color: $lightblue
+    font-size: 1.5em
+    &:hover
+      background-color: $darkblue
+      color: $white
 
 #main
   display: block

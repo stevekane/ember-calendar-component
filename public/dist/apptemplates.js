@@ -26,7 +26,7 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "goBack", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">Back</div>\n  ");
+  data.buffer.push("><</div>\n  ");
   hashTypes = {};
   hashContexts = {};
   options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
@@ -260,42 +260,50 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', stack1, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<section class=\"modalcontent\">\n  <header class=\"modalheader\">\n    Add New Person\n  </header> \n\n  <table class=\"modalform\">\n\n    <tr class=\"formrow\">\n      <td class=\"description\">First Name</td>\n      <td class=\"input\">");
+  data.buffer.push("<section class=\"modalcontent\">\n  <header class=\"modalheader\">\n    Add New Person\n  </header> \n\n  <form class=\"form\">\n    <section class=\"formcolumn\">\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">First Name</label>\n        ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
   options = {hash:{
-    'classNames': ("textfield")
+    'classNames': ("formtextfield, forminput")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("</td>\n    </tr>\n    <tr class=\"formrow\">\n      <td class=\"description\">Last Name</td>\n      <td class=\"input\">");
+  data.buffer.push("\n      </div>\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Last Name</label>\n        ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
   options = {hash:{
-    'classNames': ("textfield")
+    'classNames': ("formtextfield, forminput")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("</td>\n    </tr>\n    <tr class=\"formrow\">\n      <td class=\"description\">Email</td>\n      <td class=\"input\">");
+  data.buffer.push("\n      </div>\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Email</label>\n        ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
   options = {hash:{
-    'classNames': ("textfield")
+    'classNames': ("formtextfield, forminput")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("</td>\n    </tr>\n    <tr class=\"formrow\">\n      <td class=\"description\">Phone #</td>\n      <td class=\"input\">");
+  data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Phone #</label>\n        ");
+  hashContexts = {'classNames': depth0,'placeholder': depth0};
+  hashTypes = {'classNames': "STRING",'placeholder': "STRING"};
+  options = {hash:{
+    'classNames': ("formtextfield forminput addpersonphonenumber"),
+    'placeholder': ("(     )   -")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+  data.buffer.push("\n        ");
+  hashContexts = {'contentBinding': depth0,'classNames': depth0};
+  hashTypes = {'contentBinding': "STRING",'classNames': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'contentBinding': ("controller.phoneNumberTypes"),
+    'classNames': ("addpersonphonenumbertype forminput")
+  },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Referral</label>\n        ");
   hashContexts = {'classNames': depth0};
   hashTypes = {'classNames': "STRING"};
   options = {hash:{
-    'classNames': ("textfield")
+    'classNames': ("formtextfield, forminput")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("</td>\n    </tr>\n    <tr class=\"formrow\">\n      <td class=\"description\">Referral</td>\n      <td class=\"input\">");
-  hashContexts = {'classNames': depth0};
-  hashTypes = {'classNames': "STRING"};
-  options = {hash:{
-    'classNames': ("textfield")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
-  data.buffer.push("</td>\n    </tr>\n\n  </table>\n\n  <footer class=\"modalfooter\">\n    <div class=\"save\" ");
+  data.buffer.push("\n      </div>\n\n    </section>\n  </form>\n\n  <footer class=\"modalfooter\">\n    <div class=\"save\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "save", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

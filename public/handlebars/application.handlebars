@@ -5,14 +5,16 @@
   <div id="homenav" {{action "goHome"}} >Home</div>
   <div id="clientsnav" {{action "goClients"}} >Clients</div>
 
-  {{view "AR.SearchView" candidatesBinding="controller.controllers.clients.content"}}
+  {{view "AR.SearchView" 
+    candidatesBinding="controller.controllers.clients.content"
+  }}
 
   <div id="logout" {{action "logout"}} >Log Out</div>
 
 </header>
 
 <div id="subheader">
-  <div id="back" {{action "goBack"}}>Back</div>
+  <div id="back" {{action "goBack"}}><</div>
   {{outlet subheader}}
 </div>
 

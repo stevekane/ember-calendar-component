@@ -14,20 +14,49 @@
   color: #efefef;
 }
 
-.clienttag {
-  display: inline;
-  background-color: green;
-  border-radius: 5px;
-  padding: 1px 5px;
-  color: #efefef;
+.form {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.leadtag {
-  display: inline;
-  background-color: orange;
+.formcolumn {
+  position: absolute;
+  width: 100%;
+}
+
+.formrow {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.formlabel {
+  position: absolute;
+  display: block;
+  height: inherit;
+  width: 20%;
+  color: #363636;
+  font-size: 0.8em;
+  font-weight: 400;
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.forminput {
+  position: absolute;
+  display: block;
+  height: inherit;
+  left: 20%;
+  width: 80%;
+  background-color: #d9d9d9;
   border-radius: 5px;
-  padding: 1px 5px;
-  color: #efefef;
+  height: inherit;
+  padding-left: 10px;
+  color: #363636;
 }
 
 .modalbackground {
@@ -63,38 +92,6 @@
 }
 .modal .modalcontent .modalform {
   width: 100%;
-}
-.modal .modalcontent .modalform .formrow {
-  width: 100%;
-  height: 40px;
-}
-.modal .modalcontent .modalform .formrow .description {
-  display: inline-block;
-  color: #363636;
-  font-size: 0.8em;
-  font-weight: 400;
-  height: inherit;
-  width: 20%;
-}
-.modal .modalcontent .modalform .formrow .input {
-  display: inline-block;
-  height: inherit;
-  width: 80%;
-}
-.modal .modalcontent .modalform .formrow .input .textfield {
-  color: #363636;
-  background-color: #d9d9d9;
-  border-radius: 5px;
-  height: inherit;
-  width: 100%;
-}
-.modal .modalcontent .modalform .formrow .input .select {
-  color: #363636;
-  background: #efefef;
-  border-radius: 5px;
-  height: inherit;
-  width: 100%;
-  border: 1px solid #363636;
 }
 .modal .modalcontent .modalfooter {
   position: absolute;
@@ -428,6 +425,15 @@
   width: 60%;
 }
 
+.addpersonphonenumber {
+  width: 55%;
+}
+
+.addpersonphonenumbertype {
+  left: 75%;
+  width: 25%;
+}
+
 * {
   font-family: "Lato", Sans-Serif;
   box-sizing: border-box;
@@ -510,8 +516,17 @@
   margin-top: 13.5px;
   vertical-align: middle;
   margin-left: 7%;
+  padding-top: 1.65px;
   height: 33px;
-  width: 100px;
+  width: 33px;
+  border-radius: 16.5px;
+  border: none;
+  color: #0078bd;
+  font-size: 1.5em;
+}
+#subheader #back:hover {
+  background-color: #0000bb;
+  color: #efefef;
 }
 
 #main {

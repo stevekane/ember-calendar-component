@@ -3,30 +3,35 @@
     Add New Person
   </header> 
 
-  <table class="modalform">
+  <form class="form">
+    <section class="formcolumn">
 
-    <tr class="formrow">
-      <td class="description">First Name</td>
-      <td class="input">{{input classNames="textfield"}}</td>
-    </tr>
-    <tr class="formrow">
-      <td class="description">Last Name</td>
-      <td class="input">{{input classNames="textfield"}}</td>
-    </tr>
-    <tr class="formrow">
-      <td class="description">Email</td>
-      <td class="input">{{input classNames="textfield"}}</td>
-    </tr>
-    <tr class="formrow">
-      <td class="description">Phone #</td>
-      <td class="input">{{input classNames="textfield"}}</td>
-    </tr>
-    <tr class="formrow">
-      <td class="description">Referral</td>
-      <td class="input">{{input classNames="textfield"}}</td>
-    </tr>
+      <div class="formrow">
+        <label class="formlabel">First Name</label>
+        {{input classNames="formtextfield, forminput"}}
+      </div>
+      <div class="formrow">
+        <label class="formlabel">Last Name</label>
+        {{input classNames="formtextfield, forminput"}}
+      </div>
+      <div class="formrow">
+        <label class="formlabel">Email</label>
+        {{input classNames="formtextfield, forminput"}}
+      </div>
 
-  </table>
+      <div class="formrow">
+        <label class="formlabel">Phone #</label>
+        {{input classNames="formtextfield forminput addpersonphonenumber" placeholder="(     )   -"}}
+        {{view Ember.Select contentBinding="controller.phoneNumberTypes" classNames="addpersonphonenumbertype forminput"}}
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Referral</label>
+        {{input classNames="formtextfield, forminput"}}
+      </div>
+
+    </section>
+  </form>
 
   <footer class="modalfooter">
     <div class="save" {{action "save"}}>

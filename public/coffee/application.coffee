@@ -26,6 +26,7 @@ require "controllers/InsurancetypesController.js"
 require "controllers/RemindersController.js"
 
 require "controllers/HomeController.js"
+require "controllers/HomeAddpersonController.js"
 
 require "utils/HandlebarsHelpers.js"
 require "utils/Enumerables.js"

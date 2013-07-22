@@ -1,39 +1,48 @@
-@import ../base/colors
-@import tags
+$form-label-width: 20%
+$form-input-width: 100% - $form-label-width
+$form-row-height: 50px
 
-$form-description-width: 20%
-$form-input-width: 100% - $form-description-width
+$form-text-color: $darkgrey
+$form-input-bgcolor: $lightgrey
 
-$searchheight: 50px
+.form
+  display: block
+  width: 100%
+  height: 100%
 
-@mixin formrow 
+.formcolumn
+  position: absolute
+  width: 100%
+
+.formrow
+  position: relative
   width: 100%
   height: 40px
+  margin-top: 6px
+  margin-bottom: 6px
 
-  .description
-    display: inline-block
-    color: $darkgrey
-    font-size: .8em
-    font-weight: 400 
-    height: inherit
-    width: $form-description-width
+.formlabel
+  position: absolute
+  display: block
+  height: inherit
+  width: $form-label-width
+  color: $form-text-color
+  font-size: .8em
+  font-weight: 400
+  text-align: right
+  padding-top: 10px
+  padding-right: 10px
 
-  .input
-    display: inline-block
-    height: inherit
-    width: $form-input-width
+.forminput
+  position: absolute
+  display: block
+  height: inherit
+  left: $form-label-width
+  width: $form-input-width
+  background-color: $form-input-bgcolor
+  border-radius: 5px
+  height: inherit
+  padding-left: 10px
+  color: $form-text-color
 
-    .textfield 
-      color: $darkgrey
-      background-color: $lightgrey
-      border-radius: 5px
-      height: inherit
-      width: 100%
-
-    .select 
-      color: $darkgrey
-      background: $white
-      border-radius: 5px
-      height: inherit
-      width: 100%
-      border: 1px solid $darkgrey
+.formtextfield

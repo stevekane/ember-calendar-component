@@ -19,6 +19,7 @@ minispade.require("controllers/InsurancetypesController.js");
 minispade.require("controllers/InsurancetypesController.js");
 minispade.require("controllers/RemindersController.js");
 minispade.require("controllers/HomeController.js");
+minispade.require("controllers/HomeAddpersonController.js");
 minispade.require("utils/HandlebarsHelpers.js");
 minispade.require("utils/Enumerables.js");
 minispade.require("utils/FactoryHelpers.js");
@@ -39,6 +40,13 @@ AR.ClientsController = Ember.ArrayController.extend();
 
 minispade.register('controllers/FlowsController.js', function() {
 AR.FlowsController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/HomeAddpersonController.js', function() {
+AR.HomeAddpersonController = Ember.Controller.extend({
+  phoneNumberTypes: ['Cell', 'Home', 'Office']
+});
 
 });
 
@@ -628,9 +636,7 @@ AR.HomeAddpersonRoute = Ember.Route.extend({
   },
   renderTemplate: function() {
     return this.render("home/addpersonmodal", {
-      into: "home",
-      outlet: "modal",
-      controller: "home"
+      outlet: "modal"
     });
   }
 });
