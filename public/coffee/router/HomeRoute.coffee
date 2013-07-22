@@ -8,6 +8,8 @@ AR.HomeRoute = Ember.Route.extend
       @transitionTo "home.addperson"
     addQuote: () ->
       @transitionTo "home.addquote"
+    addReminder: () ->
+      @transitionTo "home.addreminder"
 
   renderTemplate: ->
     @render "home", {

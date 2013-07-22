@@ -1,0 +1,76 @@
+<section class="modalcontent">
+  <header class="modalheader">
+    Add New Reminder 
+  </header> 
+
+  <form class="form">
+    <section class="formcolumn">
+
+      <div class="formrow">
+        <label class="formlabel">Quote for</label>
+        {{view "AR.SearchView" 
+          classNames="forminputblock"
+          candidatesBinding="controllers.clients.content"  
+        }}
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Insurance Type</label>
+        {{view "Ember.Select" 
+          classNames="formselect forminput"
+          contentBinding="insuranceTypes"
+          optionLabelPath="content.name"
+        }}
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Date</label>
+        <div class="plusminuswidget reminderdaywidget forminputblock">
+          <div class="plusminusprev" {{action "previousDay"}}>
+            <
+          </div>
+          <div class="plusminuscur">
+            {{dayName activeDay}}
+            <br>
+            {{monthDayYear activeDay}}
+          </div>
+          <div class="plusminusnext" {{action "nextDay"}}>
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Time</label>
+        <div class="forminputblock addremindertimeselect">
+          {{view "Ember.Select" 
+            classNames="formselect forminput addreminderhourselect"
+            contentBinding="hours"
+          }}
+          {{view "Ember.Select" 
+            classNames="formselect forminput addreminderminuteselect"
+            contentBinding="minutes"
+          }}
+          {{view "Ember.Select" 
+            classNames="formselect forminput addreminderampmselect"
+            contentBinding="amPm"
+          }}
+        </div>
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Notes</label>
+        {{textarea
+          classNames="forminput addremindernotes"
+        }}
+      </div>
+
+    </section>
+  </form>
+
+  <footer class="modalfooter">
+    <div class="save" {{action "save"}}>
+      Add Reminder 
+    </div>
+  </footer>
+</section>

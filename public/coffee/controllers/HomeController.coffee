@@ -46,7 +46,7 @@ AR.HomeController = Ember.Controller.extend
 
   filterManager: AR.FilterManager.create()
 
-  insuranceTypes: alias "controllers.insurancetypes.content.@each.name"
+  insuranceTypes: alias "controllers.insurancetypes.content.@each"
   flows: alias "controllers.flows.content.@each"
   clients: alias "controllers.clients.content.@each"
   reminders: alias "controllers.reminders.content.@each"

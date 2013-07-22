@@ -4,4 +4,4 @@ AR.HomeAddquoteController = Ember.Controller.extend
   
   needs: ['insurancetypes']
   
-  insuranceTypes: alias "controllers.insurancetypes.content.@each.name"
+  insuranceTypes: alias "controllers.insurancetypes.content"

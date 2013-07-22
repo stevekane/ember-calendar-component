@@ -326,17 +326,94 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
     'candidatesBinding': ("controllers.clients.content")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Insurance Type</label>\n        ");
-  hashContexts = {'classNames': depth0,'contentBinding': depth0};
-  hashTypes = {'classNames': "STRING",'contentBinding': "STRING"};
+  hashContexts = {'classNames': depth0,'contentBinding': depth0,'optionLabelPath': depth0};
+  hashTypes = {'classNames': "STRING",'contentBinding': "STRING",'optionLabelPath': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
     'classNames': ("formselect forminput"),
-    'contentBinding': ("insuranceTypes")
+    'contentBinding': ("insuranceTypes"),
+    'optionLabelPath': ("content.name")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </div>\n\n    </section>\n  </form>\n\n  <footer class=\"modalfooter\">\n    <div class=\"save\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "save", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">\n      Add Quote \n    </div>\n  </footer>\n</section>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["home/addremindermodal"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
+
+
+  data.buffer.push("<section class=\"modalcontent\">\n  <header class=\"modalheader\">\n    Add New Reminder \n  </header> \n\n  <form class=\"form\">\n    <section class=\"formcolumn\">\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Quote for</label>\n        ");
+  hashContexts = {'classNames': depth0,'candidatesBinding': depth0};
+  hashTypes = {'classNames': "STRING",'candidatesBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
+    'classNames': ("forminputblock"),
+    'candidatesBinding': ("controllers.clients.content")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Insurance Type</label>\n        ");
+  hashContexts = {'classNames': depth0,'contentBinding': depth0,'optionLabelPath': depth0};
+  hashTypes = {'classNames': "STRING",'contentBinding': "STRING",'optionLabelPath': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'classNames': ("formselect forminput"),
+    'contentBinding': ("insuranceTypes"),
+    'optionLabelPath': ("content.name")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Date</label>\n        <div class=\"plusminuswidget reminderdaywidget forminputblock\">\n          <div class=\"plusminusprev\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "previousDay", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n            <\n          </div>\n          <div class=\"plusminuscur\">\n            ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.dayName),stack1 ? stack1.call(depth0, "activeDay", options) : helperMissing.call(depth0, "dayName", "activeDay", options))));
+  data.buffer.push("\n            <br>\n            ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.monthDayYear),stack1 ? stack1.call(depth0, "activeDay", options) : helperMissing.call(depth0, "monthDayYear", "activeDay", options))));
+  data.buffer.push("\n          </div>\n          <div class=\"plusminusnext\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "nextDay", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n            >\n          </div>\n        </div>\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Time</label>\n        <div class=\"forminputblock addremindertimeselect\">\n          ");
+  hashContexts = {'classNames': depth0,'contentBinding': depth0};
+  hashTypes = {'classNames': "STRING",'contentBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'classNames': ("formselect forminput addreminderhourselect"),
+    'contentBinding': ("hours")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n          ");
+  hashContexts = {'classNames': depth0,'contentBinding': depth0};
+  hashTypes = {'classNames': "STRING",'contentBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'classNames': ("formselect forminput addreminderminuteselect"),
+    'contentBinding': ("minutes")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n          ");
+  hashContexts = {'classNames': depth0,'contentBinding': depth0};
+  hashTypes = {'classNames': "STRING",'contentBinding': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
+    'classNames': ("formselect forminput addreminderampmselect"),
+    'contentBinding': ("amPm")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n        </div>\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Notes</label>\n        ");
+  hashContexts = {'classNames': depth0};
+  hashTypes = {'classNames': "STRING"};
+  options = {hash:{
+    'classNames': ("forminput addremindernotes")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.textarea),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "textarea", options))));
+  data.buffer.push("\n      </div>\n\n    </section>\n  </form>\n\n  <footer class=\"modalfooter\">\n    <div class=\"save\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "save", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n      Add Reminder \n    </div>\n  </footer>\n</section>\n");
   return buffer;
   
 });

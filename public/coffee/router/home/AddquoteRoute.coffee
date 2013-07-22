@@ -5,7 +5,7 @@ AR.HomeAddquoteRoute = Ember.Route.extend
     close: ->
       @transitionTo "home"
 
-  renderTemplate: () ->
+  renderTemplate: ->
     @render("home/addquotemodal", {
       outlet: "modal"
     })

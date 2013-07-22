@@ -460,6 +460,40 @@
   margin-right: 2%;
 }
 
+.reminderdaywidget {
+  width: 80%;
+  height: 100%;
+}
+.reminderdaywidget .plusminusprev {
+  padding-top: 7px;
+}
+.reminderdaywidget .plusminusnext {
+  padding-top: 7px;
+}
+.reminderdaywidget .plusminuscur {
+  font-size: 1em;
+}
+
+.addremindertimeselect {
+  padding: 0;
+}
+.addremindertimeselect .addreminderhourselect {
+  width: 20%;
+  left: 0%;
+}
+.addremindertimeselect .addreminderminuteselect {
+  width: 20%;
+  left: 30%;
+}
+.addremindertimeselect .addreminderampmselect {
+  width: 20%;
+  left: 60%;
+}
+
+.addremindernotes {
+  height: 200%;
+}
+
 * {
   font-family: "Lato", Sans-Serif;
   box-sizing: border-box;
