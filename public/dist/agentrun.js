@@ -846,20 +846,22 @@ AR.ModalView = Ember.View.extend({
   layoutName: "modal/modal",
   init: function() {
     this._super();
-    return this.set("boundSetSizes", this.setSizes.bind(this));
+    this.set("boundSetSizes", this.get('setSizes').bind(this));
+    return $(document).ready(this.get('boundSetSizes'));
+  },
+  windowHeight: 0,
+  windowWidth: 0,
+  setSizes: function() {
+    var $window;
+    $window = $(window);
+    this.set("windowHeight", $window.height());
+    return this.set("windowWidth", $window.width());
   },
   willInsertElement: function() {
-    this.setSizes();
-    return $(window).on("resize", this.boundSetSizes);
+    return $(window).on('resize', this.get('boundSetSizes'));
   },
   willDestroyElement: function() {
-    return $(window).off("resize", this.boundSetSizes);
-  },
-  setSizes: function() {
-    var $body;
-    $body = $('body');
-    this.set("windowHeight", $body.height());
-    return this.set("windowWidth", $body.width());
+    return $(window).off('resize', this.get('boundSetSizes'));
   },
   windowSize: (function() {
     return "height: " + (this.get('windowHeight')) + "px; width: " + (this.get('windowWidth')) + "px";

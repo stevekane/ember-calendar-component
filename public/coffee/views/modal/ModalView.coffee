@@ -11,22 +11,25 @@ AR.ModalView = Ember.View.extend
 
   #we create a bound version of setSizes to allow jQuery on and off
   #to function properly
-  init: () ->
+  init: ->
     @_super()
-    @set "boundSetSizes", @setSizes.bind(@)
+    @set "boundSetSizes", @get('setSizes').bind(@)
+    $(document).ready(@get('boundSetSizes'))
 
-  willInsertElement: ->
-    @setSizes()
-    $(window).on "resize", @boundSetSizes
-
-  willDestroyElement: () ->
-    $(window).off "resize", @boundSetSizes
+  windowHeight: 0
+  windowWidth: 0
 
   setSizes: ->
-    $body = $ 'body'
-    @set "windowHeight", $body.height()
-    @set "windowWidth", $body.width()
+    $window = $(window)
+    @set "windowHeight", $window.height()
+    @set "windowWidth", $window.width()
 
+  willInsertElement: ->
+    $(window).on 'resize', @get('boundSetSizes')
+
+  willDestroyElement: ->
+    $(window).off 'resize', @get('boundSetSizes')
+    
   windowSize: (->
     "height: #{@get 'windowHeight'}px; width: #{@get 'windowWidth'}px"
   ).property('windowHeight', 'windowWidth').cacheable()

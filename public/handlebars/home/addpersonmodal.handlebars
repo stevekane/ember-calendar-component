@@ -21,8 +21,14 @@
 
       <div class="formrow">
         <label class="formlabel">Phone #</label>
-        {{input classNames="formtextfield forminput addpersonphonenumber" placeholder="(     )   -"}}
-        {{view Ember.Select contentBinding="controller.phoneNumberTypes" classNames="addpersonphonenumbertype forminput"}}
+        {{input 
+          classNames="formtextfield forminput addpersonphonenumber" 
+          placeholder="(     )   -"
+        }}
+        {{view Ember.Select 
+          contentBinding="controller.phoneNumberTypes" 
+          classNames="addpersonphonenumbertype forminput"
+        }}
       </div>
 
       <div class="formrow">
