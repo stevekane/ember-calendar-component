@@ -1,0 +1,64 @@
+$client-list-header-height: 50px
+$client-list-filter-padding: 20px
+$client-list-header-border: 1px solid $darkgrey
+
+$header-total-width: 100%
+$header-left-filler-width: 10%
+$header-filtertab-width: 7%
+$header-right-filler-width: $header-total-width - ($header-left-filler-width + $header-filtertab-width *3)
+
+$showall-position: $header-left-filler-width
+$showleads-position: $showall-position + $header-filtertab-width
+$showclients-position: $showleads-position + $header-filtertab-width
+
+@mixin clientheaderfiller
+  position: absolute
+  display: block
+  height: 100%
+  border-bottom: $client-list-header-border
+
+#clientlist
+  width: 100%
+  #clientlistheader
+    position: relative
+    display: block
+    height: $client-list-header-height
+    width: $header-total-width
+
+    .clientlistheaderfillerleft
+      @include clientheaderfiller
+      width: $header-left-filler-width
+      left: 0%
+
+    .clientlistheaderfillerright
+      @include clientheaderfiller
+      width: $header-right-filler-width
+      right: 0%
+      
+    .clientlistfilter
+      position: absolute
+      display: block
+      height: 100%
+      width: $header-filtertab-width
+      margin-top: 0px
+      margin-left: 0px
+      margin-right: 0px
+      padding-top: $client-list-filter-padding
+      background-color: $white
+      text-align: center
+      font-size: .8em
+      font-weight: bold
+      color: $darkblue
+      border-bottom: $client-list-header-border
+
+    #showall
+      left: $showall-position
+    #showleads
+      left: $showleads-position
+    #showclients
+      left: $showclients-position 
+
+    .activeclientfilter
+      border-left: $client-list-header-border
+      border-right: $client-list-header-border
+      border-bottom: none

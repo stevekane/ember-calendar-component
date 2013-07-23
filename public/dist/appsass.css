@@ -501,6 +501,62 @@
   height: 200%;
 }
 
+#clientlist {
+  width: 100%;
+}
+#clientlist #clientlistheader {
+  position: relative;
+  display: block;
+  height: 50px;
+  width: 100%;
+}
+#clientlist #clientlistheader .clientlistheaderfillerleft {
+  position: absolute;
+  display: block;
+  height: 100%;
+  border-bottom: 1px solid #363636;
+  width: 10%;
+  left: 0%;
+}
+#clientlist #clientlistheader .clientlistheaderfillerright {
+  position: absolute;
+  display: block;
+  height: 100%;
+  border-bottom: 1px solid #363636;
+  width: 69%;
+  right: 0%;
+}
+#clientlist #clientlistheader .clientlistfilter {
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 7%;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 20px;
+  background-color: #efefef;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: #0000bb;
+  border-bottom: 1px solid #363636;
+}
+#clientlist #clientlistheader #showall {
+  left: 10%;
+}
+#clientlist #clientlistheader #showleads {
+  left: 17%;
+}
+#clientlist #clientlistheader #showclients {
+  left: 24%;
+}
+#clientlist #clientlistheader .activeclientfilter {
+  border-left: 1px solid #363636;
+  border-right: 1px solid #363636;
+  border-bottom: none;
+}
+
 * {
   font-family: "Lato", Sans-Serif;
   box-sizing: border-box;
@@ -601,5 +657,5 @@
   position: relative;
   min-height: 600px;
   width: 100%;
-  background-color: #d9d9d9;
+  background-color: #efefef;
 }

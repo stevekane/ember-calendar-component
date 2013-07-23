@@ -41,6 +41,16 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   
 });
 
+Ember.TEMPLATES["clients"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  
+
+
+  data.buffer.push("<section id=\"clientlist\">\n  <header id=\"clientlistheader\">\n    <div class=\"clientlistheaderfillerleft\"></div>\n    <nav id=\"showall\" class=\"clientlistfilter\">\n      ALL\n    </nav>\n    <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n      LEADS \n    </nav>\n    <nav id=\"showclients\" class=\"clientlistfilter\">\n      CLIENTS \n    </nav>\n    <div class=\"clientlistheaderfillerright\"></div>\n  </header>\n</section>\n");
+  
+});
+
 Ember.TEMPLATES["dropdown/dropdown"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
