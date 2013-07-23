@@ -26,18 +26,22 @@
   </section>
   
   <section id="clientlistletterfilters">
-    <p class="letterfilter" {{action "makeAllLettersActive"}}>ALL</p>
     {{#each letter in letters}}
       <p class="letterfilter" {{action "changeActiveLetter" letter}}>
-        {{letter.filter}}
+        {{letter}}
       </p>
     {{/each}}
   </section>
 
   <ul id="clientlist">
-    {{#each client in filteredClients}}
+    {{#each client in sortedByLastName}}
+      {{#if client.isFirst}}
+        <li class="clientlistfirstletter">{{client.lastNameFirstLetter}}</li>
+      {{/if}}
       <li class="clientlistclient">
-        <div class="clientlistclienttag">{{client.type}}</div>
+        <div class="clientlistclienttag">
+          <span {{bindAttr class="client.classTag"}}>{{client.type}}</span>
+        </div>
         <div class="clientlistclientname">{{client.name}}</div>
         <div class="clientlistclientphonenumber">867-5309</div>
         <div class="clientlistclientemail">{{client.firstName}}@{{client.lastName}}.com</div>

@@ -35,135 +35,34 @@ AR.ApplicationController = Ember.Controller.extend({
 });
 
 minispade.register('controllers/ClientsController.js', function() {
-var alias, inArray, valueInList;
+
 minispade.require("utils/Enumerables.js");
 
-inArray = AR.EnumberableUtils.inArray;
-
-valueInList = AR.EnumberableUtils.valueInList;
-
-alias = Ember.computed.alias;
-
-AR.ClientsFilterManager = Ember.Object.extend({
-  clientFilters: [
-    Ember.Object.create({
-      filter: "leads",
-      active: true
-    }), Ember.Object.create({
-      filter: "clients",
-      active: true
-    })
-  ],
-  letterFilters: [
-    Ember.Object.create({
-      filter: "A",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "B",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "C",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "D",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "E",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "F",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "G",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "H",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "I",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "J",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "K",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "L",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "M",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "N",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "O",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "P",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "Q",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "R",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "S",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "T",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "U",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "V",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "W",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "X",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "Y",
-      active: "true"
-    }), Ember.Object.create({
-      filter: "Z",
-      active: "true"
-    })
-  ]
-});
-
 AR.ClientsController = Ember.ArrayController.extend({
-  filterManager: AR.ClientsFilterManager.create(),
-  letters: alias("filterManager.letterFilters"),
-  activeLetterFilters: (function() {
-    return this.get('letters').filterProperty("active");
-  }).property("letters.@each.active"),
-  changeActiveLetter: function(letter) {
-    var letters;
-    letters = this.get("letters");
-    letters.setEach("active", false);
-    return letter.set("active", true);
-  },
-  makeAllLettersActive: function() {
-    return this.get('letters').setEach("active", true);
-  },
-  filteredClients: (function() {
-    var activeLetterFilters, activeLetters, clients, filtered;
-    activeLetterFilters = this.get("activeLetterFilters");
-    activeLetters = activeLetterFilters.mapProperty("filter");
+  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  sortedByLastName: (function() {
+    var clients, sorted;
     clients = this.get("content");
-    filtered = clients.filter(function(client) {
-      var firstLetter;
-      firstLetter = client.get('lastName')[0];
-      return valueInList(activeLetters, firstLetter);
+    sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+      content: clients,
+      sortProperties: ['lastName'],
+      sortAscending: true
     });
-    return filtered;
-  }).property('activeLetterFilters', 'content.@each')
+    sorted.forEach(function(client, index, clients) {
+      var clientLetter, prev, prevLetter;
+      if (index === 0) {
+        client.set("isFirst", true);
+      } else {
+        prev = clients.objectAt(index - 1);
+        prevLetter = prev.get('lastNameFirstLetter');
+        clientLetter = client.get('lastNameFirstLetter');
+        if (clientLetter !== prevLetter) {
+          return client.set("isFirst", true);
+        }
+      }
+    });
+    return sorted;
+  }).property('content.@each')
 });
 
 });
@@ -384,6 +283,9 @@ AR.Client = Ember.Model.extend({
   name: (function() {
     return "" + (this.get('firstName')) + " " + (this.get('lastName'));
   }).property('firstName', 'lastName'),
+  lastNameFirstLetter: (function() {
+    return this.get('lastName')[0];
+  }).property('lastName'),
   type: (function() {
     switch (this.get('status')) {
       case "active":

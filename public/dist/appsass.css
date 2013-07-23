@@ -602,6 +602,11 @@
   padding-left: 10%;
   padding-right: 10%;
 }
+#clientlist #clientlist .clientlistfirstletter {
+  color: #d9d9d9;
+  font-size: 1.4em;
+  font-weight: 900;
+}
 #clientlist #clientlist .clientlistclient {
   position: relative;
   display: block;
@@ -617,11 +622,6 @@
 #clientlist #clientlist .clientlistclient .clientlistclienttag {
   position: absolute;
   left: 0%;
-  display: inline;
-  background-color: green;
-  border-radius: 5px;
-  padding: 1px 5px;
-  color: #efefef;
 }
 #clientlist #clientlist .clientlistclient .clientlistclientname {
   position: absolute;

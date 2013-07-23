@@ -17,6 +17,10 @@ AR.Client = Ember.Model.extend
     "#{@get('firstName')} #{@get('lastName')}"
   ).property('firstName', 'lastName')
 
+  lastNameFirstLetter: (->
+    @get('lastName')[0]
+  ).property('lastName')
+
   type: (->
     switch @get('status')
       when "active" then return "client"

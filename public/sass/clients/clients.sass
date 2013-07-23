@@ -118,6 +118,12 @@ $client-email-width: 10%
     width: 100%
     padding-left: 10%
     padding-right: 10%
+
+    .clientlistfirstletter
+      color: $lightgrey
+      font-size: 1.4em
+      font-weight: 900
+
     .clientlistclient
       position: relative
       display: block
@@ -132,7 +138,6 @@ $client-email-width: 10%
       .clientlistclienttag
         position: absolute
         left: $client-tag-position
-        @include tag(green)
       .clientlistclientname
         position: absolute
         left: $client-name-position
