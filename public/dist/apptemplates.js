@@ -44,10 +44,22 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 Ember.TEMPLATES["clients"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  
+  var buffer = '', hashContexts, hashTypes, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<section id=\"clientlist\">\n  <header id=\"clientlistheader\">\n    <div class=\"clientlistheaderfillerleft\"></div>\n    <nav id=\"showall\" class=\"clientlistfilter\">\n      ALL\n    </nav>\n    <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n      LEADS \n    </nav>\n    <nav id=\"showclients\" class=\"clientlistfilter\">\n      CLIENTS \n    </nav>\n    <div class=\"clientlistheaderfillerright\"></div>\n  </header>\n</section>\n");
+  data.buffer.push("<section id=\"clientlist\">\n  <header id=\"clientlistheader\">\n    <div class=\"clientlistheaderfillerleft\"></div>\n\n    <nav id=\"showall\" class=\"clientlistfilter\">\n      ALL\n    </nav>\n    <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n      LEADS \n    </nav>\n    <nav id=\"showclients\" class=\"clientlistfilter\">\n      CLIENTS \n    </nav>\n\n    <div class=\"clientlistheaderfillerright\"></div>\n  </header>\n\n  <section id=\"clientlistsubheader\">\n  \n    ");
+  hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
+  hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
+    'candidatesBinding': ("controller.content"),
+    'classNames': ("clientlistsearch")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n    <div id=\"clientsaddperson\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "addPerson", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" >+ New Person</div>\n\n  </section>\n</section>\n");
+  return buffer;
   
 });
 
@@ -123,11 +135,11 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<div id=\"recentactivity\">\n\n  <header id=\"activityheader\" class=\"homeheader\">\n    <h2 class=\"paneltitle\">RECENT ACTIVITY</h2>\n    <div id=\"addperson\" ");
+  data.buffer.push("<div id=\"recentactivity\">\n\n  <header id=\"activityheader\" class=\"homeheader\">\n    <h2 class=\"paneltitle\">RECENT ACTIVITY</h2>\n    <div id=\"homeaddperson\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "addPerson", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" >+ New Person</div>\n    <div id=\"addquote\" ");
+  data.buffer.push(" >+ New Person</div>\n    <div id=\"homeaddquote\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "addQuote", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
@@ -199,7 +211,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div id=\"reminders\">\n\n  <header id=\"reminderheader\" class=\"homeheader\">\n    <h2 class=\"paneltitle\">TODAY'S REMINDERS</h2>\n    <div id=\"addreminder\" ");
+  data.buffer.push("<div id=\"reminders\">\n\n  <header id=\"reminderheader\" class=\"homeheader\">\n    <h2 class=\"paneltitle\">TODAY'S REMINDERS</h2>\n    <div id=\"homeaddreminder\" ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "addReminder", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));

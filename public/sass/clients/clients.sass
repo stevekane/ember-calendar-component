@@ -3,13 +3,19 @@ $client-list-filter-padding: 20px
 $client-list-header-border: 1px solid $darkgrey
 
 $header-total-width: 100%
-$header-left-filler-width: 10%
+$header-left-filler-width: 7%
 $header-filtertab-width: 7%
 $header-right-filler-width: $header-total-width - ($header-left-filler-width + $header-filtertab-width *3)
 
 $showall-position: $header-left-filler-width
 $showleads-position: $showall-position + $header-filtertab-width
 $showclients-position: $showleads-position + $header-filtertab-width
+
+$clients-search-position: 10%
+$clients-search-width: 20%
+$clients-addnewperson-width: 10%
+$clients-addnewperson-position: $clients-search-position + $clients-search-width + 2%
+
 
 @mixin clientheaderfiller
   position: absolute
@@ -62,3 +68,22 @@ $showclients-position: $showleads-position + $header-filtertab-width
       border-left: $client-list-header-border
       border-right: $client-list-header-border
       border-bottom: none
+  
+  #clientlistsubheader
+    position: relative
+    display: block
+    height: $client-list-header-height
+    width: $header-total-width
+    padding-top: 10px
+    .clientlistsearch
+      position: absolute
+      left: $clients-search-position
+      width: $clients-search-width
+      height: 70%
+    #clientsaddperson
+      @include bluebutton
+      position: absolute
+      left: $clients-addnewperson-position
+      width: $clients-addnewperson-width
+      height: 70%
+      padding-top: 10px
