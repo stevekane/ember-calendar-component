@@ -352,7 +352,7 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashContexts = {'classNames': depth0,'candidatesBinding': depth0};
   hashTypes = {'classNames': "STRING",'candidatesBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
-    'classNames': ("forminputblock"),
+    'classNames': ("forminputblock addreminderclientsearch"),
     'candidatesBinding': ("controllers.clients.content")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Insurance Type</label>\n        ");

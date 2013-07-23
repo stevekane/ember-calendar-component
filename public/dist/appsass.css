@@ -220,7 +220,8 @@
   width: 100px;
   height: 50px;
 }
-.plusminuswidget .plusminusprev {
+
+.plusminusprev {
   border: 1px solid #363636;
   text-align: center;
   font-size: 1.2em;
@@ -233,11 +234,12 @@
   left: 0%;
   width: 20%;
 }
-.plusminuswidget .plusminusprev:hover {
+.plusminusprev:hover {
   background-color: #363636;
   color: #efefef;
 }
-.plusminuswidget .plusminuscur {
+
+.plusminuscur {
   border: 1px solid #363636;
   text-align: center;
   font-size: 1.2em;
@@ -247,7 +249,8 @@
   left: 20%;
   right: 20%;
 }
-.plusminuswidget .plusminusnext {
+
+.plusminusnext {
   border: 1px solid #363636;
   text-align: center;
   font-size: 1.2em;
@@ -260,7 +263,7 @@
   right: 0%;
   width: 20%;
 }
-.plusminuswidget .plusminusnext:hover {
+.plusminusnext:hover {
   background-color: #363636;
   color: #efefef;
 }
@@ -458,6 +461,10 @@
   padding: 1px 5px;
   color: #efefef;
   margin-right: 2%;
+}
+
+.addreminderclientsearch .searchlist {
+  top: 40px;
 }
 
 .reminderdaywidget {
