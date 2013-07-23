@@ -583,6 +583,58 @@
   height: 70%;
   padding-top: 10px;
 }
+#clientlist #clientlistletterfilters {
+  display: block;
+  height: 30px;
+  width: 100%;
+  padding-left: 10%;
+}
+#clientlist #clientlistletterfilters .letterfilter {
+  display: inline-block;
+  height: 100%;
+  width: 3%;
+  color: #0078bd;
+}
+#clientlist #clientlist {
+  display: block;
+  list-style-type: none;
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+#clientlist #clientlist .clientlistclient {
+  position: relative;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  padding-top: 5px;
+}
+#clientlist #clientlist .clientlistclient:hover {
+  background-color: #0078bd;
+  color: #efefef;
+}
+#clientlist #clientlist .clientlistclient .clientlistclienttag {
+  position: absolute;
+  left: 0%;
+  display: inline;
+  background-color: green;
+  border-radius: 5px;
+  padding: 1px 5px;
+  color: #efefef;
+}
+#clientlist #clientlist .clientlistclient .clientlistclientname {
+  position: absolute;
+  left: 5%;
+}
+#clientlist #clientlist .clientlistclient .clientlistclientphonenumber {
+  position: absolute;
+  left: 35%;
+}
+#clientlist #clientlist .clientlistclient .clientlistclientemail {
+  position: absolute;
+  left: 65%;
+}
 
 * {
   font-family: "Lato", Sans-Serif;

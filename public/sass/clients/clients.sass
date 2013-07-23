@@ -16,6 +16,20 @@ $clients-search-width: 20%
 $clients-addnewperson-width: 10%
 $clients-addnewperson-position: $clients-search-position + $clients-search-width + 2%
 
+$client-item-height: 30px 
+$client-item-vertical-margin: 10px
+
+$client-tag-position: 0%
+$client-tag-width: 5%
+
+$client-name-position: $client-tag-position + $client-tag-width
+$client-name-width: 30%
+
+$client-phone-position: $client-name-position + $client-name-width
+$client-phone-width: 30%
+
+$client-email-position: $client-phone-position + $client-phone-width
+$client-email-width: 10%
 
 @mixin clientheaderfiller
   position: absolute
@@ -87,3 +101,44 @@ $clients-addnewperson-position: $clients-search-position + $clients-search-width
       width: $clients-addnewperson-width
       height: 70%
       padding-top: 10px
+
+  #clientlistletterfilters
+    display: block
+    height: 30px
+    width: 100%
+    padding-left: 10%
+    .letterfilter
+      display: inline-block
+      height: 100%
+      width: 3%
+      color: $lightblue
+  #clientlist
+    display: block
+    list-style-type: none
+    width: 100%
+    padding-left: 10%
+    padding-right: 10%
+    .clientlistclient
+      position: relative
+      display: block
+      margin-top: $client-item-vertical-margin
+      margin-bottom: $client-item-vertical-margin
+      height: $client-item-height
+      padding-top: 5px
+      &:hover
+        background-color: $lightblue
+        color: $white
+
+      .clientlistclienttag
+        position: absolute
+        left: $client-tag-position
+        @include tag(green)
+      .clientlistclientname
+        position: absolute
+        left: $client-name-position
+      .clientlistclientphonenumber
+        position: absolute
+        left: $client-phone-position
+      .clientlistclientemail
+        position: absolute
+        left: $client-email-position

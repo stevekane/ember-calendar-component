@@ -24,4 +24,24 @@
     <div id="clientsaddperson" {{action "addPerson"}} >+ New Person</div>
 
   </section>
+  
+  <section id="clientlistletterfilters">
+    <p class="letterfilter" {{action "makeAllLettersActive"}}>ALL</p>
+    {{#each letter in letters}}
+      <p class="letterfilter" {{action "changeActiveLetter" letter}}>
+        {{letter.filter}}
+      </p>
+    {{/each}}
+  </section>
+
+  <ul id="clientlist">
+    {{#each client in filteredClients}}
+      <li class="clientlistclient">
+        <div class="clientlistclienttag">{{client.type}}</div>
+        <div class="clientlistclientname">{{client.name}}</div>
+        <div class="clientlistclientphonenumber">867-5309</div>
+        <div class="clientlistclientemail">{{client.firstName}}@{{client.lastName}}.com</div>
+      </li>
+    {{/each}}
+  </ul>
 </section>

@@ -17,4 +17,15 @@ AR.Client = Ember.Model.extend
     "#{@get('firstName')} #{@get('lastName')}"
   ).property('firstName', 'lastName')
 
+  type: (->
+    switch @get('status')
+      when "active" then return "client"
+      when "inactive" then return "client"
+      else return "lead"
+  ).property('status')
+
+  classTag: (->
+    "#{@get('type')}tag"
+  ).property('type')
+
 AR.Client.adapter = Ember.FixtureAdapter.create()

@@ -6,6 +6,8 @@ require "router/home/AddreminderRoute.js"
 
 require "router/ClientsRoute.js"
 
+require "router/ClientsRoute.js"
+
 AR.Router.map ->
   @resource "home", path: "/home", ->
     @route "addperson", path: "/addperson"

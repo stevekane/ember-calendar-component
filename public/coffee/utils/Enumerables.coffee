@@ -5,3 +5,6 @@ AR.EnumberableUtils = Ember.Object.create
       prop = element.get property
       position = list.indexOf prop
       position > -1
+
+  valueInList: (list, val) ->
+    list.indexOf(val) > -1
