@@ -501,11 +501,12 @@ function program3(depth0,data) {
   data.buffer.push("\n");
   }
 
-  hashContexts = {'value': depth0,'classNames': depth0};
-  hashTypes = {'value': "ID",'classNames': "STRING"};
+  hashContexts = {'value': depth0,'classNames': depth0,'placeholder': depth0};
+  hashTypes = {'value': "ID",'classNames': "STRING",'placeholder': "STRING"};
   options = {hash:{
     'value': ("view.currentSearch"),
-    'classNames': ("searchfield")
+    'classNames': ("searchfield"),
+    'placeholder': ("search for client...")
   },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.input),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n");

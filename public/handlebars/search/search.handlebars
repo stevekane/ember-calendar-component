@@ -1,4 +1,8 @@
-{{input value=view.currentSearch classNames="searchfield"}}
+{{input 
+  value=view.currentSearch 
+  classNames="searchfield"
+  placeholder="search for client..."
+}}
 {{#if view.possibleMatches}}
 <ul class="searchlist">
   {{each view.possibleMatches itemViewClass="AR.SearchItemView"}}
