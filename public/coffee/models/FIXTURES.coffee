@@ -9,12 +9,24 @@ require "models/Insurancetype.js"
 require "models/FACTORIES.js"
 
 AR.Client.FIXTURES = [
-  {id: 1, firstName: 'Sally', lastName: "Johnson",  status: 'lead'},
-  {id: 2, firstName: 'Jesse', lastName: "Ventura",  status: 'active'},
-  {id: 3, firstName: 'Don Juan', lastName: "DeMarco",  status: 'active'}
-  {id: 4, firstName: 'Bertrand', lastName: "Russel",  status: 'lead'},
-  {id: 5, firstName: 'James', lastName: "Joyce",  status: 'lead'},
-  {id: 6, firstName: 'Captain', lastName: "Hook",  status: 'inactive'}
+  {id: 1, firstName:  'Sally', lastName: "Johnson",  status: 'lead'},
+  {id: 2, firstName:  'Jesse', lastName: "Ventura",  status: 'active'},
+  {id: 3, firstName:  'Don Juan', lastName: "DeMarco",  status: 'active'}
+  {id: 4, firstName:  'Bertrand', lastName: "Russel",  status: 'lead'},
+  {id: 5, firstName:  'James', lastName: "Joyce",  status: 'lead'},
+  {id: 6, firstName:  'Captain', lastName: "Hook",  status: 'inactive'}
+  {id: 7, firstName:  'Kathy', lastName: "Bates",  status: 'lead'},
+  {id: 8, firstName:  'Michael', lastName: "Tyson",  status: 'active'},
+  {id: 9, firstName:  'Janine', lastName: "Andresen",  status: 'active'}
+  {id: 10, firstName: 'Courtney', lastName: "Love",  status: 'lead'},
+  {id: 11, firstName: 'Bryan', lastName: "Boitano",  status: 'lead'},
+  {id: 12, firstName: 'Leonard', lastName: "Nimoy",  status: 'inactive'}
+  {id: 13, firstName: 'Justin', lastName: "Timberlake",  status: 'lead'},
+  {id: 14, firstName: 'Fred', lastName: "Flintstone",  status: 'active'},
+  {id: 15, firstName: 'Ayn', lastName: "Rand",  status: 'active'}
+  {id: 16, firstName: 'Soren', lastName: "Kierkegard",  status: 'lead'},
+  {id: 17, firstName: 'Charlize', lastName: "Theron",  status: 'lead'},
+  {id: 18, firstName: 'Andrew', lastName: "Lech",  status: 'lead'}
 ]
 
 clientIds = AR.Client.FIXTURES.mapProperty "id"
@@ -40,5 +52,11 @@ AR.Flow.FIXTURES = [
   {id: 2, client_id: 3, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
   {id: 3, client_id: 4, insurancetype_id: 1, status: "Quote started", quote_ids: [0,1,2,3,4], policy_ids: [0]},
   {id: 4, client_id: 5, insurancetype_id: 2, status: "Policy approved", quote_ids: [0,1,2,3,4], policy_ids: [0]},
-  {id: 5, client_id: 6, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
+  {id: 5, client_id: 7, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
+  {id: 6, client_id: 2, insurancetype_id: 1, status: "Quote started", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 7, client_id: 4, insurancetype_id: 2, status: "Policy approved", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 8, client_id: 11, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
+  {id: 9, client_id: 10, insurancetype_id: 1, status: "Quote started", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 10, client_id: 2, insurancetype_id: 2, status: "Policy approved", quote_ids: [0,1,2,3,4], policy_ids: [0]},
+  {id: 11, client_id: 2, insurancetype_id: 3, status: "Quote approved", quote_ids: [5,6,7,8,9], policy_ids: [1]}
 ]
