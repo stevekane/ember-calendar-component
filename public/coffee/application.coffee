@@ -13,6 +13,8 @@ require "models/FIXTURES.js"
 require "views/search/SearchView.js"
 require "views/search/SearchItemView.js"
 
+require "views/clients/ClientsView.js"
+
 require "views/modal/ModalView.js"
 
 require "views/dropdown/DropdownView.js"

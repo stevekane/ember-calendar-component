@@ -9,6 +9,7 @@ minispade.require("models/Insurancetype.js");
 minispade.require("models/FIXTURES.js");
 minispade.require("views/search/SearchView.js");
 minispade.require("views/search/SearchItemView.js");
+minispade.require("views/clients/ClientsView.js");
 minispade.require("views/modal/ModalView.js");
 minispade.require("views/dropdown/DropdownView.js");
 minispade.require("controllers/ClientsController.js");
@@ -39,7 +40,6 @@ minispade.register('controllers/ClientsController.js', function() {
 minispade.require("utils/Enumerables.js");
 
 AR.ClientsController = Ember.ArrayController.extend({
-  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
   sortedByLastName: (function() {
     var clients, sorted;
     clients = this.get("content");
@@ -786,7 +786,13 @@ AR.ApplicationRoute = Ember.Route.extend({
 });
 
 minispade.register('router/ClientsRoute.js', function() {
-AR.ClientsRoute = Ember.Route.extend();
+AR.ClientsRoute = Ember.Route.extend({
+  renderTemplate: function(controller) {
+    return this.render("clients", {
+      controller: controller
+    });
+  }
+});
 
 });
 
@@ -911,7 +917,6 @@ minispade.require("router/home/AddpersonRoute.js");
 minispade.require("router/home/AddquoteRoute.js");
 minispade.require("router/home/AddreminderRoute.js");
 minispade.require("router/ClientsRoute.js");
-minispade.require("router/ClientsRoute.js");
 
 AR.Router.map(function() {
   this.resource("home", {
@@ -1002,6 +1007,57 @@ helper('dayName', function(date) {
 
 helper('monthDayYear', function(date) {
   return moment(date).format('MMMM D, YYYY');
+});
+
+});
+
+minispade.register('views/clients/ClientsView.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.ClientsView = Ember.View.extend({
+  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  firstLetterClassName: 'clientlistfirstletter',
+  init: function() {
+    this._super();
+    return this._buildLetterPosHash();
+  },
+  didInsertElement: function() {
+    return Ember.run.next(this, this._updateLetterPosHash);
+  },
+  rerender: function() {
+    this._super();
+    return Ember.run.next(this, this._updateLetterPosHash);
+  },
+  changeActiveLetter: function(letter) {
+    var letterPosHash;
+    letterPosHash = this.get("letterPosHash");
+    return window.scrollTo(0, letterPosHash[letter]);
+  },
+  _buildLetterPosHash: function() {
+    var letter, letterHash, letters, _i, _len;
+    letters = this.get("letters");
+    letterHash = Ember.Object.create();
+    for (_i = 0, _len = letters.length; _i < _len; _i++) {
+      letter = letters[_i];
+      letterHash[letter] = 0;
+    }
+    return this.set("letterPosHash", letterHash);
+  },
+  _updateLetterPosHash: function() {
+    var $letterHeaders, firstLetterClassName, letterPosHash;
+    firstLetterClassName = "." + this.get("firstLetterClassName");
+    letterPosHash = this.get('letterPosHash');
+    $letterHeaders = $(firstLetterClassName);
+    return $letterHeaders.each(function(index, value) {
+      var $value, letter, yPos;
+      $value = $(value);
+      letter = $value.text();
+      yPos = $value.position().top;
+      return letterPosHash.set(letter, yPos);
+    });
+  }
 });
 
 });

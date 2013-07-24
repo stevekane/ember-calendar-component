@@ -26,8 +26,8 @@
   </section>
   
   <section id="clientlistletterfilters">
-    {{#each letter in letters}}
-      <p class="letterfilter" {{action "changeActiveLetter" letter}}>
+    {{#each letter in view.letters}}
+      <p class="letterfilter" {{action "changeActiveLetter" letter target="view"}}>
         {{letter}}
       </p>
     {{/each}}
@@ -36,7 +36,7 @@
   <ul id="clientlist">
     {{#each client in sortedByLastName}}
       {{#if client.isFirst}}
-        <li class="clientlistfirstletter">{{client.lastNameFirstLetter}}</li>
+        <li {{bindAttr class="view.firstLetterClassName"}}>{{client.lastNameFirstLetter}}</li>
       {{/if}}
       <li class="clientlistclient">
         <div class="clientlistclienttag">
