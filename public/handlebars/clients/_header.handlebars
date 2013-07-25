@@ -1,0 +1,25 @@
+<header id="clientlistheader">
+  <div class="clientlistheaderfillerleft"></div>
+
+  <nav id="showall" class="clientlistfilter">
+    ALL
+  </nav>
+  <nav id="showleads" class="clientlistfilter activeclientfilter">
+    LEADS 
+  </nav>
+  <nav id="showclients" class="clientlistfilter">
+    CLIENTS 
+  </nav>
+
+  <div class="clientlistheaderfillerright"></div>
+</header>
+
+<section id="clientlistsubheader">
+
+  {{view "AR.SearchView" 
+    candidatesBinding="controller.content"
+    classNames="clientlistsearch"
+  }}
+  <div id="clientsaddperson" {{action "addPerson"}} >+ New Person</div>
+
+</section>
