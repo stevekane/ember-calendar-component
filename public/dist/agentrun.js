@@ -36,9 +36,6 @@ AR.ApplicationController = Ember.Controller.extend({
 });
 
 minispade.register('controllers/ClientsController.js', function() {
-
-minispade.require("utils/Enumerables.js");
-
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
   groups: (function() {
