@@ -542,13 +542,13 @@
   color: #0000bb;
   border-bottom: 1px solid #363636;
 }
-#clientscontainer #clientlistheader #showall {
+#clientscontainer #clientlistheader .ALL {
   left: 7%;
 }
-#clientscontainer #clientlistheader #showleads {
+#clientscontainer #clientlistheader .LEADS {
   left: 14%;
 }
-#clientscontainer #clientlistheader #showclients {
+#clientscontainer #clientlistheader .CLIENTS {
   left: 21%;
 }
 #clientscontainer #clientlistheader .activeclientfilter {

@@ -65,22 +65,49 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 Ember.TEMPLATES["clients/_header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, hashContexts, hashTypes, self=this, escapeExpression=this.escapeExpression;
 
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n    ALL\n  ");
+  }
 
-  data.buffer.push("<header id=\"clientlistheader\">\n  <div class=\"clientlistheaderfillerleft\"></div>\n\n  <nav id=\"showall\" class=\"clientlistfilter activeclientfilter\" ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showAll", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">\n    ALL\n  </nav>\n  <nav id=\"showleads\" class=\"clientlistfilter\" ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showLeads", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">\n    LEADS \n  </nav>\n  <nav id=\"showclients\" class=\"clientlistfilter\" ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showClients", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">\n    CLIENTS \n  </nav>\n\n  <div class=\"clientlistheaderfillerright\"></div>\n</header>\n\n<section id=\"clientlistsubheader\">\n\n  ");
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\n    LEADS\n  ");
+  }
+
+function program5(depth0,data) {
+  
+  
+  data.buffer.push("\n    CLIENTS\n  ");
+  }
+
+  data.buffer.push("<header id=\"clientlistheader\">\n  <div class=\"clientlistheaderfillerleft\"></div>\n\n  ");
+  data.buffer.push("\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
+    'tabBinding': ("controller.allTab")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
+    'tabBinding': ("controller.leadsTab")
+  },inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
+    'tabBinding': ("controller.clientsTab")
+  },inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  <div class=\"clientlistheaderfillerright\"></div>\n</header>\n\n<section id=\"clientlistsubheader\">\n\n  ");
   hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
   hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{

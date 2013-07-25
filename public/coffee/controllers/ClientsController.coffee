@@ -10,35 +10,44 @@ AR.ClientsController = Ember.ArrayController.extend
             "J", "K", "L", "M", "N", "O", "P", "Q", "R",
             "S", "T", "U", "V", "W", "U", "X", "Y", "Z"]
 
-  clientFilters: [
-    Ember.Object.create(filter: "client", active: true),
-    Ember.Object.create(filter: "lead", active: true),
-  ]
+  allTab: Ember.Object.create name: 'ALL', active: true
+  leadsTab: Ember.Object.create name: 'LEADS', active: false
+  clientsTab: Ember.Object.create name: 'CLIENTS', active: false
 
-  #ACTION HANDLERS
-  _resetFilters: -> @get('clientFilters').setEach "active", true
+  #set the initial activeTab
+  init: ->
+    @_super()
+    @set "activeTab", @get('allTab')
 
-  showAll: -> @_resetFilters()
+  setActiveTab: (tab) ->
+    allTab = @get "allTab"
+    leadsTab = @get "leadsTab"
+    clientsTab = @get "clientsTab"
+    allTab.set "active", false
+    leadsTab.set "active", false
+    clientsTab.set "active", false
+    tab.set "active", true
+    @set "activeTab", tab
 
-  showLeads: ->
-    @_resetFilters()
-    @get('clientFilters').findProperty("filter", "client").set "active", false
-
-  showClients: ->
-    @_resetFilters()
-    @get('clientFilters').findProperty("filter", "lead").set "active", false
+  #coerce our tab names into array of active filters
+  activeFilters: (->
+    activeTabName = @get "activeTab.name"
+    switch activeTabName
+      when "ALL" then return ['lead', 'client']
+      when "LEADS" then return ['lead']
+      when "CLIENTS" then return ['client']
+  ).property('activeTab')
 
   sortedFilteredClients: (->
     clients = @get "content"
-    activeFilters = @get('clientFilters')
-      .filterProperty('active')
-      .getEach("filter")
+    activeFilters = @get 'activeFilters'
+
     filtered = clients.filter inArray(activeFilters, "type")
     sortedFiltered = sortByProperties filtered, ['lastName'], true
     sortedFiltered
   ).property(
     'content.@each',
-    'clientFilters.@each.active'
+    'activeFilters'
   )
 
   #groups are clients sorted by lastNameFirstLetter for the purpose

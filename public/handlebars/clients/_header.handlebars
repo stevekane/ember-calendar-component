@@ -1,15 +1,18 @@
 <header id="clientlistheader">
   <div class="clientlistheaderfillerleft"></div>
 
-  <nav id="showall" class="clientlistfilter activeclientfilter" {{action "showAll"}}>
+  {{! see ClientFilterTabView for classNames }}
+  {{#view "AR.ClientFilterTabView" tabBinding="controller.allTab"}}
     ALL
-  </nav>
-  <nav id="showleads" class="clientlistfilter" {{action "showLeads"}}>
-    LEADS 
-  </nav>
-  <nav id="showclients" class="clientlistfilter" {{action "showClients"}}>
-    CLIENTS 
-  </nav>
+  {{/view}}
+
+  {{#view "AR.ClientFilterTabView" tabBinding="controller.leadsTab"}}
+    LEADS
+  {{/view}}
+
+  {{#view "AR.ClientFilterTabView" tabBinding="controller.clientsTab"}}
+    CLIENTS
+  {{/view}}
 
   <div class="clientlistheaderfillerright"></div>
 </header>

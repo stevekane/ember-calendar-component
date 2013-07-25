@@ -14,6 +14,7 @@ require "views/search/SearchView.js"
 require "views/search/SearchItemView.js"
 
 require "views/clients/ClientsView.js"
+require "views/clients/ClientFilterTabView.js"
 
 require "views/modal/ModalView.js"
 

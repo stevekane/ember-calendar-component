@@ -10,6 +10,7 @@ minispade.require("models/FIXTURES.js");
 minispade.require("views/search/SearchView.js");
 minispade.require("views/search/SearchItemView.js");
 minispade.require("views/clients/ClientsView.js");
+minispade.require("views/clients/ClientFilterTabView.js");
 minispade.require("views/modal/ModalView.js");
 minispade.require("views/dropdown/DropdownView.js");
 minispade.require("controllers/ClientsController.js");
@@ -46,37 +47,53 @@ inArray = AR.EnumberableUtils.inArray;
 
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
-  clientFilters: [
-    Ember.Object.create({
-      filter: "client",
-      active: true
-    }), Ember.Object.create({
-      filter: "lead",
-      active: true
-    })
-  ],
-  _resetFilters: function() {
-    return this.get('clientFilters').setEach("active", true);
+  allTab: Ember.Object.create({
+    name: 'ALL',
+    active: true
+  }),
+  leadsTab: Ember.Object.create({
+    name: 'LEADS',
+    active: false
+  }),
+  clientsTab: Ember.Object.create({
+    name: 'CLIENTS',
+    active: false
+  }),
+  init: function() {
+    this._super();
+    return this.set("activeTab", this.get('allTab'));
   },
-  showAll: function() {
-    return this._resetFilters();
+  setActiveTab: function(tab) {
+    var allTab, clientsTab, leadsTab;
+    allTab = this.get("allTab");
+    leadsTab = this.get("leadsTab");
+    clientsTab = this.get("clientsTab");
+    allTab.set("active", false);
+    leadsTab.set("active", false);
+    clientsTab.set("active", false);
+    tab.set("active", true);
+    return this.set("activeTab", tab);
   },
-  showLeads: function() {
-    this._resetFilters();
-    return this.get('clientFilters').findProperty("filter", "client").set("active", false);
-  },
-  showClients: function() {
-    this._resetFilters();
-    return this.get('clientFilters').findProperty("filter", "lead").set("active", false);
-  },
+  activeFilters: (function() {
+    var activeTabName;
+    activeTabName = this.get("activeTab.name");
+    switch (activeTabName) {
+      case "ALL":
+        return ['lead', 'client'];
+      case "LEADS":
+        return ['lead'];
+      case "CLIENTS":
+        return ['client'];
+    }
+  }).property('activeTab'),
   sortedFilteredClients: (function() {
     var activeFilters, clients, filtered, sortedFiltered;
     clients = this.get("content");
-    activeFilters = this.get('clientFilters').filterProperty('active').getEach("filter");
+    activeFilters = this.get('activeFilters');
     filtered = clients.filter(inArray(activeFilters, "type"));
     sortedFiltered = sortByProperties(filtered, ['lastName'], true);
     return sortedFiltered;
-  }).property('content.@each', 'clientFilters.@each.active'),
+  }).property('content.@each', 'activeFilters'),
   groups: (function() {
     var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
     letters = this.get("letters");
@@ -1078,6 +1095,27 @@ helper('dayName', function(date) {
 
 helper('monthDayYear', function(date) {
   return moment(date).format('MMMM D, YYYY');
+});
+
+});
+
+minispade.register('views/clients/ClientFilterTabView.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.ClientFilterTabView = Ember.View.extend({
+  tagName: "nav",
+  classNameBindings: ['activeclientfilter', 'tabClass', 'tabName'],
+  activeclientfilter: alias("tab.active"),
+  tabClass: 'clientlistfilter',
+  tabName: alias("tab.name"),
+  click: function(event) {
+    var controller, tab;
+    controller = this.get("controller");
+    tab = this.get("tab");
+    return controller.setActiveTab(tab);
+  }
 });
 
 });
