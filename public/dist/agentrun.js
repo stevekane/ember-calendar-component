@@ -38,10 +38,19 @@ AR.ApplicationController = Ember.Controller.extend({
 minispade.register('controllers/ClientsController.js', function() {
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  sortedByLastName: (function() {
+    var content;
+    content = this.get("content");
+    return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+      content: content,
+      sortProperties: ['lastName'],
+      sortAscending: true
+    });
+  }).property('content.@each'),
   groups: (function() {
     var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
     letters = this.get("letters");
-    clients = this.get("content");
+    clients = this.get("sortedByLastName");
     groups = [];
     for (_i = 0, _len = letters.length; _i < _len; _i++) {
       letter = letters[_i];
@@ -53,7 +62,7 @@ AR.ClientsController = Ember.ArrayController.extend({
       groups.pushObject(letterGroup);
     }
     return groups;
-  }).property('content.@each')
+  }).property('sortedByLastName.@each')
 });
 
 });

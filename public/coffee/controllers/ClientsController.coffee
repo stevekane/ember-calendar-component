@@ -4,11 +4,20 @@ AR.ClientsController = Ember.ArrayController.extend
             "J", "K", "L", "M", "N", "O", "P", "Q", "R",
             "S", "T", "U", "V", "W", "U", "X", "Y", "Z"]
 
+  #our clientlist sorted by lastName
+  sortedByLastName: (->
+    content = @get "content"
+    Ember.ArrayProxy.createWithMixins Ember.SortableMixin,
+      content: content
+      sortProperties: ['lastName']
+      sortAscending: true
+  ).property('content.@each')
+
   #groups are clients sorted by lastNameFirstLetter for the purpose
   #of displaying in the client list
   groups: (->
     letters = @get "letters"
-    clients= @get "content"
+    clients = @get "sortedByLastName"
     groups = []
 
     for letter in letters
@@ -20,4 +29,4 @@ AR.ClientsController = Ember.ArrayController.extend
       groups.pushObject letterGroup
 
     groups
-  ).property('content.@each')
+  ).property('sortedByLastName.@each')
