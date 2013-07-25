@@ -1,3 +1,7 @@
+require "utils/Computed.js"
+
+sortByProperty = AR.ComputedUtils.sortByProperty
+
 AR.ClientsController = Ember.ArrayController.extend
   
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I",
@@ -7,6 +11,7 @@ AR.ClientsController = Ember.ArrayController.extend
   #our clientlist sorted by lastName
   sortedByLastName: (->
     content = @get "content"
+
     Ember.ArrayProxy.createWithMixins Ember.SortableMixin,
       content: content
       sortProperties: ['lastName']
@@ -20,6 +25,7 @@ AR.ClientsController = Ember.ArrayController.extend
     clients = @get "sortedByLastName"
     groups = []
 
+    #push each group of clients (sorted by lastNameFirstLetter) onto groups
     for letter in letters
       groupClients = clients.filterProperty "lastNameFirstLetter", letter
       letterGroup = Ember.Object.create

@@ -36,6 +36,11 @@ AR.ApplicationController = Ember.Controller.extend({
 });
 
 minispade.register('controllers/ClientsController.js', function() {
+var sortByProperty;
+minispade.require("utils/Computed.js");
+
+sortByProperty = AR.ComputedUtils.sortByProperty;
+
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
   sortedByLastName: (function() {
@@ -941,6 +946,23 @@ AR.Router.map(function() {
   return this.resource("client", {
     path: "/clients/:client_id"
   });
+});
+
+});
+
+minispade.register('utils/Computed.js', function() {
+AR.ComputedUtils = Ember.Object.create({
+  sortByProperty: function(array, sortProperties, sortAscending) {
+    var depKey;
+    depKey = array + ".@each";
+    return Ember.computed(depKey, function() {
+      return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+        content: content,
+        sortProperties: sortProperties,
+        sortAscending: sortAscending
+      });
+    });
+  }
 });
 
 });
