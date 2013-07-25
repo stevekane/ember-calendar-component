@@ -13,16 +13,16 @@ minispade.require("views/clients/ClientsView.js");
 minispade.require("views/clients/ClientFilterTabView.js");
 minispade.require("views/modal/ModalView.js");
 minispade.require("views/dropdown/DropdownView.js");
-minispade.require("controllers/ClientsController.js");
-minispade.require("controllers/QuotesController.js");
-minispade.require("controllers/PolicysController.js");
-minispade.require("controllers/FlowsController.js");
-minispade.require("controllers/InsurancetypesController.js");
-minispade.require("controllers/RemindersController.js");
-minispade.require("controllers/HomeController.js");
-minispade.require("controllers/HomeAddpersonController.js");
-minispade.require("controllers/HomeAddquoteController.js");
-minispade.require("controllers/HomeAddreminderController.js");
+minispade.require("controllers/data/ClientsController.js");
+minispade.require("controllers/data/QuotesController.js");
+minispade.require("controllers/data/PolicysController.js");
+minispade.require("controllers/data/FlowsController.js");
+minispade.require("controllers/data/InsurancetypesController.js");
+minispade.require("controllers/data/RemindersController.js");
+minispade.require("controllers/home/HomeController.js");
+minispade.require("controllers/home/HomeAddpersonController.js");
+minispade.require("controllers/home/HomeAddquoteController.js");
+minispade.require("controllers/home/HomeAddreminderController.js");
 minispade.require("utils/HandlebarsHelpers.js");
 minispade.require("utils/Enumerables.js");
 minispade.require("utils/FactoryHelpers.js");
@@ -36,7 +36,7 @@ AR.ApplicationController = Ember.Controller.extend({
 
 });
 
-minispade.register('controllers/ClientsController.js', function() {
+minispade.register('controllers/data/ClientsController.js', function() {
 var inArray, sortByProperties;
 minispade.require("utils/Enumerables.js");
 minispade.require("utils/Alias.js");
@@ -114,19 +114,39 @@ AR.ClientsController = Ember.ArrayController.extend({
 
 });
 
-minispade.register('controllers/FlowsController.js', function() {
+minispade.register('controllers/data/FlowsController.js', function() {
 AR.FlowsController = Ember.ArrayController.extend();
 
 });
 
-minispade.register('controllers/HomeAddpersonController.js', function() {
+minispade.register('controllers/data/InsurancetypesController.js', function() {
+AR.InsurancetypesController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/data/PolicysController.js', function() {
+AR.PolicysController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/data/QuotesController.js', function() {
+AR.QuotesController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/data/RemindersController.js', function() {
+AR.RemindersController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/home/HomeAddpersonController.js', function() {
 AR.HomeAddpersonController = Ember.Controller.extend({
   phoneNumberTypes: ['Cell', 'Home', 'Office']
 });
 
 });
 
-minispade.register('controllers/HomeAddquoteController.js', function() {
+minispade.register('controllers/home/HomeAddquoteController.js', function() {
 var alias;
 
 alias = Ember.computed.alias;
@@ -139,7 +159,7 @@ AR.HomeAddquoteController = Ember.Controller.extend({
 
 });
 
-minispade.register('controllers/HomeAddreminderController.js', function() {
+minispade.register('controllers/home/HomeAddreminderController.js', function() {
 var alias;
 
 alias = Ember.computed.alias;
@@ -169,7 +189,7 @@ AR.HomeAddreminderController = Ember.Controller.extend({
 
 });
 
-minispade.register('controllers/HomeController.js', function() {
+minispade.register('controllers/home/HomeController.js', function() {
 var alias, inArray;
 minispade.require("utils/Enumerables.js");
 
@@ -286,26 +306,6 @@ AR.HomeController = Ember.Controller.extend({
     return this.set("activeDay", nextDay);
   }
 });
-
-});
-
-minispade.register('controllers/InsurancetypesController.js', function() {
-AR.InsurancetypesController = Ember.ArrayController.extend();
-
-});
-
-minispade.register('controllers/PolicysController.js', function() {
-AR.PolicysController = Ember.ArrayController.extend();
-
-});
-
-minispade.register('controllers/QuotesController.js', function() {
-AR.QuotesController = Ember.ArrayController.extend();
-
-});
-
-minispade.register('controllers/RemindersController.js', function() {
-AR.RemindersController = Ember.ArrayController.extend();
 
 });
 
