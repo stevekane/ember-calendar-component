@@ -555,6 +555,7 @@
   border-left: 1px solid #363636;
   border-right: 1px solid #363636;
   border-bottom: none;
+  font-size: 1.2em;
 }
 #clientscontainer #clientlistsubheader {
   position: relative;
