@@ -113,7 +113,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<section id=\"clientlist\">\n  <header id=\"clientlistheader\">\n    <div class=\"clientlistheaderfillerleft\"></div>\n\n    <nav id=\"showall\" class=\"clientlistfilter\">\n      ALL\n    </nav>\n    <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n      LEADS \n    </nav>\n    <nav id=\"showclients\" class=\"clientlistfilter\">\n      CLIENTS \n    </nav>\n\n    <div class=\"clientlistheaderfillerright\"></div>\n  </header>\n\n  <section id=\"clientlistsubheader\">\n  \n    ");
+  data.buffer.push("<section id=\"clientscontainer\">\n  <header id=\"clientlistheader\">\n    <div class=\"clientlistheaderfillerleft\"></div>\n\n    <nav id=\"showall\" class=\"clientlistfilter\">\n      ALL\n    </nav>\n    <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n      LEADS \n    </nav>\n    <nav id=\"showclients\" class=\"clientlistfilter\">\n      CLIENTS \n    </nav>\n\n    <div class=\"clientlistheaderfillerright\"></div>\n  </header>\n\n  <section id=\"clientlistsubheader\">\n  \n    ");
   hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
   hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{

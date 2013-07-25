@@ -501,16 +501,16 @@
   height: 200%;
 }
 
-#clientlist {
+#clientscontainer {
   width: 100%;
 }
-#clientlist #clientlistheader {
+#clientscontainer #clientlistheader {
   position: relative;
   display: block;
   height: 60px;
   width: 100%;
 }
-#clientlist #clientlistheader .clientlistheaderfillerleft {
+#clientscontainer #clientlistheader .clientlistheaderfillerleft {
   position: absolute;
   display: block;
   height: 100%;
@@ -518,7 +518,7 @@
   width: 7%;
   left: 0%;
 }
-#clientlist #clientlistheader .clientlistheaderfillerright {
+#clientscontainer #clientlistheader .clientlistheaderfillerright {
   position: absolute;
   display: block;
   height: 100%;
@@ -526,7 +526,7 @@
   width: 72%;
   right: 0%;
 }
-#clientlist #clientlistheader .clientlistfilter {
+#clientscontainer #clientlistheader .clientlistfilter {
   position: absolute;
   display: block;
   height: 100%;
@@ -542,34 +542,34 @@
   color: #0000bb;
   border-bottom: 1px solid #363636;
 }
-#clientlist #clientlistheader #showall {
+#clientscontainer #clientlistheader #showall {
   left: 7%;
 }
-#clientlist #clientlistheader #showleads {
+#clientscontainer #clientlistheader #showleads {
   left: 14%;
 }
-#clientlist #clientlistheader #showclients {
+#clientscontainer #clientlistheader #showclients {
   left: 21%;
 }
-#clientlist #clientlistheader .activeclientfilter {
+#clientscontainer #clientlistheader .activeclientfilter {
   border-left: 1px solid #363636;
   border-right: 1px solid #363636;
   border-bottom: none;
 }
-#clientlist #clientlistsubheader {
+#clientscontainer #clientlistsubheader {
   position: relative;
   display: block;
   height: 60px;
   width: 100%;
   padding-top: 10px;
 }
-#clientlist #clientlistsubheader .clientlistsearch {
+#clientscontainer #clientlistsubheader .clientlistsearch {
   position: absolute;
   left: 10%;
   width: 20%;
   height: 70%;
 }
-#clientlist #clientlistsubheader #clientsaddperson {
+#clientscontainer #clientlistsubheader #clientsaddperson {
   display: inline-block;
   border-radius: 5px;
   border: 1px solid #363636;
@@ -583,31 +583,31 @@
   height: 70%;
   padding-top: 10px;
 }
-#clientlist #clientlistletterfilters {
+#clientscontainer #clientlistletterfilters {
   display: block;
   height: 30px;
   width: 100%;
   padding-left: 10%;
 }
-#clientlist #clientlistletterfilters .letterfilter {
+#clientscontainer #clientlistletterfilters .letterfilter {
   display: inline-block;
   height: 100%;
   width: 3%;
   color: #0078bd;
 }
-#clientlist #clientlist {
+#clientscontainer #clientlist {
   display: block;
   list-style-type: none;
   width: 100%;
   padding-left: 10%;
   padding-right: 10%;
 }
-#clientlist #clientlist .clientlistfirstletter {
+#clientscontainer #clientlist .clientlistfirstletter {
   color: #d9d9d9;
   font-size: 1.4em;
   font-weight: 900;
 }
-#clientlist #clientlist .clientlistclient {
+#clientscontainer #clientlist .clientlistclient {
   position: relative;
   display: block;
   margin-top: 10px;
@@ -615,23 +615,23 @@
   height: 30px;
   padding-top: 5px;
 }
-#clientlist #clientlist .clientlistclient:hover {
+#clientscontainer #clientlist .clientlistclient:hover {
   background-color: #0078bd;
   color: #efefef;
 }
-#clientlist #clientlist .clientlistclient .clientlistclienttag {
+#clientscontainer #clientlist .clientlistclient .clientlistclienttag {
   position: absolute;
   left: 0%;
 }
-#clientlist #clientlist .clientlistclient .clientlistclientname {
+#clientscontainer #clientlist .clientlistclient .clientlistclientname {
   position: absolute;
   left: 5%;
 }
-#clientlist #clientlist .clientlistclient .clientlistclientphonenumber {
+#clientscontainer #clientlist .clientlistclient .clientlistclientphonenumber {
   position: absolute;
   left: 35%;
 }
-#clientlist #clientlist .clientlistclient .clientlistclientemail {
+#clientscontainer #clientlist .clientlistclient .clientlistclientemail {
   position: absolute;
   left: 65%;
 }
