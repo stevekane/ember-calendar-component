@@ -66,8 +66,8 @@ AR.HomeController = Ember.Controller.extend
 
     filtered
   ).property(
-    'flows'
-    'clients'
+    'flows.@each'
+    'clients.@each'
     'filterManager.activeClientFilters.@each',
     'filterManager.activeTypeFilters.@each',
     'filterManager.activeStatusFilters.@each'

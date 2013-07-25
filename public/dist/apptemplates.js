@@ -65,10 +65,22 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 Ember.TEMPLATES["clients/_header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [3,'>= 1.0.0-rc.4'];
 helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', hashContexts, hashTypes, escapeExpression=this.escapeExpression;
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<header id=\"clientlistheader\">\n  <div class=\"clientlistheaderfillerleft\"></div>\n\n  <nav id=\"showall\" class=\"clientlistfilter\">\n    ALL\n  </nav>\n  <nav id=\"showleads\" class=\"clientlistfilter activeclientfilter\">\n    LEADS \n  </nav>\n  <nav id=\"showclients\" class=\"clientlistfilter\">\n    CLIENTS \n  </nav>\n\n  <div class=\"clientlistheaderfillerright\"></div>\n</header>\n\n<section id=\"clientlistsubheader\">\n\n  ");
+  data.buffer.push("<header id=\"clientlistheader\">\n  <div class=\"clientlistheaderfillerleft\"></div>\n\n  <nav id=\"showall\" class=\"clientlistfilter activeclientfilter\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showAll", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n    ALL\n  </nav>\n  <nav id=\"showleads\" class=\"clientlistfilter\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showLeads", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n    LEADS \n  </nav>\n  <nav id=\"showclients\" class=\"clientlistfilter\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "showClients", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n    CLIENTS \n  </nav>\n\n  <div class=\"clientlistheaderfillerright\"></div>\n</header>\n\n<section id=\"clientlistsubheader\">\n\n  ");
   hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
   hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{

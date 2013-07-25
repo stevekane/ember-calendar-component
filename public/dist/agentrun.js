@@ -36,18 +36,51 @@ AR.ApplicationController = Ember.Controller.extend({
 });
 
 minispade.register('controllers/ClientsController.js', function() {
-var sortByProperty;
-minispade.require("utils/Computed.js");
+var inArray, sortByProperties;
+minispade.require("utils/Enumerables.js");
+minispade.require("utils/Alias.js");
 
-sortByProperty = AR.ComputedUtils.sortByProperty;
+sortByProperties = AR.AliasUtils.sortByProperties;
+
+inArray = AR.EnumberableUtils.inArray;
 
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
-  sortedByLastName: sortByProperty("content", "lastName", true),
+  clientFilters: [
+    Ember.Object.create({
+      filter: "client",
+      active: true
+    }), Ember.Object.create({
+      filter: "lead",
+      active: true
+    })
+  ],
+  _resetFilters: function() {
+    return this.get('clientFilters').setEach("active", true);
+  },
+  showAll: function() {
+    return this._resetFilters();
+  },
+  showLeads: function() {
+    this._resetFilters();
+    return this.get('clientFilters').findProperty("filter", "client").set("active", false);
+  },
+  showClients: function() {
+    this._resetFilters();
+    return this.get('clientFilters').findProperty("filter", "lead").set("active", false);
+  },
+  sortedFilteredClients: (function() {
+    var activeFilters, clients, filtered, sortedFiltered;
+    clients = this.get("content");
+    activeFilters = this.get('clientFilters').filterProperty('active').getEach("filter");
+    filtered = clients.filter(inArray(activeFilters, "type"));
+    sortedFiltered = sortByProperties(filtered, ['lastName'], true);
+    return sortedFiltered;
+  }).property('content.@each', 'clientFilters.@each.active'),
   groups: (function() {
     var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
     letters = this.get("letters");
-    clients = this.get("sortedByLastName");
+    clients = this.get("sortedFilteredClients");
     groups = [];
     for (_i = 0, _len = letters.length; _i < _len; _i++) {
       letter = letters[_i];
@@ -59,7 +92,7 @@ AR.ClientsController = Ember.ArrayController.extend({
       groups.pushObject(letterGroup);
     }
     return groups;
-  }).property('sortedByLastName.@each')
+  }).property('sortedFilteredClients.@each')
 });
 
 });
@@ -205,7 +238,7 @@ AR.HomeController = Ember.Controller.extend({
     statusFilters = this.get("filterManager.activeStatusFilters");
     filtered = flows.filter(inArray(clientFilters, "client.status")).filter(inArray(typeFilters, "insuranceType.name")).filter(inArray(statusFilters, "status"));
     return filtered;
-  }).property('flows', 'clients', 'filterManager.activeClientFilters.@each', 'filterManager.activeTypeFilters.@each', 'filterManager.activeStatusFilters.@each'),
+  }).property('flows.@each', 'clients.@each', 'filterManager.activeClientFilters.@each', 'filterManager.activeTypeFilters.@each', 'filterManager.activeStatusFilters.@each'),
   sortedFilteredReminders: (function() {
     var activeDay, filteredRems, reminders, sortedRems;
     reminders = this.get("controllers.reminders");
@@ -942,6 +975,19 @@ AR.Router.map(function() {
 
 });
 
+minispade.register('utils/Alias.js', function() {
+AR.AliasUtils = Ember.Object.create({
+  sortByProperties: function(array, sortProperties, sortAscending) {
+    return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+      content: array,
+      sortProperties: sortProperties,
+      sortAscending: sortAscending
+    });
+  }
+});
+
+});
+
 minispade.register('utils/Computed.js', function() {
 AR.ComputedUtils = Ember.Object.create({
   sortByProperty: function(arrayName, sortProperties, sortAscending) {
@@ -955,6 +1001,15 @@ AR.ComputedUtils = Ember.Object.create({
         sortProperties: sortProperties,
         sortAscending: sortAscending
       });
+    });
+  },
+  filterByProperty: function(arrayName, property) {
+    var depKey;
+    depKey = arrayName + ".@each." + property;
+    return Ember.computed(depKey, function() {
+      var content;
+      content = this.get(arrayName);
+      return content.filterProperty(property);
     });
   }
 });

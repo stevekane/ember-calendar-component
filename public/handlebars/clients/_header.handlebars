@@ -1,13 +1,13 @@
 <header id="clientlistheader">
   <div class="clientlistheaderfillerleft"></div>
 
-  <nav id="showall" class="clientlistfilter">
+  <nav id="showall" class="clientlistfilter activeclientfilter" {{action "showAll"}}>
     ALL
   </nav>
-  <nav id="showleads" class="clientlistfilter activeclientfilter">
+  <nav id="showleads" class="clientlistfilter" {{action "showLeads"}}>
     LEADS 
   </nav>
-  <nav id="showclients" class="clientlistfilter">
+  <nav id="showclients" class="clientlistfilter" {{action "showClients"}}>
     CLIENTS 
   </nav>
 

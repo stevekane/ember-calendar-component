@@ -10,3 +10,11 @@ AR.ComputedUtils = Ember.Object.create
         content: content
         sortProperties: sortProperties
         sortAscending: sortAscending
+
+  #filters by property
+  filterByProperty: (arrayName, property) ->
+    depKey = arrayName + ".@each." + property
+
+    Ember.computed depKey, ->
+      content = @get arrayName
+      content.filterProperty property
