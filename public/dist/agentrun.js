@@ -43,15 +43,7 @@ sortByProperty = AR.ComputedUtils.sortByProperty;
 
 AR.ClientsController = Ember.ArrayController.extend({
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
-  sortedByLastName: (function() {
-    var content;
-    content = this.get("content");
-    return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-      content: content,
-      sortProperties: ['lastName'],
-      sortAscending: true
-    });
-  }).property('content.@each'),
+  sortedByLastName: sortByProperty("content", "lastName", true),
   groups: (function() {
     var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
     letters = this.get("letters");
@@ -952,10 +944,12 @@ AR.Router.map(function() {
 
 minispade.register('utils/Computed.js', function() {
 AR.ComputedUtils = Ember.Object.create({
-  sortByProperty: function(array, sortProperties, sortAscending) {
+  sortByProperty: function(arrayName, sortProperties, sortAscending) {
     var depKey;
-    depKey = array + ".@each";
+    depKey = arrayName + ".@each";
     return Ember.computed(depKey, function() {
+      var content;
+      content = this.get(arrayName);
       return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
         content: content,
         sortProperties: sortProperties,
