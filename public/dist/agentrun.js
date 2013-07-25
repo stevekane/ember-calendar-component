@@ -40,28 +40,22 @@ minispade.register('controllers/ClientsController.js', function() {
 minispade.require("utils/Enumerables.js");
 
 AR.ClientsController = Ember.ArrayController.extend({
-  sortedByLastName: (function() {
-    var clients, sorted;
+  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  groups: (function() {
+    var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
+    letters = this.get("letters");
     clients = this.get("content");
-    sorted = Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
-      content: clients,
-      sortProperties: ['lastName'],
-      sortAscending: true
-    });
-    sorted.forEach(function(client, index, clients) {
-      var clientLetter, prev, prevLetter;
-      if (index === 0) {
-        client.set("isFirst", true);
-      } else {
-        prev = clients.objectAt(index - 1);
-        prevLetter = prev.get('lastNameFirstLetter');
-        clientLetter = client.get('lastNameFirstLetter');
-        if (clientLetter !== prevLetter) {
-          return client.set("isFirst", true);
-        }
-      }
-    });
-    return sorted;
+    groups = [];
+    for (_i = 0, _len = letters.length; _i < _len; _i++) {
+      letter = letters[_i];
+      groupClients = clients.filterProperty("lastNameFirstLetter", letter);
+      letterGroup = Ember.Object.create({
+        letter: letter,
+        clients: groupClients
+      });
+      groups.pushObject(letterGroup);
+    }
+    return groups;
   }).property('content.@each')
 });
 
@@ -1016,14 +1010,21 @@ var alias;
 
 alias = Ember.computed.alias;
 
+/*
+Clients view builds a hash table on creation and anytime the
+view is re-rendered.
+The table maps letters ("A", "B", "C", etc) to the position
+of that group of contacts on the screen.  This mapping is used
+to support scrolling to that group of contacts when a user
+clicks a Letter in the header for the contacts list
+*/
+
+
 AR.ClientsView = Ember.View.extend({
-  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  letters: alias("controller.letters"),
   firstLetterClassName: 'clientlistfirstletter',
-  init: function() {
-    this._super();
-    return this._buildLetterPosHash();
-  },
   didInsertElement: function() {
+    this._buildLetterPosHash();
     return Ember.run.next(this, this._updateLetterPosHash);
   },
   rerender: function() {

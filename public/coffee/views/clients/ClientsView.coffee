@@ -1,24 +1,21 @@
 alias = Ember.computed.alias
 
-#Clients view builds a hash table on creation and anytime the
-#view is re-rendered.
-#The table maps letters ("A", "B", "C", etc) to the position
-#of that group of contacts on the screen.  This mapping is used
-#to support scrolling to that group of contacts when a user
-#clicks a Letter in the header for the contacts list
+###
+Clients view builds a hash table on creation and anytime the
+view is re-rendered.
+The table maps letters ("A", "B", "C", etc) to the position
+of that group of contacts on the screen.  This mapping is used
+to support scrolling to that group of contacts when a user
+clicks a Letter in the header for the contacts list
+###
 AR.ClientsView = Ember.View.extend
 
-  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I",
-            "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-            "S", "T", "U", "V", "W", "U", "X", "Y", "Z"]
+  letters: alias "controller.letters"
 
   firstLetterClassName: 'clientlistfirstletter'
 
-  init: ->
-    @_super()
-    @_buildLetterPosHash()
-
   didInsertElement: ->
+    @_buildLetterPosHash()
     Ember.run.next @, @_updateLetterPosHash
 
   rerender: ->
