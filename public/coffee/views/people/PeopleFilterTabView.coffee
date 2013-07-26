@@ -3,10 +3,10 @@ alias = Ember.computed.alias
 AR.PeopleFilterTabView = Ember.View.extend
 
   tagName: "nav"
-  classNameBindings: ['activeclientfilter', 'tabClass', 'tabName']
+  classNameBindings: ['activepersonfilter', 'tabClass', 'tabName']
 
-  activeclientfilter: alias "tab.active"
-  tabClass: 'clientlistfilter'
+  activepersonfilter: alias "tab.active"
+  tabClass: 'peoplelistfilter'
   tabName: alias "tab.name"
 
   click: (event) ->

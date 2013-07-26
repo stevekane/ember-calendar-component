@@ -501,16 +501,16 @@
   height: 200%;
 }
 
-#clientscontainer {
+#peoplecontainer {
   width: 100%;
 }
-#clientscontainer #clientlistheader {
+#peoplecontainer #peoplelistheader {
   position: relative;
   display: block;
   height: 60px;
   width: 100%;
 }
-#clientscontainer #clientlistheader .clientlistheaderfillerleft {
+#peoplecontainer #peoplelistheader .peoplelistheaderfillerleft {
   position: absolute;
   display: block;
   height: 100%;
@@ -518,7 +518,7 @@
   width: 7%;
   left: 0%;
 }
-#clientscontainer #clientlistheader .clientlistheaderfillerright {
+#peoplecontainer #peoplelistheader .peoplelistheaderfillerright {
   position: absolute;
   display: block;
   height: 100%;
@@ -526,7 +526,7 @@
   width: 72%;
   right: 0%;
 }
-#clientscontainer #clientlistheader .clientlistfilter {
+#peoplecontainer #peoplelistheader .peoplelistfilter {
   position: absolute;
   display: block;
   height: 100%;
@@ -542,35 +542,35 @@
   color: #0000bb;
   border-bottom: 1px solid #363636;
 }
-#clientscontainer #clientlistheader .ALL {
+#peoplecontainer #peoplelistheader .ALL {
   left: 7%;
 }
-#clientscontainer #clientlistheader .LEADS {
+#peoplecontainer #peoplelistheader .LEADS {
   left: 14%;
 }
-#clientscontainer #clientlistheader .CLIENTS {
+#peoplecontainer #peoplelistheader .CLIENTS {
   left: 21%;
 }
-#clientscontainer #clientlistheader .activeclientfilter {
+#peoplecontainer #peoplelistheader .activepersonfilter {
   border-left: 1px solid #363636;
   border-right: 1px solid #363636;
   border-bottom: none;
   font-size: 1.2em;
 }
-#clientscontainer #clientlistsubheader {
+#peoplecontainer #peoplelistsubheader {
   position: relative;
   display: block;
   height: 60px;
   width: 100%;
   padding-top: 10px;
 }
-#clientscontainer #clientlistsubheader .clientlistsearch {
+#peoplecontainer #peoplelistsubheader .peoplelistsearch {
   position: absolute;
   left: 10%;
   width: 20%;
   height: 70%;
 }
-#clientscontainer #clientlistsubheader #clientsaddperson {
+#peoplecontainer #peoplelistsubheader #peopleaddperson {
   display: inline-block;
   border-radius: 5px;
   border: 1px solid #363636;
@@ -584,13 +584,13 @@
   height: 70%;
   padding-top: 10px;
 }
-#clientscontainer #clientlistletterfilters {
+#peoplecontainer #peoplelistletterfilters {
   display: block;
   height: 30px;
   width: 100%;
   padding-left: 10%;
 }
-#clientscontainer #clientlistletterfilters .letterfilter {
+#peoplecontainer #peoplelistletterfilters .letterfilter {
   display: inline-block;
   padding-top: 5px;
   text-align: center;
@@ -598,23 +598,23 @@
   width: 3%;
   color: #0078bd;
 }
-#clientscontainer #clientlistletterfilters .letterfilter:hover {
+#peoplecontainer #peoplelistletterfilters .letterfilter:hover {
   background-color: #0078bd;
   color: #efefef;
 }
-#clientscontainer #clientlist {
+#peoplecontainer #peoplelist {
   display: block;
   list-style-type: none;
   width: 100%;
   padding-left: 10%;
   padding-right: 10%;
 }
-#clientscontainer #clientlist .clientlistfirstletter {
+#peoplecontainer #peoplelist .peoplelistfirstletter {
   color: #d9d9d9;
   font-size: 1.4em;
   font-weight: 900;
 }
-#clientscontainer #clientlist .clientlistclient {
+#peoplecontainer #peoplelist .peoplelistperson {
   position: relative;
   display: block;
   margin-top: 10px;
@@ -622,23 +622,23 @@
   height: 30px;
   padding-top: 5px;
 }
-#clientscontainer #clientlist .clientlistclient:hover {
+#peoplecontainer #peoplelist .peoplelistperson:hover {
   background-color: #0078bd;
   color: #efefef;
 }
-#clientscontainer #clientlist .clientlistclient .clientlistclienttag {
+#peoplecontainer #peoplelist .peoplelistperson .peoplelistpersontag {
   position: absolute;
   left: 0%;
 }
-#clientscontainer #clientlist .clientlistclient .clientlistclientname {
+#peoplecontainer #peoplelist .peoplelistperson .peoplelistpersonname {
   position: absolute;
   left: 5%;
 }
-#clientscontainer #clientlist .clientlistclient .clientlistclientphonenumber {
+#peoplecontainer #peoplelist .peoplelistperson .peoplelistpersonphonenumber {
   position: absolute;
   left: 35%;
 }
-#clientscontainer #clientlist .clientlistclient .clientlistclientemail {
+#peoplecontainer #peoplelist .peoplelistperson .peoplelistpersonemail {
   position: absolute;
   left: 65%;
 }
@@ -676,7 +676,7 @@
   height: 49.5px;
   border-radius: 10px 0px 0px 10px;
 }
-#pageheader #clientsnav {
+#pageheader #peoplenav {
   display: inline-block;
   width: 140px;
   color: #efefef;

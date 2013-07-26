@@ -46,14 +46,14 @@ AR.HomeController = Ember.Controller.extend
 
   filterManager: AR.FilterManager.create()
 
-  insuranceTypes: alias "controllers.insurancetypes.content.@each"
-  flows: alias "controllers.flows.content.@each"
-  persons: alias "controllers.persons.content.@each"
-  reminders: alias "controllers.reminders.content.@each"
+  insuranceTypes: alias "controllers.insurancetypes"
+  flows: alias "controllers.flows"
+  persons: alias "controllers.persons"
+  reminders: alias "controllers.reminders"
 
   #return a list of filtered people for display
   filteredFlows: (->
-    flows = @get 'controllers.flows.content'
+    flows = @get 'flows'
     personFilters = @get "filterManager.activePersonFilters"
     typeFilters = @get "filterManager.activeTypeFilters"
     statusFilters = @get "filterManager.activeStatusFilters"
@@ -74,7 +74,7 @@ AR.HomeController = Ember.Controller.extend
   )
 
   sortedFilteredReminders: (->
-    reminders = @get "controllers.reminders"
+    reminders = @get "reminders"
     activeDay = @get "activeDay"
 
     #filter by the current day
@@ -91,7 +91,7 @@ AR.HomeController = Ember.Controller.extend
 
     sortedRems
   ).property(
-    'reminders',
+    'reminders.@each',
     'activeDay'
   )
 

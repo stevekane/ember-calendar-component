@@ -192,13 +192,13 @@ AR.FilterManager = Ember.Object.extend({
 AR.HomeController = Ember.Controller.extend({
   needs: ['flows', 'persons', 'reminders', 'insurancetypes'],
   filterManager: AR.FilterManager.create(),
-  insuranceTypes: alias("controllers.insurancetypes.content.@each"),
-  flows: alias("controllers.flows.content.@each"),
-  persons: alias("controllers.persons.content.@each"),
-  reminders: alias("controllers.reminders.content.@each"),
+  insuranceTypes: alias("controllers.insurancetypes"),
+  flows: alias("controllers.flows"),
+  persons: alias("controllers.persons"),
+  reminders: alias("controllers.reminders"),
   filteredFlows: (function() {
     var filtered, flows, personFilters, statusFilters, typeFilters;
-    flows = this.get('controllers.flows.content');
+    flows = this.get('flows');
     personFilters = this.get("filterManager.activePersonFilters");
     typeFilters = this.get("filterManager.activeTypeFilters");
     statusFilters = this.get("filterManager.activeStatusFilters");
@@ -207,7 +207,7 @@ AR.HomeController = Ember.Controller.extend({
   }).property('flows.@each', 'persons.@each', 'filterManager.activePersonFilters.@each', 'filterManager.activeTypeFilters.@each', 'filterManager.activeStatusFilters.@each'),
   sortedFilteredReminders: (function() {
     var activeDay, filteredRems, reminders, sortedRems;
-    reminders = this.get("controllers.reminders");
+    reminders = this.get("reminders");
     activeDay = this.get("activeDay");
     filteredRems = reminders.filter(function(rem) {
       var targetDateTime;
@@ -220,7 +220,7 @@ AR.HomeController = Ember.Controller.extend({
       sortAscending: true
     });
     return sortedRems;
-  }).property('reminders', 'activeDay'),
+  }).property('reminders.@each', 'activeDay'),
   activeDay: moment(),
   previousDay: function() {
     var activeDay, previousDay;
@@ -251,7 +251,7 @@ alias = Ember.computed.alias;
 
 AR.PeopleController = Ember.ArrayController.extend({
   needs: ['persons'],
-  people: alias("controllers.persons.content.@each"),
+  people: alias("controllers.persons"),
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
   allTab: Ember.Object.create({
     name: 'ALL',
@@ -303,7 +303,7 @@ AR.PeopleController = Ember.ArrayController.extend({
   groups: (function() {
     var groups, letter, letterGroup, letters, people, peopleInGroup, _i, _len;
     letters = this.get("letters");
-    people = this.get("sortedFilteredClients");
+    people = this.get("sortedFilteredPeople");
     groups = [];
     for (_i = 0, _len = letters.length; _i < _len; _i++) {
       letter = letters[_i];
@@ -331,7 +331,7 @@ randMethod = AR.FactoryHelpers.randomMethod;
 AR.QuoteFactory = Ember.Object.create({
   states: ['illinois', 'california', 'new york'],
   types: [1, 2, 3, 4],
-  spawn: function(quantity, clientIds) {
+  spawn: function(quantity, personIds) {
     var effectiveDay, expirationDay, num, quotes, updateDay, _i, _ref;
     quotes = [];
     for (num = _i = 0, _ref = quantity - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; num = 0 <= _ref ? ++_i : --_i) {
@@ -341,7 +341,7 @@ AR.QuoteFactory = Ember.Object.create({
       quotes.push({
         id: num,
         state: randFromList(this.states),
-        client_id: randFromList(clientIds),
+        person_id: randFromList(personIds),
         insurancetype_id: randFromList(this.types),
         notes: "best insurance ever",
         premium: "$100,000 / s",
@@ -358,7 +358,7 @@ AR.QuoteFactory = Ember.Object.create({
 AR.PolicyFactory = Ember.Object.create({
   states: ['illinois', 'california', 'new york'],
   types: [1, 2, 3, 4],
-  spawn: function(quantity, clientIds) {
+  spawn: function(quantity, personIds) {
     var effectiveDay, expirationDay, num, policies, updateDay, _i, _ref;
     policies = [];
     for (num = _i = 0, _ref = quantity - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; num = 0 <= _ref ? ++_i : --_i) {
@@ -368,7 +368,7 @@ AR.PolicyFactory = Ember.Object.create({
       policies.push({
         id: num,
         state: randFromList(this.states),
-        client_id: randFromList(clientIds),
+        person_id: randFromList(personIds),
         insurancetype_id: randFromList(this.types),
         effectiveDate: moment().add('days', effectiveDay).toDate(),
         expirationDate: moment().add('days', expirationDay).toDate(),
@@ -382,7 +382,7 @@ AR.PolicyFactory = Ember.Object.create({
 
 AR.ReminderFactory = Ember.Object.create({
   notes: ["Call to remind them of serious chance of death", "Tell them how much money they can save", "Bring donuts to office", "Employ so-called 'tactics'", "Discuss weird insurance dream over cocktails"],
-  spawn: function(quantity, clientIds) {
+  spawn: function(quantity, personIds) {
     var add, date, num, reminders, sub, targetDayOffset, targetHourOffset, _i, _ref;
     reminders = [];
     for (num = _i = 0, _ref = quantity - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; num = 0 <= _ref ? ++_i : --_i) {
@@ -397,7 +397,7 @@ AR.ReminderFactory = Ember.Object.create({
         targetDateTime: date.randMethod(add, sub, 'days', targetDayOffset).randMethod(add, sub, 'hours', targetHourOffset).toDate(),
         notes: randFromList(this.notes),
         checked: false,
-        client_id: randFromList(clientIds)
+        person_id: randFromList(personIds)
       });
     }
     return reminders;
@@ -1177,9 +1177,9 @@ alias = Ember.computed.alias;
 
 AR.PeopleFilterTabView = Ember.View.extend({
   tagName: "nav",
-  classNameBindings: ['activeclientfilter', 'tabClass', 'tabName'],
-  activeclientfilter: alias("tab.active"),
-  tabClass: 'clientlistfilter',
+  classNameBindings: ['activepersonfilter', 'tabClass', 'tabName'],
+  activepersonfilter: alias("tab.active"),
+  tabClass: 'peoplelistfilter',
   tabName: alias("tab.name"),
   click: function(event) {
     var controller, tab;
@@ -1207,7 +1207,6 @@ clicks a Letter in the header for the contacts list
 
 
 AR.PeopleView = Ember.View.extend({
-  letters: alias("controller.letters"),
   firstLetterClassName: 'peoplelistfirstletter',
   didInsertElement: function() {
     this._buildLetterPosHash();
@@ -1217,14 +1216,14 @@ AR.PeopleView = Ember.View.extend({
     this._super();
     return Ember.run.next(this, this._updateLetterPosHash);
   },
-  changeActiveLetter: function(letter) {
+  scrollToLetter: function(letter) {
     var letterPosHash;
     letterPosHash = this.get("letterPosHash");
     return window.scrollTo(0, letterPosHash[letter]);
   },
   _buildLetterPosHash: function() {
     var letter, letterHash, letters, _i, _len;
-    letters = this.get("letters");
+    letters = this.get("controller.letters");
     letterHash = Ember.Object.create();
     for (_i = 0, _len = letters.length; _i < _len; _i++) {
       letter = letters[_i];
@@ -1233,17 +1232,19 @@ AR.PeopleView = Ember.View.extend({
     return this.set("letterPosHash", letterHash);
   },
   _updateLetterPosHash: function() {
-    var $letterHeaders, firstLetterClassName, letterPosHash;
+    var $letterHeader, $letterHeaders, firstLetterClassName, letter, letterHeader, letterPosHash, yPos, _i, _len, _results;
     firstLetterClassName = "." + this.get("firstLetterClassName");
     letterPosHash = this.get('letterPosHash');
     $letterHeaders = $(firstLetterClassName);
-    return $letterHeaders.each(function(index, value) {
-      var $value, letter, yPos;
-      $value = $(value);
-      letter = $value.text();
-      yPos = $value.position().top;
-      return letterPosHash.set(letter, yPos);
-    });
+    _results = [];
+    for (_i = 0, _len = $letterHeaders.length; _i < _len; _i++) {
+      letterHeader = $letterHeaders[_i];
+      $letterHeader = $(letterHeader);
+      letter = $letterHeader.text();
+      yPos = $letterHeader.position().top;
+      _results.push(letterPosHash.set(letter, yPos));
+    }
+    return _results;
   }
 });
 

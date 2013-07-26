@@ -8,15 +8,15 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "goHome", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" >Home</div>\n  <div id=\"clientsnav\" ");
+  data.buffer.push(" >Home</div>\n  <div id=\"peoplenav\" ");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "goClients", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" >Clients</div>\n\n  ");
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "goPeople", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" >People</div>\n\n  ");
   hashContexts = {'candidatesBinding': depth0};
   hashTypes = {'candidatesBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
-    'candidatesBinding': ("controller.controllers.clients.content")
+    'candidatesBinding': ("controllers.persons")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n\n  <div id=\"logout\" ");
   hashTypes = {};
@@ -37,175 +37,6 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   options = {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.outlet),stack1 ? stack1.call(depth0, "main", options) : helperMissing.call(depth0, "outlet", "main", options))));
   data.buffer.push("\n</section>\n\n<footer>\n</footer>\n");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["clients"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [3,'>= 1.0.0-rc.4'];
-helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
-
-
-  data.buffer.push("<section id=\"clientscontainer\">\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.partial),stack1 ? stack1.call(depth0, "clients/header", options) : helperMissing.call(depth0, "partial", "clients/header", options))));
-  data.buffer.push("\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
-  data.buffer.push(escapeExpression(((stack1 = helpers.partial),stack1 ? stack1.call(depth0, "clients/list", options) : helperMissing.call(depth0, "partial", "clients/list", options))));
-  data.buffer.push("\n</section>\n");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["clients/_header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [3,'>= 1.0.0-rc.4'];
-helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashContexts, hashTypes, self=this, escapeExpression=this.escapeExpression;
-
-function program1(depth0,data) {
-  
-  
-  data.buffer.push("\n    ALL\n  ");
-  }
-
-function program3(depth0,data) {
-  
-  
-  data.buffer.push("\n    LEADS\n  ");
-  }
-
-function program5(depth0,data) {
-  
-  
-  data.buffer.push("\n    CLIENTS\n  ");
-  }
-
-  data.buffer.push("<header id=\"clientlistheader\">\n  <div class=\"clientlistheaderfillerleft\"></div>\n\n  ");
-  data.buffer.push("\n  ");
-  hashContexts = {'tabBinding': depth0};
-  hashTypes = {'tabBinding': "STRING"};
-  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
-    'tabBinding': ("controller.allTab")
-  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n  ");
-  hashContexts = {'tabBinding': depth0};
-  hashTypes = {'tabBinding': "STRING"};
-  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
-    'tabBinding': ("controller.leadsTab")
-  },inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n  ");
-  hashContexts = {'tabBinding': depth0};
-  hashTypes = {'tabBinding': "STRING"};
-  stack1 = helpers.view.call(depth0, "AR.ClientFilterTabView", {hash:{
-    'tabBinding': ("controller.clientsTab")
-  },inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n  <div class=\"clientlistheaderfillerright\"></div>\n</header>\n\n<section id=\"clientlistsubheader\">\n\n  ");
-  hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
-  hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
-  data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
-    'candidatesBinding': ("controller.content"),
-    'classNames': ("clientlistsearch")
-  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n  <div id=\"clientsaddperson\" ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "addPerson", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(" >+ New Person</div>\n\n</section>\n");
-  return buffer;
-  
-});
-
-Ember.TEMPLATES["clients/_list"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
-this.compilerInfo = [3,'>= 1.0.0-rc.4'];
-helpers = helpers || Ember.Handlebars.helpers; data = data || {};
-  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
-
-function program1(depth0,data) {
-  
-  var buffer = '', hashContexts, hashTypes;
-  data.buffer.push("\n    <p class=\"letterfilter\" ");
-  hashContexts = {'target': depth0};
-  hashTypes = {'target': "STRING"};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "changeActiveLetter", "letter", {hash:{
-    'target': ("view")
-  },contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">\n      ");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "letter", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n    </p>\n  ");
-  return buffer;
-  }
-
-function program3(depth0,data) {
-  
-  var buffer = '', stack1, hashContexts, hashTypes;
-  data.buffer.push("\n    <li ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
-  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
-    'class': ("view.firstLetterClassName")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "group.letter", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</li>\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers.each.call(depth0, "client", "in", "group.clients", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n  ");
-  return buffer;
-  }
-function program4(depth0,data) {
-  
-  var buffer = '', hashContexts, hashTypes;
-  data.buffer.push("\n      <li class=\"clientlistclient\">\n        <div class=\"clientlistclienttag\">\n          <span ");
-  hashContexts = {'class': depth0};
-  hashTypes = {'class': "STRING"};
-  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
-    'class': ("client.classTag")
-  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(">");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "client.type", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</span>\n        </div>\n        <div class=\"clientlistclientname\">");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "client.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</div>\n        <div class=\"clientlistclientphonenumber\">867-5309</div>\n        <div class=\"clientlistclientemail\">");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "client.firstName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("@");
-  hashTypes = {};
-  hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "client.lastName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push(".com</div>\n      </li>\n    ");
-  return buffer;
-  }
-
-  data.buffer.push("<section id=\"clientlistletterfilters\">\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers.each.call(depth0, "letter", "in", "view.letters", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n</section>\n\n<ul id=\"clientlist\">\n  ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers.each.call(depth0, "group", "in", "controller.groups", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n</ul>\n");
   return buffer;
   
 });
@@ -295,8 +126,8 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashTypes = {'templateName': "STRING",'optionsBinding': "STRING",'summaryBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.DropdownView", {hash:{
     'templateName': ("home/statusdropdown"),
-    'optionsBinding': ("controller.filterManager.clientFilters"),
-    'summaryBinding': ("controller.filterManager.clientFilterSummary")
+    'optionsBinding': ("controller.filterManager.personFilters"),
+    'summaryBinding': ("controller.filterManager.personFilterSummary")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </th>\n\n      <th class=\"activitylistheader\">\n        ");
   hashContexts = {'templateName': depth0,'optionsBinding': depth0,'summaryBinding': depth0};
@@ -333,10 +164,10 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
 function program1(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts, options;
-  data.buffer.push("\n    <li class=\"reminder\">\n\n      <div class=\"reminderdetails\">\n        <div class=\"remindernamebox\">\n          <span class=\"remindertag\">TAG</span>\n          <span class=\"reminderclientname\">");
+  data.buffer.push("\n    <li class=\"reminder\">\n\n      <div class=\"reminderdetails\">\n        <div class=\"remindernamebox\">\n          <span class=\"remindertag\">TAG</span>\n          <span class=\"reminderpersonname\">");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "reminder.client.firstName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "reminder.person.firstName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("</span>\n        </div>\n        ");
   hashContexts = {'type': depth0,'classNames': depth0};
   hashTypes = {'type': "STRING",'classNames': "STRING"};
@@ -396,7 +227,7 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   var buffer = '', hashContexts, hashTypes, escapeExpression=this.escapeExpression;
 
 
-  data.buffer.push("<tr class=\"activity\">\n  <td class=\"activityclient\">\n    <span ");
+  data.buffer.push("<tr class=\"activity\">\n  <td class=\"activityperson\">\n    <span ");
   hashContexts = {'class': depth0};
   hashTypes = {'class': "STRING"};
   data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
@@ -406,10 +237,10 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "view.personType", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("</span>\n    <span class=\"activityclientname\">");
+  data.buffer.push("</span>\n    <span class=\"activitypersonname\">");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "client.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "person.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("</span>\n  </td>\n\n  <td class=\"activityinsurancetype\">\n    <span>");
   hashTypes = {};
   hashContexts = {};
@@ -492,7 +323,7 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashTypes = {'classNames': "STRING",'candidatesBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
     'classNames': ("forminputblock"),
-    'candidatesBinding': ("controllers.clients.content")
+    'candidatesBinding': ("controllers.persons.content")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Insurance Type</label>\n        ");
   hashContexts = {'classNames': depth0,'contentBinding': depth0,'optionLabelPath': depth0};
@@ -521,8 +352,8 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashContexts = {'classNames': depth0,'candidatesBinding': depth0};
   hashTypes = {'classNames': "STRING",'candidatesBinding': "STRING"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
-    'classNames': ("forminputblock addreminderclientsearch"),
-    'candidatesBinding': ("controllers.clients.content")
+    'classNames': ("forminputblock addreminderpersonsearch"),
+    'candidatesBinding': ("controllers.persons.content")
   },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n      </div>\n\n      <div class=\"formrow\">\n        <label class=\"formlabel\">Insurance Type</label>\n        ");
   hashContexts = {'classNames': depth0,'contentBinding': depth0,'optionLabelPath': depth0};
@@ -642,6 +473,175 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "yield", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n  </div>\n</div>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["people"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("<section id=\"peoplecontainer\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial),stack1 ? stack1.call(depth0, "people/header", options) : helperMissing.call(depth0, "partial", "people/header", options))));
+  data.buffer.push("\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  options = {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers.partial),stack1 ? stack1.call(depth0, "people/list", options) : helperMissing.call(depth0, "partial", "people/list", options))));
+  data.buffer.push("\n</section>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["people/_header"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', stack1, hashContexts, hashTypes, self=this, escapeExpression=this.escapeExpression;
+
+function program1(depth0,data) {
+  
+  
+  data.buffer.push("\n    ALL\n  ");
+  }
+
+function program3(depth0,data) {
+  
+  
+  data.buffer.push("\n    LEADS\n  ");
+  }
+
+function program5(depth0,data) {
+  
+  
+  data.buffer.push("\n    CLIENTS\n  ");
+  }
+
+  data.buffer.push("<header id=\"peoplelistheader\">\n  <div class=\"peoplelistheaderfillerleft\"></div>\n\n  ");
+  data.buffer.push("\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.PeopleFilterTabView", {hash:{
+    'tabBinding': ("controller.allTab")
+  },inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.PeopleFilterTabView", {hash:{
+    'tabBinding': ("controller.leadsTab")
+  },inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  ");
+  hashContexts = {'tabBinding': depth0};
+  hashTypes = {'tabBinding': "STRING"};
+  stack1 = helpers.view.call(depth0, "AR.PeopleFilterTabView", {hash:{
+    'tabBinding': ("controller.clientsTab")
+  },inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n  <div class=\"peoplelistheaderfillerright\"></div>\n</header>\n\n<section id=\"peoplelistsubheader\">\n\n  ");
+  hashContexts = {'candidatesBinding': depth0,'classNames': depth0};
+  hashTypes = {'candidatesBinding': "STRING",'classNames': "STRING"};
+  data.buffer.push(escapeExpression(helpers.view.call(depth0, "AR.SearchView", {hash:{
+    'candidatesBinding': ("controller.people"),
+    'classNames': ("peoplelistsearch")
+  },contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n  <div id=\"peopleaddperson\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "addPerson", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(" >+ New Person</div>\n\n</section>\n");
+  return buffer;
+  
+});
+
+Ember.TEMPLATES["people/_list"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', stack1, hashTypes, hashContexts, escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = '', hashContexts, hashTypes;
+  data.buffer.push("\n    <p class=\"letterfilter\" ");
+  hashContexts = {'target': depth0};
+  hashTypes = {'target': "STRING"};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "scrollToLetter", "letter", {hash:{
+    'target': ("view")
+  },contexts:[depth0,depth0],types:["STRING","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">\n      ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "letter", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n    </p>\n  ");
+  return buffer;
+  }
+
+function program3(depth0,data) {
+  
+  var buffer = '', stack1, hashContexts, hashTypes;
+  data.buffer.push("\n    <li ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
+    'class': ("view.firstLetterClassName")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "group.letter", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</li>\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "person", "in", "group.people", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n  ");
+  return buffer;
+  }
+function program4(depth0,data) {
+  
+  var buffer = '', hashContexts, hashTypes;
+  data.buffer.push("\n      <li class=\"peoplelistperson\">\n        <div class=\"peoplelistpersontag\">\n          <span ");
+  hashContexts = {'class': depth0};
+  hashTypes = {'class': "STRING"};
+  data.buffer.push(escapeExpression(helpers.bindAttr.call(depth0, {hash:{
+    'class': ("person.classTag")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "person.type", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</span>\n        </div>\n        <div class=\"peoplelistpersonname\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "person.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("</div>\n        <div class=\"peoplelistpersonphonenumber\">867-5309</div>\n        <div class=\"peoplelistpersonemail\">");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "person.firstName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("@");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "person.lastName", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(".com</div>\n      </li>\n    ");
+  return buffer;
+  }
+
+  data.buffer.push("<section id=\"peoplelistletterfilters\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "letter", "in", "letters", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</section>\n\n<ul id=\"peoplelist\">\n  ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers.each.call(depth0, "group", "in", "groups", {hash:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n</ul>\n");
   return buffer;
   
 });

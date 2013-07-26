@@ -1,6 +1,6 @@
-$client-list-header-height: 60px
-$client-list-filter-padding: 20px
-$client-list-header-border: 1px solid $darkgrey
+$people-list-header-height: 60px
+$people-list-filter-padding: 20px
+$people-list-header-border: 1px solid $darkgrey
 
 $header-total-width: 100%
 $header-left-filler-width: 7%
@@ -11,51 +11,51 @@ $showall-position: $header-left-filler-width
 $showleads-position: $showall-position + $header-filtertab-width
 $showclients-position: $showleads-position + $header-filtertab-width
 
-$clients-search-position: 10%
-$clients-search-width: 20%
-$clients-addnewperson-width: 10%
-$clients-addnewperson-position: $clients-search-position + $clients-search-width + 2%
+$people-search-position: 10%
+$people-search-width: 20%
+$people-addnewperson-width: 10%
+$people-addnewperson-position: $people-search-position + $people-search-width + 2%
 
-$client-item-height: 30px 
-$client-item-vertical-margin: 10px
+$person-item-height: 30px 
+$person-item-vertical-margin: 10px
 
-$client-tag-position: 0%
-$client-tag-width: 5%
+$person-tag-position: 0%
+$person-tag-width: 5%
 
-$client-name-position: $client-tag-position + $client-tag-width
-$client-name-width: 30%
+$person-name-position: $person-tag-position + $person-tag-width
+$person-name-width: 30%
 
-$client-phone-position: $client-name-position + $client-name-width
-$client-phone-width: 30%
+$person-phone-position: $person-name-position + $person-name-width
+$person-phone-width: 30%
 
-$client-email-position: $client-phone-position + $client-phone-width
-$client-email-width: 10%
+$person-email-position: $person-phone-position + $person-phone-width
+$person-email-width: 10%
 
-@mixin clientheaderfiller
+@mixin personheaderfiller
   position: absolute
   display: block
   height: 100%
-  border-bottom: $client-list-header-border
+  border-bottom: $people-list-header-border
 
-#clientscontainer
+#peoplecontainer
   width: 100%
-  #clientlistheader
+  #peoplelistheader
     position: relative
     display: block
-    height: $client-list-header-height
+    height: $people-list-header-height
     width: $header-total-width
 
-    .clientlistheaderfillerleft
-      @include clientheaderfiller
+    .peoplelistheaderfillerleft
+      @include personheaderfiller
       width: $header-left-filler-width
       left: 0%
 
-    .clientlistheaderfillerright
-      @include clientheaderfiller
+    .peoplelistheaderfillerright
+      @include personheaderfiller
       width: $header-right-filler-width
       right: 0%
       
-    .clientlistfilter
+    .peoplelistfilter
       position: absolute
       display: block
       height: 100%
@@ -63,13 +63,13 @@ $client-email-width: 10%
       margin-top: 0px
       margin-left: 0px
       margin-right: 0px
-      padding-top: $client-list-filter-padding
+      padding-top: $people-list-filter-padding
       background-color: $white
       text-align: center
       font-size: .8em
       font-weight: bold
       color: $darkblue
-      border-bottom: $client-list-header-border
+      border-bottom: $people-list-header-border
 
     .ALL
       left: $showall-position
@@ -78,32 +78,34 @@ $client-email-width: 10%
     .CLIENTS
       left: $showclients-position 
 
-    .activeclientfilter
-      border-left: $client-list-header-border
-      border-right: $client-list-header-border
+    .activepersonfilter
+      border-left: $people-list-header-border
+      border-right: $people-list-header-border
       border-bottom: none
       font-size: 1.2em
   
-  #clientlistsubheader
+  #peoplelistsubheader
     position: relative
     display: block
-    height: $client-list-header-height
+    height: $people-list-header-height
     width: $header-total-width
     padding-top: 10px
-    .clientlistsearch
+
+    .peoplelistsearch
       position: absolute
-      left: $clients-search-position
-      width: $clients-search-width
+      left: $people-search-position
+      width: $people-search-width
       height: 70%
-    #clientsaddperson
+
+    #peopleaddperson
       @include bluebutton
       position: absolute
-      left: $clients-addnewperson-position
-      width: $clients-addnewperson-width
+      left: $people-addnewperson-position
+      width: $people-addnewperson-width
       height: 70%
       padding-top: 10px
 
-  #clientlistletterfilters
+  #peoplelistletterfilters
     display: block
     height: 30px
     width: 100%
@@ -120,38 +122,38 @@ $client-email-width: 10%
         background-color: $lightblue
         color: $white
 
-  #clientlist
+  #peoplelist
     display: block
     list-style-type: none
     width: 100%
     padding-left: 10%
     padding-right: 10%
 
-    .clientlistfirstletter
+    .peoplelistfirstletter
       color: $lightgrey
       font-size: 1.4em
       font-weight: 900
 
-    .clientlistclient
+    .peoplelistperson
       position: relative
       display: block
-      margin-top: $client-item-vertical-margin
-      margin-bottom: $client-item-vertical-margin
-      height: $client-item-height
+      margin-top: $person-item-vertical-margin
+      margin-bottom: $person-item-vertical-margin
+      height: $person-item-height
       padding-top: 5px
       &:hover
         background-color: $lightblue
         color: $white
 
-      .clientlistclienttag
+      .peoplelistpersontag
         position: absolute
-        left: $client-tag-position
-      .clientlistclientname
+        left: $person-tag-position
+      .peoplelistpersonname
         position: absolute
-        left: $client-name-position
-      .clientlistclientphonenumber
+        left: $person-name-position
+      .peoplelistpersonphonenumber
         position: absolute
-        left: $client-phone-position
-      .clientlistclientemail
+        left: $person-phone-position
+      .peoplelistpersonemail
         position: absolute
-        left: $client-email-position
+        left: $person-email-position

@@ -10,8 +10,6 @@ clicks a Letter in the header for the contacts list
 ###
 AR.PeopleView = Ember.View.extend
 
-  letters: alias "controller.letters"
-
   firstLetterClassName: 'peoplelistfirstletter'
 
   didInsertElement: ->
@@ -22,12 +20,12 @@ AR.PeopleView = Ember.View.extend
     @_super()
     Ember.run.next @, @_updateLetterPosHash
 
-  changeActiveLetter: (letter) ->
+  scrollToLetter: (letter) ->
     letterPosHash = @get "letterPosHash"
     window.scrollTo 0, letterPosHash[letter]
 
   _buildLetterPosHash: ->
-    letters = @get "letters"
+    letters = @get "controller.letters"
     letterHash = Ember.Object.create()
     for letter in letters
       letterHash[letter] = 0
@@ -38,10 +36,9 @@ AR.PeopleView = Ember.View.extend
     letterPosHash = @get 'letterPosHash'
     $letterHeaders = $ firstLetterClassName
 
-    $letterHeaders.each( (index, value) ->
-      $value = $ value
-      letter = $value.text()
-      yPos = $value.position().top
+    for letterHeader in $letterHeaders
+      $letterHeader = $ letterHeader
+      letter = $letterHeader.text()
+      yPos = $letterHeader.position().top
       #set these new values in letterPosHash
       letterPosHash.set letter, yPos
-    )

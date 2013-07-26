@@ -7,7 +7,7 @@ AR.QuoteFactory = Ember.Object.create
   states: ['illinois', 'california', 'new york']
   types: [1,2,3,4]
   
-  spawn: (quantity, clientIds) ->
+  spawn: (quantity, personIds) ->
     quotes = []
     for num in [0..quantity-1]
       effectiveDay = Math.floor(Math.random() * 90)
@@ -16,7 +16,7 @@ AR.QuoteFactory = Ember.Object.create
       quotes.push {
         id: num
         state: randFromList @states
-        client_id: randFromList clientIds
+        person_id: randFromList personIds
         insurancetype_id: randFromList @types
         notes: "best insurance ever"
         premium: "$100,000 / s"
@@ -31,7 +31,7 @@ AR.PolicyFactory = Ember.Object.create
   states: ['illinois', 'california', 'new york']
   types: [1,2,3,4]
   
-  spawn: (quantity, clientIds) ->
+  spawn: (quantity, personIds) ->
     policies = []
     for num in [0..quantity-1]
       effectiveDay = Math.floor(Math.random() * 90)
@@ -40,7 +40,7 @@ AR.PolicyFactory = Ember.Object.create
       policies.push {
         id: num
         state: randFromList @states
-        client_id: randFromList clientIds
+        person_id: randFromList personIds
         insurancetype_id: randFromList @types
         effectiveDate: moment().add('days', effectiveDay).toDate()
         expirationDate: moment().add('days', expirationDay).toDate()
@@ -58,7 +58,7 @@ AR.ReminderFactory = Ember.Object.create
     "Discuss weird insurance dream over cocktails"
   ]
   
-  spawn: (quantity, clientIds) ->
+  spawn: (quantity, personIds) ->
     reminders = []
     for num in [0..quantity-1]
       targetDayOffset = Math.floor(Math.random() * 2)
@@ -77,6 +77,6 @@ AR.ReminderFactory = Ember.Object.create
           .toDate()
         notes: randFromList @notes
         checked: false
-        client_id: randFromList clientIds
+        person_id: randFromList personIds
       }
     reminders

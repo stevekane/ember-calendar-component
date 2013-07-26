@@ -3,10 +3,10 @@
   <h1 id="title">Agent Run</h1> 
 
   <div id="homenav" {{action "goHome"}} >Home</div>
-  <div id="clientsnav" {{action "goClients"}} >Clients</div>
+  <div id="peoplenav" {{action "goPeople"}} >People</div>
 
   {{view "AR.SearchView" 
-    candidatesBinding="controller.controllers.clients.content"
+    candidatesBinding="controllers.persons"
   }}
 
   <div id="logout" {{action "logout"}} >Log Out</div>

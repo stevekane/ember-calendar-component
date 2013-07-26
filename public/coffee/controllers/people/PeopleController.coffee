@@ -9,7 +9,7 @@ AR.PeopleController = Ember.ArrayController.extend
   
   needs: ['persons']
 
-  people: alias "controllers.persons.content.@each"
+  people: alias "controllers.persons"
 
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R",
@@ -59,7 +59,7 @@ AR.PeopleController = Ember.ArrayController.extend
   #of displaying in the people list
   groups: (->
     letters = @get "letters"
-    people = @get "sortedFilteredClients"
+    people = @get "sortedFilteredPeople"
     groups = []
 
     #push each group of people (sorted by lastNameFirstLetter) onto groups
