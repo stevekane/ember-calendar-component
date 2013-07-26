@@ -8,11 +8,11 @@ of that group of contacts on the screen.  This mapping is used
 to support scrolling to that group of contacts when a user
 clicks a Letter in the header for the contacts list
 ###
-AR.ClientsView = Ember.View.extend
+AR.PeopleView = Ember.View.extend
 
   letters: alias "controller.letters"
 
-  firstLetterClassName: 'clientlistfirstletter'
+  firstLetterClassName: 'peoplelistfirstletter'
 
   didInsertElement: ->
     @_buildLetterPosHash()

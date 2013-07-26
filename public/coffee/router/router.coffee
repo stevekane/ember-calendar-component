@@ -1,10 +1,11 @@
 require "router/ApplicationRoute.js"
-require "router/HomeRoute.js"
-require "router/home/AddpersonRoute.js"
-require "router/home/AddquoteRoute.js"
-require "router/home/AddreminderRoute.js"
 
-require "router/ClientsRoute.js"
+require "router/home/HomeRoute.js"
+require "router/home/HomeAddpersonRoute.js"
+require "router/home/HomeAddquoteRoute.js"
+require "router/home/HomeAddreminderRoute.js"
+
+require "router/people/PeopleRoute.js"
 
 AR.Router.map ->
   @resource "home", path: "/home", ->
@@ -12,5 +13,5 @@ AR.Router.map ->
     @route "addquote", path: "/addquote"
     @route "addreminder", path: "/addreminder"
     @route "editreminder", path: "/editreminder/:reminder_id"
-  @resource "clients", path: "/clients"
-  @resource "client", path: "/clients/:client_id"
+  @resource "people", path: "/people"
+  @resource "person", path: "/person/:person_id"

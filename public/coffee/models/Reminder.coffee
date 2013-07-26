@@ -8,6 +8,6 @@ AR.Reminder = Ember.Model.extend
   targetDateTime: attr(Date)
   notes: attr()
   checked: attr()
-  client: belongsTo "AR.Client", {key: "client_id"}
+  person: belongsTo "AR.Person", {key: "person_id"}
   
 AR.Reminder.adapter = Ember.FixtureAdapter.create()

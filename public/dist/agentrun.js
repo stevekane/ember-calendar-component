@@ -1,19 +1,20 @@
 minispade.register('application.js', function() {
 window.AR = Ember.Application.create();
 minispade.require("router/router.js");
-minispade.require("models/Client.js");
+minispade.require("models/Person.js");
 minispade.require("models/Policy.js");
 minispade.require("models/Quote.js");
 minispade.require("models/Flow.js");
 minispade.require("models/Insurancetype.js");
+minispade.require("models/Reminder.js");
 minispade.require("models/FIXTURES.js");
 minispade.require("views/search/SearchView.js");
 minispade.require("views/search/SearchItemView.js");
-minispade.require("views/clients/ClientsView.js");
-minispade.require("views/clients/ClientFilterTabView.js");
+minispade.require("views/people/PeopleView.js");
+minispade.require("views/people/PeopleFilterTabView.js");
 minispade.require("views/modal/ModalView.js");
 minispade.require("views/dropdown/DropdownView.js");
-minispade.require("controllers/data/ClientsController.js");
+minispade.require("controllers/data/PersonsController.js");
 minispade.require("controllers/data/QuotesController.js");
 minispade.require("controllers/data/PolicysController.js");
 minispade.require("controllers/data/FlowsController.js");
@@ -23,6 +24,7 @@ minispade.require("controllers/home/HomeController.js");
 minispade.require("controllers/home/HomeAddpersonController.js");
 minispade.require("controllers/home/HomeAddquoteController.js");
 minispade.require("controllers/home/HomeAddreminderController.js");
+minispade.require("controllers/people/PeopleController.js");
 minispade.require("utils/HandlebarsHelpers.js");
 minispade.require("utils/Enumerables.js");
 minispade.require("utils/FactoryHelpers.js");
@@ -31,85 +33,7 @@ minispade.require("utils/FactoryHelpers.js");
 
 minispade.register('controllers/ApplicationController.js', function() {
 AR.ApplicationController = Ember.Controller.extend({
-  needs: ['clients', 'quotes', 'policys', 'insurancetypes', 'flows', 'reminders']
-});
-
-});
-
-minispade.register('controllers/data/ClientsController.js', function() {
-var inArray, sortByProperties;
-minispade.require("utils/Enumerables.js");
-minispade.require("utils/Alias.js");
-
-sortByProperties = AR.AliasUtils.sortByProperties;
-
-inArray = AR.EnumberableUtils.inArray;
-
-AR.ClientsController = Ember.ArrayController.extend({
-  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
-  allTab: Ember.Object.create({
-    name: 'ALL',
-    active: true
-  }),
-  leadsTab: Ember.Object.create({
-    name: 'LEADS',
-    active: false
-  }),
-  clientsTab: Ember.Object.create({
-    name: 'CLIENTS',
-    active: false
-  }),
-  init: function() {
-    this._super();
-    return this.set("activeTab", this.get('allTab'));
-  },
-  setActiveTab: function(tab) {
-    var allTab, clientsTab, leadsTab;
-    allTab = this.get("allTab");
-    leadsTab = this.get("leadsTab");
-    clientsTab = this.get("clientsTab");
-    allTab.set("active", false);
-    leadsTab.set("active", false);
-    clientsTab.set("active", false);
-    tab.set("active", true);
-    return this.set("activeTab", tab);
-  },
-  activeFilters: (function() {
-    var activeTabName;
-    activeTabName = this.get("activeTab.name");
-    switch (activeTabName) {
-      case "ALL":
-        return ['lead', 'client'];
-      case "LEADS":
-        return ['lead'];
-      case "CLIENTS":
-        return ['client'];
-    }
-  }).property('activeTab'),
-  sortedFilteredClients: (function() {
-    var activeFilters, clients, filtered, sortedFiltered;
-    clients = this.get("content");
-    activeFilters = this.get('activeFilters');
-    filtered = clients.filter(inArray(activeFilters, "type"));
-    sortedFiltered = sortByProperties(filtered, ['lastName'], true);
-    return sortedFiltered;
-  }).property('content.@each', 'activeFilters'),
-  groups: (function() {
-    var clients, groupClients, groups, letter, letterGroup, letters, _i, _len;
-    letters = this.get("letters");
-    clients = this.get("sortedFilteredClients");
-    groups = [];
-    for (_i = 0, _len = letters.length; _i < _len; _i++) {
-      letter = letters[_i];
-      groupClients = clients.filterProperty("lastNameFirstLetter", letter);
-      letterGroup = Ember.Object.create({
-        letter: letter,
-        clients: groupClients
-      });
-      groups.pushObject(letterGroup);
-    }
-    return groups;
-  }).property('sortedFilteredClients.@each')
+  needs: ['persons', 'quotes', 'policys', 'insurancetypes', 'flows', 'reminders']
 });
 
 });
@@ -121,6 +45,11 @@ AR.FlowsController = Ember.ArrayController.extend();
 
 minispade.register('controllers/data/InsurancetypesController.js', function() {
 AR.InsurancetypesController = Ember.ArrayController.extend();
+
+});
+
+minispade.register('controllers/data/PersonsController.js', function() {
+AR.PersonsController = Ember.ArrayController.extend();
 
 });
 
@@ -152,7 +81,7 @@ var alias;
 alias = Ember.computed.alias;
 
 AR.HomeAddquoteController = Ember.Controller.extend({
-  needs: ['insurancetypes', 'clients'],
+  needs: ['insurancetypes', 'persons'],
   clients: alias("controllers.clients.content"),
   insuranceTypes: alias("controllers.insurancetypes.content")
 });
@@ -165,10 +94,10 @@ var alias;
 alias = Ember.computed.alias;
 
 AR.HomeAddreminderController = Ember.Controller.extend({
-  needs: ['reminders', 'insurancetypes', 'clients'],
+  needs: ['reminders', 'insurancetypes', 'persons'],
   reminders: alias("controllers.reminders.content"),
   insuranceTypes: alias("controllers.insurancetypes.content"),
-  clients: alias("controllers.clients.content"),
+  people: alias("controllers.persons.content"),
   hours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
   minutes: ["00", "15", "30", "45"],
   amPm: ["AM", "PM"],
@@ -198,10 +127,10 @@ inArray = AR.EnumberableUtils.inArray;
 alias = Ember.computed.alias;
 
 AR.FilterManager = Ember.Object.extend({
-  clientFilterSummary: "View All People",
+  personFilterSummary: "View All People",
   typeFilterSummary: "View All Types",
   statusFilterSummary: "Status",
-  clientFilters: [
+  personFilters: [
     Ember.Object.create({
       filter: "active",
       checked: true
@@ -249,9 +178,9 @@ AR.FilterManager = Ember.Object.extend({
       checked: true
     })
   ],
-  activeClientFilters: (function() {
-    return this.get('clientFilters').filterProperty('checked').getEach("filter");
-  }).property('clientFilters.@each.checked'),
+  activePersonFilters: (function() {
+    return this.get('personFilters').filterProperty('checked').getEach("filter");
+  }).property('personFilters.@each.checked'),
   activeTypeFilters: (function() {
     return this.get('typeFilters').filterProperty('checked').getEach("filter");
   }).property('typeFilters.@each.checked'),
@@ -261,21 +190,21 @@ AR.FilterManager = Ember.Object.extend({
 });
 
 AR.HomeController = Ember.Controller.extend({
-  needs: ['flows', 'clients', 'reminders', 'insurancetypes'],
+  needs: ['flows', 'persons', 'reminders', 'insurancetypes'],
   filterManager: AR.FilterManager.create(),
   insuranceTypes: alias("controllers.insurancetypes.content.@each"),
   flows: alias("controllers.flows.content.@each"),
-  clients: alias("controllers.clients.content.@each"),
+  persons: alias("controllers.persons.content.@each"),
   reminders: alias("controllers.reminders.content.@each"),
   filteredFlows: (function() {
-    var clientFilters, filtered, flows, statusFilters, typeFilters;
+    var filtered, flows, personFilters, statusFilters, typeFilters;
     flows = this.get('controllers.flows.content');
-    clientFilters = this.get("filterManager.activeClientFilters");
+    personFilters = this.get("filterManager.activePersonFilters");
     typeFilters = this.get("filterManager.activeTypeFilters");
     statusFilters = this.get("filterManager.activeStatusFilters");
-    filtered = flows.filter(inArray(clientFilters, "client.status")).filter(inArray(typeFilters, "insuranceType.name")).filter(inArray(statusFilters, "status"));
+    filtered = flows.filter(inArray(personFilters, "person.status")).filter(inArray(typeFilters, "insuranceType.name")).filter(inArray(statusFilters, "status"));
     return filtered;
-  }).property('flows.@each', 'clients.@each', 'filterManager.activeClientFilters.@each', 'filterManager.activeTypeFilters.@each', 'filterManager.activeStatusFilters.@each'),
+  }).property('flows.@each', 'persons.@each', 'filterManager.activePersonFilters.@each', 'filterManager.activeTypeFilters.@each', 'filterManager.activeStatusFilters.@each'),
   sortedFilteredReminders: (function() {
     var activeDay, filteredRems, reminders, sortedRems;
     reminders = this.get("controllers.reminders");
@@ -309,46 +238,85 @@ AR.HomeController = Ember.Controller.extend({
 
 });
 
-minispade.register('models/Client.js', function() {
-var attr, hasMany;
+minispade.register('controllers/people/PeopleController.js', function() {
+var alias, inArray, sortByProperties;
+minispade.require("utils/Enumerables.js");
+minispade.require("utils/Alias.js");
 
-attr = Ember.attr;
+sortByProperties = AR.AliasUtils.sortByProperties;
 
-hasMany = Ember.hasMany;
+inArray = AR.EnumberableUtils.inArray;
 
-AR.Client = Ember.Model.extend({
-  id: attr(),
-  firstName: attr(),
-  lastName: attr(),
-  status: attr(),
-  quotes: hasMany("AR.Quote", {
-    key: "quote_ids"
+alias = Ember.computed.alias;
+
+AR.PeopleController = Ember.ArrayController.extend({
+  needs: ['persons'],
+  people: alias("controllers.persons.content.@each"),
+  letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "U", "X", "Y", "Z"],
+  allTab: Ember.Object.create({
+    name: 'ALL',
+    active: true
   }),
-  policies: hasMany("AR.Policy", {
-    key: "policy_ids"
+  leadsTab: Ember.Object.create({
+    name: 'LEADS',
+    active: false
   }),
-  name: (function() {
-    return "" + (this.get('firstName')) + " " + (this.get('lastName'));
-  }).property('firstName', 'lastName'),
-  lastNameFirstLetter: (function() {
-    return this.get('lastName')[0];
-  }).property('lastName'),
-  type: (function() {
-    switch (this.get('status')) {
-      case "active":
-        return "client";
-      case "inactive":
-        return "client";
-      default:
-        return "lead";
+  clientsTab: Ember.Object.create({
+    name: 'CLIENTS',
+    active: false
+  }),
+  init: function() {
+    this._super();
+    return this.set("activeTab", this.get('allTab'));
+  },
+  setActiveTab: function(tab) {
+    var allTab, clientsTab, leadsTab;
+    allTab = this.get("allTab");
+    leadsTab = this.get("leadsTab");
+    clientsTab = this.get("clientsTab");
+    allTab.set("active", false);
+    leadsTab.set("active", false);
+    clientsTab.set("active", false);
+    tab.set("active", true);
+    return this.set("activeTab", tab);
+  },
+  activeFilters: (function() {
+    var activeTabName;
+    activeTabName = this.get("activeTab.name");
+    switch (activeTabName) {
+      case "ALL":
+        return ['lead', 'client'];
+      case "LEADS":
+        return ['lead'];
+      case "CLIENTS":
+        return ['client'];
     }
-  }).property('status'),
-  classTag: (function() {
-    return "" + (this.get('type')) + "tag";
-  }).property('type')
+  }).property('activeTab'),
+  sortedFilteredPeople: (function() {
+    var activeFilters, filtered, people, sortedFiltered;
+    people = this.get("people");
+    activeFilters = this.get('activeFilters');
+    filtered = people.filter(inArray(activeFilters, "type"));
+    sortedFiltered = sortByProperties(filtered, ['lastName'], true);
+    return sortedFiltered;
+  }).property('people.@each', 'activeFilters'),
+  groups: (function() {
+    var groups, letter, letterGroup, letters, people, peopleInGroup, _i, _len;
+    letters = this.get("letters");
+    people = this.get("sortedFilteredClients");
+    groups = [];
+    for (_i = 0, _len = letters.length; _i < _len; _i++) {
+      letter = letters[_i];
+      peopleInGroup = people.filterProperty("lastNameFirstLetter", letter);
+      letterGroup = Ember.Object.create({
+        letter: letter,
+        people: peopleInGroup
+      });
+      groups.pushObject(letterGroup);
+    }
+    return groups;
+  }).property('sortedFilteredPeople.@each')
 });
-
-AR.Client.adapter = Ember.FixtureAdapter.create();
 
 });
 
@@ -439,8 +407,8 @@ AR.ReminderFactory = Ember.Object.create({
 });
 
 minispade.register('models/FIXTURES.js', function() {
-var clientIds, policyCount, quoteCount, reminderCount;
-minispade.require("models/Client.js");
+var personIds, policyCount, quoteCount, reminderCount;
+minispade.require("models/Person.js");
 minispade.require("models/Quote.js");
 minispade.require("models/Policy.js");
 minispade.require("models/Flow.js");
@@ -448,7 +416,7 @@ minispade.require("models/Reminder.js");
 minispade.require("models/Insurancetype.js");
 minispade.require("models/FACTORIES.js");
 
-AR.Client.FIXTURES = [
+AR.Person.FIXTURES = [
   {
     id: 1,
     firstName: 'Sally',
@@ -542,7 +510,7 @@ AR.Client.FIXTURES = [
   }
 ];
 
-clientIds = AR.Client.FIXTURES.mapProperty("id");
+personIds = AR.Person.FIXTURES.mapProperty("id");
 
 quoteCount = 10;
 
@@ -550,11 +518,11 @@ policyCount = 2;
 
 reminderCount = 20;
 
-AR.Quote.FIXTURES = AR.QuoteFactory.spawn(quoteCount, clientIds);
+AR.Quote.FIXTURES = AR.QuoteFactory.spawn(quoteCount, personIds);
 
-AR.Policy.FIXTURES = AR.PolicyFactory.spawn(policyCount, clientIds);
+AR.Policy.FIXTURES = AR.PolicyFactory.spawn(policyCount, personIds);
 
-AR.Reminder.FIXTURES = AR.ReminderFactory.spawn(reminderCount, clientIds);
+AR.Reminder.FIXTURES = AR.ReminderFactory.spawn(reminderCount, personIds);
 
 AR.Insurancetype.FIXTURES = [
   {
@@ -572,84 +540,84 @@ AR.Insurancetype.FIXTURES = [
 AR.Flow.FIXTURES = [
   {
     id: 0,
-    client_id: 1,
+    person_id: 1,
     insurancetype_id: 1,
     status: "Quote started",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 1,
-    client_id: 2,
+    person_id: 2,
     insurancetype_id: 2,
     status: "Policy approved",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 2,
-    client_id: 3,
+    person_id: 3,
     insurancetype_id: 3,
     status: "Quote approved",
     quote_ids: [5, 6, 7, 8, 9],
     policy_ids: [1]
   }, {
     id: 3,
-    client_id: 4,
+    person_id: 4,
     insurancetype_id: 1,
     status: "Quote started",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 4,
-    client_id: 5,
+    person_id: 5,
     insurancetype_id: 2,
     status: "Policy approved",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 5,
-    client_id: 7,
+    person_id: 7,
     insurancetype_id: 3,
     status: "Quote approved",
     quote_ids: [5, 6, 7, 8, 9],
     policy_ids: [1]
   }, {
     id: 6,
-    client_id: 2,
+    person_id: 2,
     insurancetype_id: 1,
     status: "Quote started",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 7,
-    client_id: 4,
+    person_id: 4,
     insurancetype_id: 2,
     status: "Policy approved",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 8,
-    client_id: 11,
+    person_id: 11,
     insurancetype_id: 3,
     status: "Quote approved",
     quote_ids: [5, 6, 7, 8, 9],
     policy_ids: [1]
   }, {
     id: 9,
-    client_id: 10,
+    person_id: 10,
     insurancetype_id: 1,
     status: "Quote started",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 10,
-    client_id: 2,
+    person_id: 2,
     insurancetype_id: 2,
     status: "Policy approved",
     quote_ids: [0, 1, 2, 3, 4],
     policy_ids: [0]
   }, {
     id: 11,
-    client_id: 2,
+    person_id: 2,
     insurancetype_id: 3,
     status: "Quote approved",
     quote_ids: [5, 6, 7, 8, 9],
@@ -670,8 +638,8 @@ belongsTo = Ember.belongsTo;
 
 AR.Flow = Ember.Model.extend({
   id: attr(),
-  client: belongsTo("AR.Client", {
-    key: "client_id"
+  person: belongsTo("AR.Person", {
+    key: "person_id"
   }),
   insuranceType: belongsTo("AR.Insurancetype", {
     key: "insurancetype_id"
@@ -703,6 +671,49 @@ AR.Insurancetype.adapter = Ember.FixtureAdapter.create();
 
 });
 
+minispade.register('models/Person.js', function() {
+var attr, hasMany;
+
+attr = Ember.attr;
+
+hasMany = Ember.hasMany;
+
+AR.Person = Ember.Model.extend({
+  id: attr(),
+  firstName: attr(),
+  lastName: attr(),
+  status: attr(),
+  quotes: hasMany("AR.Quote", {
+    key: "quote_ids"
+  }),
+  policies: hasMany("AR.Policy", {
+    key: "policy_ids"
+  }),
+  name: (function() {
+    return "" + (this.get('firstName')) + " " + (this.get('lastName'));
+  }).property('firstName', 'lastName'),
+  lastNameFirstLetter: (function() {
+    return this.get('lastName')[0];
+  }).property('lastName'),
+  type: (function() {
+    switch (this.get('status')) {
+      case "active":
+        return "client";
+      case "inactive":
+        return "client";
+      default:
+        return "lead";
+    }
+  }).property('status'),
+  classTag: (function() {
+    return "" + (this.get('type')) + "tag";
+  }).property('type')
+});
+
+AR.Person.adapter = Ember.FixtureAdapter.create();
+
+});
+
 minispade.register('models/Policy.js', function() {
 var attr, belongsTo, hasMany;
 
@@ -718,8 +729,8 @@ AR.Policy = Ember.Model.extend({
   agent: belongsTo("AR.Agent", {
     key: "agent_id"
   }),
-  client: belongsTo("AR.Client", {
-    key: "client_id"
+  person: belongsTo("AR.Person", {
+    key: "person_id"
   }),
   insurancetype: belongsTo("AR.Insurancetype", {
     key: "insurancetype_id"
@@ -751,8 +762,8 @@ AR.Quote = Ember.Model.extend({
   agent: belongsTo("AR.Agent", {
     key: "agent_id"
   }),
-  client: belongsTo("AR.Client", {
-    key: "client_id"
+  person: belongsTo("AR.Person", {
+    key: "person_id"
   }),
   insurancetype: belongsTo("AR.Insurancetype", {
     key: "insurancetype_id"
@@ -785,8 +796,8 @@ AR.Reminder = Ember.Model.extend({
   targetDateTime: attr(Date),
   notes: attr(),
   checked: attr(),
-  client: belongsTo("AR.Client", {
-    key: "client_id"
+  person: belongsTo("AR.Person", {
+    key: "person_id"
   })
 });
 
@@ -803,8 +814,8 @@ AR.ApplicationRoute = Ember.Route.extend({
     goHome: function() {
       return this.transitionTo("home");
     },
-    goClients: function() {
-      return this.transitionTo("clients");
+    goPeople: function() {
+      return this.transitionTo("people");
     },
     goBack: function() {
       return window.history.back();
@@ -814,9 +825,9 @@ AR.ApplicationRoute = Ember.Route.extend({
     }
   },
   setupController: function(controller) {
-    var clientsCon, flowsCon, insurancetypesCon, policysCon, quotesCon, remindersCon;
-    clientsCon = controller.get("controllers.clients");
-    clientsCon.set("content", AR.Client.find());
+    var flowsCon, insurancetypesCon, personsCon, policysCon, quotesCon, remindersCon;
+    personsCon = controller.get("controllers.persons");
+    personsCon.set("content", AR.Person.find());
     quotesCon = controller.get("controllers.quotes");
     quotesCon.set("content", AR.Quote.find());
     policysCon = controller.get("controllers.policys");
@@ -832,18 +843,64 @@ AR.ApplicationRoute = Ember.Route.extend({
 
 });
 
-minispade.register('router/ClientsRoute.js', function() {
-AR.ClientsRoute = Ember.Route.extend({
-  renderTemplate: function(controller) {
-    return this.render("clients", {
-      controller: controller
+minispade.register('router/home/HomeAddpersonRoute.js', function() {
+
+minispade.require("views/home/AddpersonmodalView.js");
+
+AR.HomeAddpersonRoute = Ember.Route.extend({
+  events: {
+    close: function() {
+      return this.transitionTo("home");
+    }
+  },
+  renderTemplate: function() {
+    return this.render("home/addpersonmodal", {
+      outlet: "modal"
     });
   }
 });
 
 });
 
-minispade.register('router/HomeRoute.js', function() {
+minispade.register('router/home/HomeAddquoteRoute.js', function() {
+
+minispade.require("views/home/AddquotemodalView.js");
+
+AR.HomeAddquoteRoute = Ember.Route.extend({
+  events: {
+    close: function() {
+      return this.transitionTo("home");
+    }
+  },
+  renderTemplate: function() {
+    return this.render("home/addquotemodal", {
+      outlet: "modal"
+    });
+  }
+});
+
+});
+
+minispade.register('router/home/HomeAddreminderRoute.js', function() {
+
+minispade.require("views/home/AddremindermodalView.js");
+
+AR.HomeAddreminderRoute = Ember.Route.extend({
+  events: {
+    close: function() {
+      return this.transitionTo("home");
+    }
+  },
+  renderTemplate: function() {
+    return this.render("home/addremindermodal", {
+      outlet: "modal"
+    });
+  }
+});
+
+});
+
+minispade.register('router/home/HomeRoute.js', function() {
 
 minispade.require("views/home/ActivityItemView.js");
 
@@ -870,100 +927,19 @@ AR.HomeRoute = Ember.Route.extend({
 
 });
 
-minispade.register('router/home/AddpersonRoute.js', function() {
-
-minispade.require("views/home/AddpersonmodalView.js");
-
-AR.HomeAddpersonRoute = Ember.Route.extend({
-  events: {
-    close: function() {
-      return this.transitionTo("home");
-    }
-  },
-  renderTemplate: function() {
-    return this.render("home/addpersonmodal", {
-      outlet: "modal"
-    });
-  }
-});
-
-});
-
-minispade.register('router/home/AddquoteRoute.js', function() {
-
-minispade.require("views/home/AddquotemodalView.js");
-
-AR.HomeAddquoteRoute = Ember.Route.extend({
-  events: {
-    close: function() {
-      return this.transitionTo("home");
-    }
-  },
-  renderTemplate: function() {
-    return this.render("home/addquotemodal", {
-      outlet: "modal"
-    });
-  }
-});
-
-});
-
-minispade.register('router/home/AddreminderRoute.js', function() {
-
-minispade.require("views/home/AddremindermodalView.js");
-
-AR.HomeAddreminderRoute = Ember.Route.extend({
-  events: {
-    close: function() {
-      return this.transitionTo("home");
-    }
-  },
-  renderTemplate: function() {
-    return this.render("home/addremindermodal", {
-      outlet: "modal"
-    });
-  }
-});
-
-});
-
-minispade.register('router/home/IndexRoute.js', function() {
-
-minispade.require("views/home/ActivityItemView.js");
-
-AR.HomeRoute = Ember.Route.extend({
-  events: {
-    addPerson: function() {
-      return this.transitionTo("home.addperson");
-    },
-    addQuote: function() {
-      return this.transitionTo("home.addquote");
-    }
-  },
-  setupController: function() {
-    var clientsCon;
-    clientsCon = this.controllerFor('home').get('controllers.clients');
-    return clientsCon.set("content", AR.Client.find());
-  },
-  renderTemplate: function() {
-    return this.render("home", {
-      into: "application",
-      outlet: "main",
-      controller: "home"
-    });
-  }
-});
+minispade.register('router/people/PeopleRoute.js', function() {
+AR.PeopleRoute = Ember.Route.extend();
 
 });
 
 minispade.register('router/router.js', function() {
 
 minispade.require("router/ApplicationRoute.js");
-minispade.require("router/HomeRoute.js");
-minispade.require("router/home/AddpersonRoute.js");
-minispade.require("router/home/AddquoteRoute.js");
-minispade.require("router/home/AddreminderRoute.js");
-minispade.require("router/ClientsRoute.js");
+minispade.require("router/home/HomeRoute.js");
+minispade.require("router/home/HomeAddpersonRoute.js");
+minispade.require("router/home/HomeAddquoteRoute.js");
+minispade.require("router/home/HomeAddreminderRoute.js");
+minispade.require("router/people/PeopleRoute.js");
 
 AR.Router.map(function() {
   this.resource("home", {
@@ -982,11 +958,11 @@ AR.Router.map(function() {
       path: "/editreminder/:reminder_id"
     });
   });
-  this.resource("clients", {
-    path: "/clients"
+  this.resource("people", {
+    path: "/people"
   });
-  return this.resource("client", {
-    path: "/clients/:client_id"
+  return this.resource("person", {
+    path: "/person/:person_id"
   });
 });
 
@@ -1099,85 +1075,6 @@ helper('monthDayYear', function(date) {
 
 });
 
-minispade.register('views/clients/ClientFilterTabView.js', function() {
-var alias;
-
-alias = Ember.computed.alias;
-
-AR.ClientFilterTabView = Ember.View.extend({
-  tagName: "nav",
-  classNameBindings: ['activeclientfilter', 'tabClass', 'tabName'],
-  activeclientfilter: alias("tab.active"),
-  tabClass: 'clientlistfilter',
-  tabName: alias("tab.name"),
-  click: function(event) {
-    var controller, tab;
-    controller = this.get("controller");
-    tab = this.get("tab");
-    return controller.setActiveTab(tab);
-  }
-});
-
-});
-
-minispade.register('views/clients/ClientsView.js', function() {
-var alias;
-
-alias = Ember.computed.alias;
-
-/*
-Clients view builds a hash table on creation and anytime the
-view is re-rendered.
-The table maps letters ("A", "B", "C", etc) to the position
-of that group of contacts on the screen.  This mapping is used
-to support scrolling to that group of contacts when a user
-clicks a Letter in the header for the contacts list
-*/
-
-
-AR.ClientsView = Ember.View.extend({
-  letters: alias("controller.letters"),
-  firstLetterClassName: 'clientlistfirstletter',
-  didInsertElement: function() {
-    this._buildLetterPosHash();
-    return Ember.run.next(this, this._updateLetterPosHash);
-  },
-  rerender: function() {
-    this._super();
-    return Ember.run.next(this, this._updateLetterPosHash);
-  },
-  changeActiveLetter: function(letter) {
-    var letterPosHash;
-    letterPosHash = this.get("letterPosHash");
-    return window.scrollTo(0, letterPosHash[letter]);
-  },
-  _buildLetterPosHash: function() {
-    var letter, letterHash, letters, _i, _len;
-    letters = this.get("letters");
-    letterHash = Ember.Object.create();
-    for (_i = 0, _len = letters.length; _i < _len; _i++) {
-      letter = letters[_i];
-      letterHash[letter] = 0;
-    }
-    return this.set("letterPosHash", letterHash);
-  },
-  _updateLetterPosHash: function() {
-    var $letterHeaders, firstLetterClassName, letterPosHash;
-    firstLetterClassName = "." + this.get("firstLetterClassName");
-    letterPosHash = this.get('letterPosHash');
-    $letterHeaders = $(firstLetterClassName);
-    return $letterHeaders.each(function(index, value) {
-      var $value, letter, yPos;
-      $value = $(value);
-      letter = $value.text();
-      yPos = $value.position().top;
-      return letterPosHash.set(letter, yPos);
-    });
-  }
-});
-
-});
-
 minispade.register('views/dropdown/DropdownView.js', function() {
 AR.DropdownView = Ember.View.extend({
   layoutName: "dropdown/dropdown",
@@ -1195,7 +1092,7 @@ AR.ActivityItemView = Ember.View.extend({
   templateName: "home/activityitem",
   personType: (function() {
     var status;
-    status = this.get("content.client.status");
+    status = this.get("content.person.status");
     switch (status) {
       case "active":
         return "client";
@@ -1204,12 +1101,12 @@ AR.ActivityItemView = Ember.View.extend({
       default:
         return "lead";
     }
-  }).property('content.client.status'),
+  }).property('content.person.status'),
   classTag: (function() {
     var type;
     type = this.get('personType');
     return "" + type + "tag";
-  }).property('content.client.status')
+  }).property('content.person.status')
 });
 
 });
@@ -1269,6 +1166,85 @@ AR.ModalView = Ember.View.extend({
   windowSize: (function() {
     return "height: " + (this.get('windowHeight')) + "px; width: " + (this.get('windowWidth')) + "px";
   }).property('windowHeight', 'windowWidth').cacheable()
+});
+
+});
+
+minispade.register('views/people/PeopleFilterTabView.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.PeopleFilterTabView = Ember.View.extend({
+  tagName: "nav",
+  classNameBindings: ['activeclientfilter', 'tabClass', 'tabName'],
+  activeclientfilter: alias("tab.active"),
+  tabClass: 'clientlistfilter',
+  tabName: alias("tab.name"),
+  click: function(event) {
+    var controller, tab;
+    controller = this.get("controller");
+    tab = this.get("tab");
+    return controller.setActiveTab(tab);
+  }
+});
+
+});
+
+minispade.register('views/people/PeopleView.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+/*
+Clients view builds a hash table on creation and anytime the
+view is re-rendered.
+The table maps letters ("A", "B", "C", etc) to the position
+of that group of contacts on the screen.  This mapping is used
+to support scrolling to that group of contacts when a user
+clicks a Letter in the header for the contacts list
+*/
+
+
+AR.PeopleView = Ember.View.extend({
+  letters: alias("controller.letters"),
+  firstLetterClassName: 'peoplelistfirstletter',
+  didInsertElement: function() {
+    this._buildLetterPosHash();
+    return Ember.run.next(this, this._updateLetterPosHash);
+  },
+  rerender: function() {
+    this._super();
+    return Ember.run.next(this, this._updateLetterPosHash);
+  },
+  changeActiveLetter: function(letter) {
+    var letterPosHash;
+    letterPosHash = this.get("letterPosHash");
+    return window.scrollTo(0, letterPosHash[letter]);
+  },
+  _buildLetterPosHash: function() {
+    var letter, letterHash, letters, _i, _len;
+    letters = this.get("letters");
+    letterHash = Ember.Object.create();
+    for (_i = 0, _len = letters.length; _i < _len; _i++) {
+      letter = letters[_i];
+      letterHash[letter] = 0;
+    }
+    return this.set("letterPosHash", letterHash);
+  },
+  _updateLetterPosHash: function() {
+    var $letterHeaders, firstLetterClassName, letterPosHash;
+    firstLetterClassName = "." + this.get("firstLetterClassName");
+    letterPosHash = this.get('letterPosHash');
+    $letterHeaders = $(firstLetterClassName);
+    return $letterHeaders.each(function(index, value) {
+      var $value, letter, yPos;
+      $value = $(value);
+      letter = $value.text();
+      yPos = $value.position().top;
+      return letterPosHash.set(letter, yPos);
+    });
+  }
 });
 
 });

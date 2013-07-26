@@ -7,7 +7,7 @@ AR.Policy = Ember.Model.extend
   id: attr()
   state: attr()
   agent: belongsTo "AR.Agent", {key: "agent_id"}
-  client: belongsTo "AR.Client", {key: "client_id"}
+  person: belongsTo "AR.Person", {key: "person_id"}
   insurancetype: belongsTo "AR.Insurancetype", {key: "insurancetype_id"}
   #insuranceprovider: belongsTo "AR.Insuranceprovider", {key: "insurance_provider_id"}
   

@@ -3,9 +3,14 @@ require "utils/Alias.js"
 
 sortByProperties = AR.AliasUtils.sortByProperties
 inArray = AR.EnumberableUtils.inArray
+alias = Ember.computed.alias
 
-AR.ClientsController = Ember.ArrayController.extend
+AR.PeopleController = Ember.ArrayController.extend
   
+  needs: ['persons']
+
+  people: alias "controllers.persons.content.@each"
+
   letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I",
             "J", "K", "L", "M", "N", "O", "P", "Q", "R",
             "S", "T", "U", "V", "W", "U", "X", "Y", "Z"]
@@ -38,33 +43,33 @@ AR.ClientsController = Ember.ArrayController.extend
       when "CLIENTS" then return ['client']
   ).property('activeTab')
 
-  sortedFilteredClients: (->
-    clients = @get "content"
+  sortedFilteredPeople: (->
+    people = @get "people"
     activeFilters = @get 'activeFilters'
 
-    filtered = clients.filter inArray(activeFilters, "type")
+    filtered = people.filter inArray(activeFilters, "type")
     sortedFiltered = sortByProperties filtered, ['lastName'], true
     sortedFiltered
   ).property(
-    'content.@each',
+    'people.@each',
     'activeFilters'
   )
 
-  #groups are clients sorted by lastNameFirstLetter for the purpose
-  #of displaying in the client list
+  #groups are people sorted by lastNameFirstLetter for the purpose
+  #of displaying in the people list
   groups: (->
     letters = @get "letters"
-    clients = @get "sortedFilteredClients"
+    people = @get "sortedFilteredClients"
     groups = []
 
-    #push each group of clients (sorted by lastNameFirstLetter) onto groups
+    #push each group of people (sorted by lastNameFirstLetter) onto groups
     for letter in letters
-      groupClients = clients.filterProperty "lastNameFirstLetter", letter
+      peopleInGroup = people.filterProperty "lastNameFirstLetter", letter
       letterGroup = Ember.Object.create
         letter: letter
-        clients: groupClients
+        people: peopleInGroup
 
       groups.pushObject letterGroup
 
     groups
-  ).property('sortedFilteredClients.@each')
+  ).property('sortedFilteredPeople.@each')

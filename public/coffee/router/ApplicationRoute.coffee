@@ -5,16 +5,16 @@ AR.ApplicationRoute = Ember.Route.extend
   events:
     goHome: ->
       this.transitionTo "home"
-    goClients: ->
-      this.transitionTo "clients"
+    goPeople: ->
+      this.transitionTo "people"
     goBack: ->
       window.history.back()
     logout: ->
       alert "you have attempted to log out!"
 
   setupController: (controller) ->
-    clientsCon = controller.get "controllers.clients"
-    clientsCon.set "content", AR.Client.find()
+    personsCon = controller.get "controllers.persons"
+    personsCon.set "content", AR.Person.find()
     quotesCon = controller.get "controllers.quotes"
     quotesCon.set "content", AR.Quote.find()
     policysCon = controller.get "controllers.policys"

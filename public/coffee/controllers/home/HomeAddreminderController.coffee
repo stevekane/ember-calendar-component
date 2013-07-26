@@ -2,11 +2,11 @@ alias = Ember.computed.alias
 
 AR.HomeAddreminderController = Ember.Controller.extend
   
-  needs: ['reminders', 'insurancetypes', 'clients']
+  needs: ['reminders', 'insurancetypes', 'persons']
 
   reminders: alias "controllers.reminders.content"
   insuranceTypes: alias "controllers.insurancetypes.content"
-  clients: alias "controllers.clients.content"
+  people: alias "controllers.persons.content"
 
   hours: [1,2,3,4,5,6,7,8,9,10,11,12]
   minutes: ["00", "15", "30", "45"]

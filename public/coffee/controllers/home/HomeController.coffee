@@ -5,11 +5,11 @@ alias = Ember.computed.alias
 
 #this is a suppport class to keep this mess out of the controller
 AR.FilterManager = Ember.Object.extend
-  clientFilterSummary: "View All People"
+  personFilterSummary: "View All People"
   typeFilterSummary: "View All Types"
   statusFilterSummary: "Status"
 
-  clientFilters: [
+  personFilters: [
     Ember.Object.create(filter: "active", checked: true),
     Ember.Object.create(filter: "inactive", checked: true),
     Ember.Object.create(filter: "lead", checked: true),
@@ -29,9 +29,9 @@ AR.FilterManager = Ember.Object.extend
     Ember.Object.create(filter: "Policy approved", checked: true),
   ]
 
-  activeClientFilters: (->
-    @get('clientFilters').filterProperty('checked').getEach "filter"
-  ).property('clientFilters.@each.checked')
+  activePersonFilters: (->
+    @get('personFilters').filterProperty('checked').getEach "filter"
+  ).property('personFilters.@each.checked')
 
   activeTypeFilters: (->
     @get('typeFilters').filterProperty('checked').getEach "filter"
@@ -42,33 +42,33 @@ AR.FilterManager = Ember.Object.extend
   ).property('statusFilters.@each.checked')
 
 AR.HomeController = Ember.Controller.extend
-  needs: ['flows', 'clients', 'reminders', 'insurancetypes']
+  needs: ['flows', 'persons', 'reminders', 'insurancetypes']
 
   filterManager: AR.FilterManager.create()
 
   insuranceTypes: alias "controllers.insurancetypes.content.@each"
   flows: alias "controllers.flows.content.@each"
-  clients: alias "controllers.clients.content.@each"
+  persons: alias "controllers.persons.content.@each"
   reminders: alias "controllers.reminders.content.@each"
 
-  #return a list of filtered clients for display
+  #return a list of filtered people for display
   filteredFlows: (->
     flows = @get 'controllers.flows.content'
-    clientFilters = @get "filterManager.activeClientFilters"
+    personFilters = @get "filterManager.activePersonFilters"
     typeFilters = @get "filterManager.activeTypeFilters"
     statusFilters = @get "filterManager.activeStatusFilters"
 
     #filter by each filtertype to obtain reduced set of active flows
     filtered = flows
-      .filter(inArray(clientFilters, "client.status"))
+      .filter(inArray(personFilters, "person.status"))
       .filter(inArray(typeFilters, "insuranceType.name"))
       .filter(inArray(statusFilters, "status"))
 
     filtered
   ).property(
     'flows.@each'
-    'clients.@each'
-    'filterManager.activeClientFilters.@each',
+    'persons.@each'
+    'filterManager.activePersonFilters.@each',
     'filterManager.activeTypeFilters.@each',
     'filterManager.activeStatusFilters.@each'
   )

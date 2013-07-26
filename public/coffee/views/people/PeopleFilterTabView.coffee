@@ -1,6 +1,6 @@
 alias = Ember.computed.alias
 
-AR.ClientFilterTabView = Ember.View.extend
+AR.PeopleFilterTabView = Ember.View.extend
 
   tagName: "nav"
   classNameBindings: ['activeclientfilter', 'tabClass', 'tabName']
