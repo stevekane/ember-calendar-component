@@ -8,6 +8,7 @@ require "router/home/HomeAddquoteRoute.js"
 require "router/home/HomeAddreminderRoute.js"
 
 require "router/people/PeopleRoute.js"
+require "router/people/PeopleAddpersonRoute.js"
 
 AR.Router.map ->
   @resource "home", path: "/home", ->

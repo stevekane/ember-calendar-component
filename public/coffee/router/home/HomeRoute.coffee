@@ -4,16 +4,9 @@ AR.HomeRoute = Ember.Route.extend
 
   #these events will trigger transitions to modal form routes
   events:
-    addPerson: () ->
+    addPerson: ->
       @transitionTo "home.addperson"
-    addQuote: () ->
+    addQuote: ->
       @transitionTo "home.addquote"
-    addReminder: () ->
+    addReminder: ->
       @transitionTo "home.addreminder"
-
-  renderTemplate: ->
-    @render "home", {
-      into: "application"
-      outlet: "main"
-      controller: "home"
-    }

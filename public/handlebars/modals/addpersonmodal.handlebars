@@ -1,0 +1,47 @@
+<section class="modalcontent">
+  <header class="modalheader">
+    Add New Person
+  </header> 
+
+  <form class="form">
+    <section class="formcolumn">
+
+      <div class="formrow">
+        <label class="formlabel">First Name</label>
+        {{input classNames="formtextfield forminput"}}
+      </div>
+      <div class="formrow">
+        <label class="formlabel">Last Name</label>
+        {{input classNames="formtextfield forminput"}}
+      </div>
+      <div class="formrow">
+        <label class="formlabel">Email</label>
+        {{input classNames="formtextfield forminput"}}
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Phone #</label>
+        {{input 
+          classNames="formtextfield forminput addpersonphonenumber" 
+          placeholder="(     )   -"
+        }}
+        {{view Ember.Select 
+          contentBinding="controller.phoneNumberTypes" 
+          classNames="addpersonphonenumbertype forminput formselect"
+        }}
+      </div>
+
+      <div class="formrow">
+        <label class="formlabel">Referral</label>
+        {{input classNames="formtextfield forminput"}}
+      </div>
+
+    </section>
+  </form>
+
+  <footer class="modalfooter">
+    <div class="save" {{action "save"}}>
+      Add Person
+    </div>
+  </footer>
+</section>

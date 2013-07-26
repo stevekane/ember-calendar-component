@@ -926,20 +926,30 @@ AR.HomeRoute = Ember.Route.extend({
     addReminder: function() {
       return this.transitionTo("home.addreminder");
     }
-  },
-  renderTemplate: function() {
-    return this.render("home", {
-      into: "application",
-      outlet: "main",
-      controller: "home"
-    });
   }
 });
 
 });
 
+minispade.register('router/people/PeopleAddpersonRoute.js', function() {
+AR.PeopleAddpersonRoute = AR.ModalRoute.extend({
+  closeRoute: "people",
+  modalName: "modals/addpersonmodal",
+  outletName: "modal",
+  intoName: "people",
+  controllerName: "addperson"
+});
+
+});
+
 minispade.register('router/people/PeopleRoute.js', function() {
-AR.PeopleRoute = Ember.Route.extend();
+AR.PeopleRoute = Ember.Route.extend({
+  events: {
+    addPerson: function() {
+      return this.transitionTo("people.addperson");
+    }
+  }
+});
 
 });
 
@@ -952,6 +962,7 @@ minispade.require("router/home/HomeAddpersonRoute.js");
 minispade.require("router/home/HomeAddquoteRoute.js");
 minispade.require("router/home/HomeAddreminderRoute.js");
 minispade.require("router/people/PeopleRoute.js");
+minispade.require("router/people/PeopleAddpersonRoute.js");
 
 AR.Router.map(function() {
   this.resource("home", {
