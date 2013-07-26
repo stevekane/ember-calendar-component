@@ -1,11 +1,7 @@
-require "views/home/AddpersonmodalView.js"
-
-AR.HomeAddpersonRoute = Ember.Route.extend
-  events:
-    close: ->
-      @transitionTo "home"
-
-  renderTemplate: () ->
-    @render("home/addpersonmodal", {
-      outlet: "modal"
-    })
+AR.HomeAddpersonRoute = AR.ModalRoute.extend
+  
+  closeRoute: "home"
+  modalName: "modals/addpersonmodal"
+  outletName: "modal"
+  intoName: "home"
+  controllerName: "addperson"

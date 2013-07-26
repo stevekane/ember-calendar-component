@@ -1,11 +1,7 @@
-require "views/home/AddremindermodalView.js"
+AR.HomeAddreminderRoute = AR.ModalRoute.extend
 
-AR.HomeAddreminderRoute = Ember.Route.extend
-  events:
-    close: ->
-      @transitionTo "home"
-
-  renderTemplate: ->
-    @render("home/addremindermodal", {
-      outlet: "modal"
-    })
+  closeRoute: "home"
+  modalName: "modals/addremindermodal"
+  outletName: "modal"
+  intoName: "home"
+  controllerName: "addreminder"

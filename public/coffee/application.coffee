@@ -17,9 +17,16 @@ require "views/search/SearchItemView.js"
 require "views/people/PeopleView.js"
 require "views/people/PeopleFilterTabView.js"
 
-require "views/modal/ModalView.js"
+require "views/modals/ModalView.js"
+require "views/modals/ModalsAddquotemodalView.js"
+require "views/modals/ModalsAddremindermodalView.js"
+require "views/modals/ModalsAddpersonmodalView.js"
 
 require "views/dropdown/DropdownView.js"
+
+require "controllers/modals/AddpersonController.js"
+require "controllers/modals/AddquoteController.js"
+require "controllers/modals/AddreminderController.js"
 
 require "controllers/data/PersonsController.js"
 require "controllers/data/QuotesController.js"
@@ -29,12 +36,10 @@ require "controllers/data/InsurancetypesController.js"
 require "controllers/data/RemindersController.js"
 
 require "controllers/home/HomeController.js"
-require "controllers/home/HomeAddpersonController.js"
-require "controllers/home/HomeAddquoteController.js"
-require "controllers/home/HomeAddreminderController.js"
 
 require "controllers/people/PeopleController.js"
 
 require "utils/HandlebarsHelpers.js"
 require "utils/Enumerables.js"
+require "utils/Alias.js"
 require "utils/FactoryHelpers.js"

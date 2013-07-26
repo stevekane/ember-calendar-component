@@ -335,12 +335,12 @@
   background-color: #0078bd;
   color: #efefef;
 }
-#recentactivity #activitylist .activity .activityclient {
+#recentactivity #activitylist .activity .activityperson {
   position: relative;
   text-align: left;
   width: 20%;
 }
-#recentactivity #activitylist .activity .activityclient .activityclientname {
+#recentactivity #activitylist .activity .activityperson .activitypersonname {
   position: absolute;
   left: 30%;
 }

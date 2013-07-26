@@ -12,8 +12,14 @@ minispade.require("views/search/SearchView.js");
 minispade.require("views/search/SearchItemView.js");
 minispade.require("views/people/PeopleView.js");
 minispade.require("views/people/PeopleFilterTabView.js");
-minispade.require("views/modal/ModalView.js");
+minispade.require("views/modals/ModalView.js");
+minispade.require("views/modals/ModalsAddquotemodalView.js");
+minispade.require("views/modals/ModalsAddremindermodalView.js");
+minispade.require("views/modals/ModalsAddpersonmodalView.js");
 minispade.require("views/dropdown/DropdownView.js");
+minispade.require("controllers/modals/AddpersonController.js");
+minispade.require("controllers/modals/AddquoteController.js");
+minispade.require("controllers/modals/AddreminderController.js");
 minispade.require("controllers/data/PersonsController.js");
 minispade.require("controllers/data/QuotesController.js");
 minispade.require("controllers/data/PolicysController.js");
@@ -21,12 +27,10 @@ minispade.require("controllers/data/FlowsController.js");
 minispade.require("controllers/data/InsurancetypesController.js");
 minispade.require("controllers/data/RemindersController.js");
 minispade.require("controllers/home/HomeController.js");
-minispade.require("controllers/home/HomeAddpersonController.js");
-minispade.require("controllers/home/HomeAddquoteController.js");
-minispade.require("controllers/home/HomeAddreminderController.js");
 minispade.require("controllers/people/PeopleController.js");
 minispade.require("utils/HandlebarsHelpers.js");
 minispade.require("utils/Enumerables.js");
+minispade.require("utils/Alias.js");
 minispade.require("utils/FactoryHelpers.js");
 
 });
@@ -65,56 +69,6 @@ AR.QuotesController = Ember.ArrayController.extend();
 
 minispade.register('controllers/data/RemindersController.js', function() {
 AR.RemindersController = Ember.ArrayController.extend();
-
-});
-
-minispade.register('controllers/home/HomeAddpersonController.js', function() {
-AR.HomeAddpersonController = Ember.Controller.extend({
-  phoneNumberTypes: ['Cell', 'Home', 'Office']
-});
-
-});
-
-minispade.register('controllers/home/HomeAddquoteController.js', function() {
-var alias;
-
-alias = Ember.computed.alias;
-
-AR.HomeAddquoteController = Ember.Controller.extend({
-  needs: ['insurancetypes', 'persons'],
-  clients: alias("controllers.clients.content"),
-  insuranceTypes: alias("controllers.insurancetypes.content")
-});
-
-});
-
-minispade.register('controllers/home/HomeAddreminderController.js', function() {
-var alias;
-
-alias = Ember.computed.alias;
-
-AR.HomeAddreminderController = Ember.Controller.extend({
-  needs: ['reminders', 'insurancetypes', 'persons'],
-  reminders: alias("controllers.reminders.content"),
-  insuranceTypes: alias("controllers.insurancetypes.content"),
-  people: alias("controllers.persons.content"),
-  hours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-  minutes: ["00", "15", "30", "45"],
-  amPm: ["AM", "PM"],
-  activeDay: moment(),
-  previousDay: function() {
-    var activeDay, previousDay;
-    activeDay = this.get("activeDay").clone();
-    previousDay = activeDay.subtract('days', 1);
-    return this.set("activeDay", previousDay);
-  },
-  nextDay: function() {
-    var activeDay, nextDay;
-    activeDay = this.get("activeDay").clone();
-    nextDay = activeDay.add('days', 1);
-    return this.set("activeDay", nextDay);
-  }
-});
 
 });
 
@@ -221,6 +175,56 @@ AR.HomeController = Ember.Controller.extend({
     });
     return sortedRems;
   }).property('reminders.@each', 'activeDay'),
+  activeDay: moment(),
+  previousDay: function() {
+    var activeDay, previousDay;
+    activeDay = this.get("activeDay").clone();
+    previousDay = activeDay.subtract('days', 1);
+    return this.set("activeDay", previousDay);
+  },
+  nextDay: function() {
+    var activeDay, nextDay;
+    activeDay = this.get("activeDay").clone();
+    nextDay = activeDay.add('days', 1);
+    return this.set("activeDay", nextDay);
+  }
+});
+
+});
+
+minispade.register('controllers/modals/AddpersonController.js', function() {
+AR.AddpersonController = Ember.Controller.extend({
+  phoneNumberTypes: ['Cell', 'Home', 'Office']
+});
+
+});
+
+minispade.register('controllers/modals/AddquoteController.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.AddquoteController = Ember.Controller.extend({
+  needs: ['insurancetypes', 'persons'],
+  clients: alias("controllers.clients.content"),
+  insuranceTypes: alias("controllers.insurancetypes.content")
+});
+
+});
+
+minispade.register('controllers/modals/AddreminderController.js', function() {
+var alias;
+
+alias = Ember.computed.alias;
+
+AR.AddreminderController = Ember.Controller.extend({
+  needs: ['reminders', 'insurancetypes', 'persons'],
+  reminders: alias("controllers.reminders.content"),
+  insuranceTypes: alias("controllers.insurancetypes.content"),
+  people: alias("controllers.persons.content"),
+  hours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  minutes: ["00", "15", "30", "45"],
+  amPm: ["AM", "PM"],
   activeDay: moment(),
   previousDay: function() {
     var activeDay, previousDay;
@@ -843,59 +847,66 @@ AR.ApplicationRoute = Ember.Route.extend({
 
 });
 
-minispade.register('router/home/HomeAddpersonRoute.js', function() {
-
-minispade.require("views/home/AddpersonmodalView.js");
-
-AR.HomeAddpersonRoute = Ember.Route.extend({
+minispade.register('router/ModalRoute.js', function() {
+AR.ModalRoute = Ember.Route.extend({
+  closeRoute: "index",
+  modalName: "index",
+  outletName: "modal",
+  intoName: "application",
+  controllerName: "index",
   events: {
     close: function() {
-      return this.transitionTo("home");
+      var closeRoute;
+      closeRoute = this.get("closeRoute");
+      return this.transitionTo(closeRoute);
     }
   },
   renderTemplate: function() {
-    return this.render("home/addpersonmodal", {
-      outlet: "modal"
+    var controller, controllerName, intoName, modalName, outletName;
+    modalName = this.get("modalName");
+    outletName = this.get("outletName");
+    intoName = this.get("intoName");
+    controllerName = this.get("controllerName");
+    controller = this.controllerFor(controllerName);
+    return this.render(modalName, {
+      into: intoName,
+      outlet: outletName,
+      controller: controller
     });
   }
+});
+
+});
+
+minispade.register('router/home/HomeAddpersonRoute.js', function() {
+AR.HomeAddpersonRoute = AR.ModalRoute.extend({
+  closeRoute: "home",
+  modalName: "modals/addpersonmodal",
+  outletName: "modal",
+  intoName: "home",
+  controllerName: "addperson"
 });
 
 });
 
 minispade.register('router/home/HomeAddquoteRoute.js', function() {
-
-minispade.require("views/home/AddquotemodalView.js");
-
-AR.HomeAddquoteRoute = Ember.Route.extend({
-  events: {
-    close: function() {
-      return this.transitionTo("home");
-    }
-  },
-  renderTemplate: function() {
-    return this.render("home/addquotemodal", {
-      outlet: "modal"
-    });
-  }
+AR.HomeAddquoteRoute = AR.ModalRoute.extend({
+  closeRoute: "home",
+  modalName: "modals/addquotemodal",
+  outletName: "modal",
+  intoName: "home",
+  controllerName: "addquote"
 });
 
 });
 
 minispade.register('router/home/HomeAddreminderRoute.js', function() {
-
-minispade.require("views/home/AddremindermodalView.js");
-
-AR.HomeAddreminderRoute = Ember.Route.extend({
-  events: {
-    close: function() {
-      return this.transitionTo("home");
-    }
-  },
-  renderTemplate: function() {
-    return this.render("home/addremindermodal", {
-      outlet: "modal"
-    });
-  }
+AR.HomeAddreminderRoute = AR.ModalRoute.extend({
+  closeRoute: "home",
+  modalName: "modals/addremindermodal",
+  outletName: "modal",
+  intoName: "home",
+  controllerName: "addreminder"
 });
 
 });
@@ -935,6 +946,7 @@ AR.PeopleRoute = Ember.Route.extend();
 minispade.register('router/router.js', function() {
 
 minispade.require("router/ApplicationRoute.js");
+minispade.require("router/ModalRoute.js");
 minispade.require("router/home/HomeRoute.js");
 minispade.require("router/home/HomeAddpersonRoute.js");
 minispade.require("router/home/HomeAddquoteRoute.js");
@@ -960,6 +972,10 @@ AR.Router.map(function() {
   });
   this.resource("people", {
     path: "/people"
+  }, function() {
+    return this.route("addperson", {
+      path: "/addperson"
+    });
   });
   return this.resource("person", {
     path: "/person/:person_id"
@@ -1111,39 +1127,9 @@ AR.ActivityItemView = Ember.View.extend({
 
 });
 
-minispade.register('views/home/AddpersonmodalView.js', function() {
-
-minispade.require("views/modal/ModalView.js");
-
-AR.HomeAddpersonmodalView = AR.ModalView.extend({
-  templateName: "home/addpersonmodal"
-});
-
-});
-
-minispade.register('views/home/AddquotemodalView.js', function() {
-
-minispade.require("views/modal/ModalView.js");
-
-AR.HomeAddquotemodalView = AR.ModalView.extend({
-  templateName: "home/addquotemodal"
-});
-
-});
-
-minispade.register('views/home/AddremindermodalView.js', function() {
-
-minispade.require("views/modal/ModalView.js");
-
-AR.HomeAddremindermodalView = AR.ModalView.extend({
-  templateName: "home/addremindermodal"
-});
-
-});
-
-minispade.register('views/modal/ModalView.js', function() {
+minispade.register('views/modals/ModalView.js', function() {
 AR.ModalView = Ember.View.extend({
-  layoutName: "modal/modal",
+  layoutName: "modals/modal",
   init: function() {
     this._super();
     this.set("boundSetSizes", this.get('setSizes').bind(this));
@@ -1166,6 +1152,27 @@ AR.ModalView = Ember.View.extend({
   windowSize: (function() {
     return "height: " + (this.get('windowHeight')) + "px; width: " + (this.get('windowWidth')) + "px";
   }).property('windowHeight', 'windowWidth').cacheable()
+});
+
+});
+
+minispade.register('views/modals/ModalsAddpersonmodalView.js', function() {
+AR.ModalsAddpersonmodalView = AR.ModalView.extend({
+  templateName: "modals/addpersonmodal"
+});
+
+});
+
+minispade.register('views/modals/ModalsAddquotemodalView.js', function() {
+AR.ModalsAddquotemodalView = AR.ModalView.extend({
+  templateName: "modals/addquotemodal"
+});
+
+});
+
+minispade.register('views/modals/ModalsAddremindermodalView.js', function() {
+AR.ModalsAddremindermodalView = AR.ModalView.extend({
+  templateName: "modals/addremindermodal"
 });
 
 });

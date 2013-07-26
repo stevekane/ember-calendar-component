@@ -1,11 +1,7 @@
-require "views/home/AddquotemodalView.js"
+AR.HomeAddquoteRoute = AR.ModalRoute.extend
 
-AR.HomeAddquoteRoute = Ember.Route.extend
-  events:
-    close: ->
-      @transitionTo "home"
-
-  renderTemplate: ->
-    @render("home/addquotemodal", {
-      outlet: "modal"
-    })
+  closeRoute: "home"
+  modalName: "modals/addquotemodal"
+  outletName: "modal"
+  intoName: "home"
+  controllerName: "addquote"

@@ -1,5 +1,7 @@
 require "router/ApplicationRoute.js"
 
+require "router/ModalRoute.js"
+
 require "router/home/HomeRoute.js"
 require "router/home/HomeAddpersonRoute.js"
 require "router/home/HomeAddquoteRoute.js"
@@ -13,5 +15,6 @@ AR.Router.map ->
     @route "addquote", path: "/addquote"
     @route "addreminder", path: "/addreminder"
     @route "editreminder", path: "/editreminder/:reminder_id"
-  @resource "people", path: "/people"
+  @resource "people", path: "/people", ->
+    @route "addperson", path: "/addperson"
   @resource "person", path: "/person/:person_id"
