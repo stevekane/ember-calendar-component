@@ -1,21 +1,8 @@
-#Agent Run web application (ember.js)
-This project is the client application for Agentrun.com
+#Overview
+This project is a baseline for starting a new ember.js-based web application.
 
-#Build
-1. Install node.js and npm
-2. Install ruby
-3. Clone this repo
-4. Run npm install
-5. Start a grunt process by typing ```grunt```
-6. Start the node server by typing ```node index.js```
-7. Open a browser and point it at ```localhost:1234```
+#Grunt
+Grunt is a build-tool/task runner that runs in node.js.  Asset compilation, transpiling, compiling, concatenation, etc are all handled by grunt.  A "file watching" utility is included in Grunt which will take care of performing the necessary operations when a file has changed to propagate the effects of said changes up to the browser.  
 
-#Live Reload
-This project's gruntfile includes a file watching task that will automatically recompile your handlebars templates, sass files, and coffeescript files
-whenever any of the files contained in the directories public/coffee public/handlebars public/sass.
-
-Your browser will automatically refresh itself with the current url whenever you change any of these watched files.
-
-#Styling - how to add the pretties
-The handlebars templates are styled by sass files of corrosponding names.  For example, if the template is called "user/outline" then there will be a corrosponding
-"sass partial" called user/_outline.sass.  You should be editing these files to add styles to each respective template.
+#Node Server
+The node.js application that ships with this project is an extremely thin express server.  Its singular purpose is to serve our static assets to us during development.
