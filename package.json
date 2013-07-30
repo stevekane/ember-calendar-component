@@ -1,7 +1,7 @@
 {
   "name": "agentrun",
-  "version": "0.0.0",
-  "description": "Agent run web application Ember",
+  "version": "0.0.1",
+  "description": "Stylecore project for building style guides",
   "main": "index.js",
   "dependencies": {
     "express": "~3.3.4"
@@ -14,14 +14,14 @@
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-clean": "~0.4.1",
-    "grunt-ember-templates": "~0.4.9"
+    "grunt-ember-templates": "~0.4.10"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/MantraChicago/agentrun-front-end"
+    "url": "https://github.com/MantraChicago/stylecore"
   },
   "author": "steve kane",
   "license": "BSD"

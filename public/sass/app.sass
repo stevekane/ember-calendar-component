@@ -1,104 +1,18 @@
-@import base/colors
-@import base/fonts
-
-@import components/tags
-@import components/buttons
-@import components/forms
-@import components/modals
-
-@import widgets/search
-@import widgets/dropdown
-@import widgets/plusminus
-
-@import home/home
-@import home/addpersonmodal
-@import home/addquotemodal
-@import home/addremindermodal
-
-@import people/people
-
-//set the active font for all elements
-*
-  font-family: $activeFont
+.button
   box-sizing: border-box
+  padding: .2em
+  font-family: serif
+  font-size: 1.4em
 
-//calculate size of header and subheader bounding boxes
-$header-height: 90px
-$header-content-height: $header-height * .55
-$header-content-padding: ($header-height - $header-content-height) / 2
+.button.small
+  color: black
 
-$subheader-height: 60px
-$subheader-content-height: $subheader-height * .55
-$subheader-content-padding: ($subheader-height - $subheader-content-height) / 2
+.button.tiny
+  color: blue
+  border-radius: 5px
+  &:after
+    content: " ^"
 
-//header stuff
-#pageheader
-  display: block
-  height: $header-height
-  width: 100%
-  background-color: $darkblue
-
-  #title
-    display: inline-block
-    margin: 0px 0px 0px 10%
-    padding-top: 25px
-    font-family: $activeFont
-    font-size: 1.6em
-    font-style: italic
-    color: $white
-
-  #homenav
-    @include headerbutton
-    margin-left: 4% 
-    top: 0px
-    height: $header-content-height
-    border-radius: 10px 0px 0px 10px
-
-  #peoplenav
-    @include headerbutton
-    height: $header-content-height
-    margin-right: 15%
-    border-radius: 0px 10px 10px 0px 
-  
-  .searchbox
-    display: inline-block
-    vertical-align: middle
-    width: 15%
-    height: $header-content-height
-
-  #logout
-    @include button 
-    vertical-align: middle
-    margin: 0px 2% 
-    height: $header-content-height
-    width: 140px
-
-//subheader stuff
-#subheader
-  display: block
-  height: $subheader-height
-  width: 100%
-  background-color: $lightblue
-  
-  #back
-    @include button
-    margin-top: $subheader-content-padding
-    vertical-align: middle
-    margin-left: 7%
-    padding-top: $subheader-content-height * .05
-    height: $subheader-content-height
-    width: $subheader-content-height
-    border-radius: $subheader-content-height / 2
-    border: none
-    color: $lightblue
-    font-size: 1.5em
-    &:hover
-      background-color: $darkblue
-      color: $white
-
-#main
-  display: block
-  position: relative
-  min-height: 600px
-  width: 100%
-  background-color: $white
+.button.success
+  &:hover
+    color: black

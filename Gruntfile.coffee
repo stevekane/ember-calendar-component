@@ -6,7 +6,7 @@ module.exports = (grunt) ->
     #coffee files and outputted JS
     coffeeDir: "public/coffee"
     compiledJS: "public/compiled-js"
-    srcJS: "agentrun.js"
+    srcJS: "app.js"
 
     #handlebars files
     hbDir: "public/handlebars"
@@ -75,6 +75,12 @@ module.exports = (grunt) ->
       handlebars:
         files: ['<%= hbDir%>/**/*.handlebars']
         tasks: ['emberTemplates']
+        options:
+          livereload: true
+
+      indexhtml:
+        files: ['index.html']
+        tasks: []
         options:
           livereload: true
 
