@@ -4,7 +4,7 @@ var path = require('path')
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 1234);
+app.set('port', process.env.PORT || 5678);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.cookieParser());

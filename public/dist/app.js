@@ -1,14 +1,11 @@
 minispade.register('Application.js', function() {
-window.Stylecore = Ember.Application.create();
-minispade.require("Router.js");
+window.App = Ember.Application.create();
+
+//here we add our main router file
+minispade.require("router/Router.js");
 
 });
 
-minispade.register('Router.js', function() {
-Stylecore.Router.map(function() {
-  return this.resource("components", function() {
-    return this.resource("component");
-  });
-});
+minispade.register('router/Router.js', function() {
 
 });
