@@ -1,38 +1,38 @@
-<div class="row">
-  <div class="small-1 large-1 columns">
-    <a href="#" class="button" {{action "previousMonth"}}>left</a>
+<div class="container">
+  <div class="row">
+    <div class="small-1 columns">
+      <a class="button" {{action "previousMonth"}}>left</a>
+    </div>
+
+    <div class="small-5 columns">
+      <h6>{{currentMonthName}}</h6>
+    </div>
+
+    <div class="small-1 columns">
+      <a class="button" {{action "nextMonth"}}>right</a>
+    </div>
+
+    <div class="small-5 columns"></div>
   </div>
 
-  <div class="small-1 large-offset-2 small-offset-2 large-1 columns">
-    <h6>{{currentMonthName}}</h6>
+  <div class="row">
+    <ul class="small-block-grid-12">
+      {{#each dayName}}<li>{{this}}</li>{{/each}}
+    </ul>
   </div>
 
-  <div class="small3 large 3">
-    <h6>{{onlyDate value}}</h6>
+  {{! some entries may be null so we must account for them }}
+  {{#each week in weeks}}
+  <div class="row">
+    <ul class="small-block-grid-12">
+      {{#each day in week}}
+        {{#if day}}
+          <li class="panel" {{action "selectDate" day}}>{{day.date}}</li>
+        {{else}}
+          <li></li>
+        {{/if}}
+      {{/each}}
+    </ul>
   </div>
-
-  <div class="small-1 large-1 columns">
-    <a href="#" class="button" {{action "nextMonth"}}>right</a>
-  </div>
+  {{/each}}
 </div>
-
-<div class="row">
-  <ul class="small-block-grid-12 large-block-grid-12">
-    {{#each dayName}}<li>{{this}}</li>{{/each}}
-  </ul>
-</div>
-
-{{! some entries may be null so we must account for them }}
-{{#each week in weeks}}
-<div class="row">
-  <ul class="small-block-grid-12 large-block-grid-12">
-    {{#each day in week}}
-      {{#if day}}
-        <li class="panel" {{action "selectDate" day}}>{{day.date}}</li>
-      {{else}}
-        <li></li>
-      {{/if}}
-    {{/each}}
-  </ul>
-</div>
-{{/each}}

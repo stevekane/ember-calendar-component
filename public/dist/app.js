@@ -3,6 +3,7 @@ window.App = Ember.Application.create();
 
 //here we add our main router file
 minispade.require("router/Router.js");
+minispade.require("controllers/ApplicationController.js");
 minispade.require("components/KaneDatepickerComponent.js");
 
 });
@@ -18,7 +19,7 @@ var inRange = function (lower, upper) {
   };
 };
 
-App.Day = Ember.Object.extend({
+Day = Ember.Object.extend({
   moment: null,
   date: computed("moment", function () {
     return this.get('moment').date(); 
@@ -26,8 +27,8 @@ App.Day = Ember.Object.extend({
 });
 
 Ember.Handlebars.registerBoundHelper("onlyDate", function (moment) {
-  if (moment) { return moment.format("DD-MM-YYYY");
-  } else { return null }
+  var formatted = (moment === null) ? null : moment.format("DD-MM-YYYY");
+  return formatted;
 });
 
 
@@ -79,7 +80,7 @@ App.KaneDatepickerComponent = Ember.Component.extend({
 
     //add all days 
     while (currentDay.isBefore(lastDay)) {
-      days.pushObject(App.Day.create({moment: currentDay}));
+      days.pushObject(Day.create({moment: currentDay}));
       currentDay = currentDay.clone().add('days', 1);
     }
     return days;
@@ -98,6 +99,14 @@ App.KaneDatepickerComponent = Ember.Component.extend({
 
     return weeks;
   })
+});
+
+});
+
+minispade.register('controllers/ApplicationController.js', function() {
+App.ApplicationController = Ember.Controller.extend({
+  initialDate: moment().add('month', 2),
+  targetDate: null
 });
 
 });

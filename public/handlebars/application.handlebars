@@ -1,3 +1,6 @@
-<h1>From here, we will launch the future</h1>
+<h1>ActiveDate is : {{onlyDate targetDate}}</h1>
 {{outlet}}
-{{kane-datepicker}}
+{{kane-datepicker 
+  currentMonth=initialDate
+  value=targetDate
+}}
