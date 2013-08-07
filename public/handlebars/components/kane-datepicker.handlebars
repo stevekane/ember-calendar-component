@@ -14,13 +14,7 @@
 
 <div class="row">
   <ul class="small-block-grid-12 large-block-grid-12">
-    <li>Mon</li> 
-    <li>Tues</li> 
-    <li>Wed</li> 
-    <li>Thurs</li> 
-    <li>Fri</li> 
-    <li>Sat</li> 
-    <li>Sun</li> 
+    {{#each dayName}}<li>{{this}}</li>{{/each}}
   </ul>
 </div>
 
@@ -30,7 +24,7 @@
   <ul class="small-block-grid-12 large-block-grid-12">
     {{#each day in week}}
       {{#if day}}
-        <li class="panel">{{day.date}}</li>
+        <li class="panel" {{action "selectDate" day}}>{{day.date}}</li>
       {{else}}
         <li></li>
       {{/if}}

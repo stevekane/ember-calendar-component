@@ -20,14 +20,26 @@ App.KaneDatepickerComponent = Ember.Component.extend({
 
   currentMonth: moment(),
 
+  dayName: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+
+  value: null,
+
+  selectDate: function (day) {
+    this.set('value', day.moment); 
+  },
+
   previousMonth: function () {
-    var currentMonth = this.get('currentMonth');
-    this.set("currentMonth", currentMonth.clone().subtract('month', 1));
+    var newMonth = this.get('currentMonth')
+      .clone()
+      .subtract('month', 1);
+    this.set("currentMonth", newMonth);
   },
 
   nextMonth: function () {
-    var currentMonth = this.get('currentMonth');
-    this.set("currentMonth", currentMonth.clone().add('month', 1));
+    var newMonth = this.get('currentMonth')
+      .clone()
+      .add('month', 1);
+    this.set("currentMonth", newMonth);
   },
   
   currentMonthName: computed("currentMonth", function () {
@@ -67,6 +79,7 @@ App.KaneDatepickerComponent = Ember.Component.extend({
     weeks.pushObject(days.filter(inRange(14, 21)));
     weeks.pushObject(days.filter(inRange(21, 28)));
     weeks.pushObject(days.filter(inRange(28, 35)));
+    weeks.pushObject(days.filter(inRange(35, 42)));
 
     return weeks;
   })
