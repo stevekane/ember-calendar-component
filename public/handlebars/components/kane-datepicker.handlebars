@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="small-1 large-1 columns">
+    <a href="#" class="button" {{action "previousMonth"}}>left</a>
+  </div>
+
+  <div class="small-1 large-offset-2 small-offset-2 large-1 columns">
+    <p>{{currentMonthName}}</p>
+  </div>
+
+  <div class="small-1 large-1 columns">
+    <a href="#" class="button" {{action "nextMonth"}}>right</a>
+  </div>
+</div>
+
+<div class="row">
+  <ul class="small-block-grid-12 large-block-grid-12">
+    <li>Mon</li> 
+    <li>Tues</li> 
+    <li>Wed</li> 
+    <li>Thurs</li> 
+    <li>Fri</li> 
+    <li>Sat</li> 
+    <li>Sun</li> 
+  </ul>
+</div>
+
+{{! some entries may be null so we must account for them }}
+{{#each week in weeks}}
+<div class="row">
+  <ul class="small-block-grid-12 large-block-grid-12">
+    {{#each day in week}}
+      {{#if day}}
+        <li class="panel">{{day.date}}</li>
+      {{else}}
+        <li></li>
+      {{/if}}
+    {{/each}}
+  </ul>
+</div>
+{{/each}}

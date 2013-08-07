@@ -1,13 +1,3 @@
-minispade.register('Application.js', function() {
-window.App = Ember.Application.create();
-
-//here we add our main router file
-minispade.require("router/Router.js");
-minispade.require("components/KaneDatepickerComponent.js");
-
-});
-
-minispade.register('components/KaneDatepickerComponent.js', function() {
 var computed = Ember.computed;
 var observes = function (propertyName, fn) {
   return Ember.observer(fn, propertyName);
@@ -80,10 +70,4 @@ App.KaneDatepickerComponent = Ember.Component.extend({
 
     return weeks;
   })
-});
-
-});
-
-minispade.register('router/Router.js', function() {
-
 });
