@@ -25,6 +25,11 @@ App.Day = Ember.Object.extend({
   })
 });
 
+Ember.Handlebars.registerBoundHelper("onlyDate", function (moment) {
+  if (moment) { return moment.format("DD-MM-YYYY");
+  } else { return null }
+});
+
 
 App.KaneDatepickerComponent = Ember.Component.extend({
 
