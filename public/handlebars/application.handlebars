@@ -1,6 +1,8 @@
 <h3>ActiveDate is : {{targetDate}}</h3>
 {{outlet}}
-{{kane-datepicker 
-  currentMonth=initialDate
-  value=targetDate
-}}
+<div class="datepickerholder">
+  {{kane-datepicker 
+    currentMonth=initialDate
+    value=targetDate
+  }}
+</div>

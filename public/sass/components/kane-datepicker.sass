@@ -1,0 +1,39 @@
+$width: 100% 
+$font: serif
+
+*
+  box-sizing: border-box
+
+@mixin chosenFontAtSize($size)
+  font-family: $font 
+  font-weight: normal
+  font-size: $size
+
+.kane-datepicker-container
+  width: $width  
+  background-color: pink
+  header
+    @include chosenFontAtSize(1.2em)
+    position: relative
+    width: 100%
+    height: 30px 
+    .current-month
+      position: absolute
+      left: 20%
+      right: 20%
+      text-align: center
+    .button-header
+      position: absolute
+      color: white
+      background-color: grey 
+      border-radius: 1px
+    .button-left
+      left: 0%
+    .button-right
+      right: 0% 
+  .calendar
+    @include chosenFontAtSize(1em)
+
+.valid-day
+  &:hover
+    background-color: white

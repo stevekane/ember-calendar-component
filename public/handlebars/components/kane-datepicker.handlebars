@@ -1,38 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="small-1 columns">
-      <a class="button" {{action "changeMonth" -1}}>left</a>
-    </div>
+<div class="kane-datepicker-container">
+  <header>
+    <div class="button-header button-left" {{action "changeMonth" -1}}>left</div>
+    <div class="current-month">{{currentMonthName}}</div>
+    <div class="button-header button-right" {{action "changeMonth" 1}}>right</div>
+  </header>
 
-    <div class="small-5 columns">
-      <h6>{{currentMonthName}}</h6>
-    </div>
+  <table class="calendar">
+    <tr>
+    {{#each dayNames}}
+      <th>{{this}}</th>
+    {{/each}}
+    </tr>
 
-    <div class="small-1 columns">
-      <a class="button" {{action "changeMonth" 1}}>right</a>
-    </div>
-
-    <div class="small-5 columns"></div>
-  </div>
-
-  <div class="row">
-    <ul class="small-block-grid-12">
-      {{#each dayNames}}<li>{{this}}</li>{{/each}}
-    </ul>
-  </div>
-
-  {{! some entries may be null so we must account for them }}
-  {{#each week in weeks}}
-  <div class="row">
-    <ul class="small-block-grid-12">
+    {{! some entries may be null so we must account for them }}
+    {{#each week in weeks}}
+      <tr>
       {{#each day in week}}
         {{#if day}}
-          <li class="panel" {{action "selectDate" day}}>{{day.date}}</li>
+          <td class="valid-day" {{action "selectDate" day}}>{{day.date}}</td>
         {{else}}
-          <li></li>
+          <td class="invalid-day"></td>
         {{/if}}
       {{/each}}
-    </ul>
-  </div>
-  {{/each}}
+      </tr>
+    {{/each}}
+
+  </table>
 </div>

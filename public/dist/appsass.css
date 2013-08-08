@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+.kane-datepicker-container {
+  width: 100%;
+  background-color: pink;
+}
+.kane-datepicker-container header {
+  font-family: serif;
+  font-weight: normal;
+  font-size: 1.2em;
+  position: relative;
+  width: 100%;
+  height: 30px;
+}
+.kane-datepicker-container header .current-month {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  text-align: center;
+}
+.kane-datepicker-container header .button-header {
+  position: absolute;
+  color: white;
+  background-color: grey;
+  border-radius: 1px;
+}
+.kane-datepicker-container header .button-left {
+  left: 0%;
+}
+.kane-datepicker-container header .button-right {
+  right: 0%;
+}
+.kane-datepicker-container .calendar {
+  font-family: serif;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+.valid-day:hover {
+  background-color: white;
+}
+
+.datepickerholder {
+  width: 220px;
+}
