@@ -80,24 +80,20 @@ App.KaneDatepickerComponent = Ember.Component.extend({
 
   value: null,
 
-  dayName: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  dayNames: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
 
+  //select an active day (typically called by action in template)
   selectDate: function (day) {
     this.set('value', day.moment); 
   },
 
-  previousMonth: function () {
+  //change the currentMonth being displayed
+  //change current month by provided +/- integer
+  changeMonth: function (amount) {
     var newMonth = this.get('currentMonth')
       .clone()
-      .subtract('month', 1);
-    this.set("currentMonth", newMonth);
-  },
-
-  nextMonth: function () {
-    var newMonth = this.get('currentMonth')
-      .clone()
-      .add('month', 1);
-    this.set("currentMonth", newMonth);
+      .add('month', amount)
+    this.set('currentMonth', newMonth);
   },
   
   currentMonthName: computed("currentMonth", function () {

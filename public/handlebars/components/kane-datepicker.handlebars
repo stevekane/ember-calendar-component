@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="small-1 columns">
-      <a class="button" {{action "previousMonth"}}>left</a>
+      <a class="button" {{action "changeMonth" -1}}>left</a>
     </div>
 
     <div class="small-5 columns">
@@ -9,7 +9,7 @@
     </div>
 
     <div class="small-1 columns">
-      <a class="button" {{action "nextMonth"}}>right</a>
+      <a class="button" {{action "changeMonth" 1}}>right</a>
     </div>
 
     <div class="small-5 columns"></div>
@@ -17,7 +17,7 @@
 
   <div class="row">
     <ul class="small-block-grid-12">
-      {{#each dayName}}<li>{{this}}</li>{{/each}}
+      {{#each dayNames}}<li>{{this}}</li>{{/each}}
     </ul>
   </div>
 

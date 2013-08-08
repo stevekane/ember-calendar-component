@@ -87,7 +87,7 @@ function program7(depth0,data) {
   data.buffer.push("<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"small-1 columns\">\n      <a class=\"button\" ");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "previousMonth", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "changeMonth", -1, {hash:{},contexts:[depth0,depth0],types:["STRING","INTEGER"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">left</a>\n    </div>\n\n    <div class=\"small-5 columns\">\n      <h6>");
   hashTypes = {};
   hashContexts = {};
@@ -95,11 +95,11 @@ function program7(depth0,data) {
   data.buffer.push("</h6>\n    </div>\n\n    <div class=\"small-1 columns\">\n      <a class=\"button\" ");
   hashTypes = {};
   hashContexts = {};
-  data.buffer.push(escapeExpression(helpers.action.call(depth0, "nextMonth", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "changeMonth", 1, {hash:{},contexts:[depth0,depth0],types:["STRING","INTEGER"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push(">right</a>\n    </div>\n\n    <div class=\"small-5 columns\"></div>\n  </div>\n\n  <div class=\"row\">\n    <ul class=\"small-block-grid-12\">\n      ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.each.call(depth0, "dayName", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "dayNames", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n    </ul>\n  </div>\n\n  ");
   data.buffer.push("\n  ");
