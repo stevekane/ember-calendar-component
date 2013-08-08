@@ -4,7 +4,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   var buffer = '', stack1, hashTypes, hashContexts, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing;
 
 
-  data.buffer.push("<h3>ActiveDate is : ");
+  data.buffer.push("<h2><a href=\"https://github.com/stevekane/ember-calendar-component\">\n  Ember Calendar Component Github Repo!\n</a></h2>\n<h3>ActiveDate is : ");
   hashTypes = {};
   hashContexts = {};
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "targetDate", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
